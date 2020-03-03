@@ -41,8 +41,8 @@ const User = db.define('user', {
   zip: {
     type: Sequelize.STRING,
     validate: {
-      isNumeric: true,
-      len: [5, 5]
+      // isNumeric: true,
+      len: [5, 11]
     }
   },
   country: {
@@ -52,7 +52,7 @@ const User = db.define('user', {
   phoneNumber: {
     type: Sequelize.STRING,
     validate: {
-      isNumeric: true,
+      // isNumeric: true,
       len: [10, 12]
     }
   },
