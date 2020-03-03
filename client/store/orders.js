@@ -83,6 +83,7 @@ const initialState = {
 
 //ORDERS REDUCER
 const ordersReducer = (state = initialState, action) => {
+  console.log('ORDERS REDUCER', state)
   switch (action.type) {
     case GOT_ORDERS:
       return {...state, orders: action.orders}

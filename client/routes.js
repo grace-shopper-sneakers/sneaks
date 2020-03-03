@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, AllShoes} from './components'
-import {me, getShoes} from './store'
+import {Login, Signup, UserHome, AllShoes, AllOrders} from './components'
+import {me, getShoes, getOrdersThunk} from './store'
+
 console.log(getShoes)
 /**
  * COMPONENT
@@ -13,10 +14,11 @@ class Routes extends Component {
     console.log(getShoes)
     this.props.loadInitialData()
     this.props.getShoes()
+    this.props.getOrders()
   }
 
   render() {
-    console.log(this.props)
+    console.log('Routes', this.props)
     const {isLoggedIn} = this.props
     return (
       <Switch>
@@ -26,6 +28,8 @@ class Routes extends Component {
         <Route path="/shoes">
           <AllShoes shoes={this.props.shoes} />
         </Route>
+        <Route path="/orders" component={AllOrders} />
+        {/* orders should only be available when logged in, but we're testing the routes first */}
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -43,11 +47,14 @@ class Routes extends Component {
  * CONTAINER
  */
 const mapState = state => {
+  console.log('MAPSTATE', state)
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
-    shoes: state.shoes
+    shoes: state.shoes,
+    // orders: state.ordersReducer.orders
+    orders: state.orders
   }
 }
 
@@ -58,6 +65,9 @@ const mapDispatch = dispatch => {
     },
     getShoes() {
       dispatch(getShoes())
+    },
+    getOrders() {
+      dispatch(getOrdersThunk())
     }
   }
 }
