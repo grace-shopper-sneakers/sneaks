@@ -9,5 +9,13 @@ router.get('/:id', async (req, res, next) => {
     next(e)
   }
 })
+router.get('/', async (req, res, next) => {
+  try {
+    const shoes = await Shoe.findAll()
+    res.json(shoes)
+  } catch (e) {
+    next(e)
+  }
+})
 
 module.exports = router
