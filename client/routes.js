@@ -2,29 +2,37 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, AllShoes, AllOrders} from './components'
-import {me, getShoes, getOrdersThunk} from './store'
-
-console.log(getShoes)
+import {
+  Login,
+  Signup,
+  UserHome,
+  AllShoes,
+  SingleShoe,
+  AddShoe,
+  AllOrders
+} from './components'
+import {me, getShoes} from './store'
 /**
  * COMPONENT
  */
+
+console.log('addshoe', AddShoe)
 class Routes extends Component {
   componentDidMount() {
-    console.log(getShoes)
     this.props.loadInitialData()
     this.props.getShoes()
     this.props.getOrders()
   }
 
   render() {
-    console.log('Routes', this.props)
     const {isLoggedIn} = this.props
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/shoes/add" component={AddShoe} />
+        <Route path="/shoes/:id" component={SingleShoe} />
         <Route path="/shoes">
           <AllShoes shoes={this.props.shoes} />
         </Route>
