@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, AllShoes, SingleShoe} from './components'
+import {Login, Signup, UserHome, AllShoes, SingleShoe, Cart} from './components'
 import {me, getShoes} from './store'
 console.log(getShoes)
 /**
@@ -22,6 +22,7 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
+        <Route path="/cart" component={Cart} />
         <Route path="/signup" component={Signup} />
         <Route path="/shoes/:id" component={SingleShoe} />
         <Route path="/shoes">
