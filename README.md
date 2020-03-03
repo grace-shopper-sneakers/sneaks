@@ -1,4 +1,4 @@
-# Boilermaker Eugene Sokoletsky Max was here .
+# Boilermaker Eugene Sokoletsky Max was here
 
 Alexander Wang was here still
 
