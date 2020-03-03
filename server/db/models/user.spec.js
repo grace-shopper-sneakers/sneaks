@@ -126,6 +126,83 @@ describe('User model', () => {
             console.error(error)
           }
         })
+
+        it('validation fails with an invalid phone number length', async () => {
+          let cody = await User.create({
+            email: 'cody@puppybook.com',
+            password: 'bones',
+            zip: '10001'
+          })
+          cody.phoneNumber = '1234567890123'
+          let result, error
+          try {
+            result = await cody.validate()
+          } catch (err) {
+            error = err
+          }
+          if (result)
+            throw Error('validation should fail when zip code is invalid')
+          expect(error).to.be.an.instanceOf(Error)
+        })
+        it('validation fails with an invalid phone number character', async () => {
+          let cody = await User.create({
+            email: 'cody@puppybook.com',
+            password: 'bones',
+            zip: '10001'
+          })
+          cody.phoneNumber = 'a123456789'
+          let result, error
+          try {
+            result = await cody.validate()
+          } catch (err) {
+            error = err
+          }
+          if (result)
+            throw Error('validation should fail when zip code is invalid')
+          expect(error).to.be.an.instanceOf(Error)
+        })
+      })
+      describe('isAdmin', () => {
+        it('the default value should be false', async () => {
+          let cody = await User.create({
+            email: 'cody@puppybook.com',
+            password: 'bones',
+            zip: '10001'
+          })
+          expect(cody.isAdmin).to.be.equal(false)
+        })
+
+        it('admin value can be set properly', async () => {
+          let cody = await User.create({
+            email: 'cody@puppybook.com',
+            password: 'bones',
+            zip: '10001',
+            isAdmin: true
+          })
+
+          expect(cody.isAdmin).to.be.equal(true)
+        })
+      })
+      describe('country', () => {
+        it('the default value should be USA', async () => {
+          let cody = await User.create({
+            email: 'cody@puppybook.com',
+            password: 'bones',
+            zip: '10001'
+          })
+          expect(cody.country).to.be.equal('United States of America')
+        })
+
+        it('country value can be set properly', async () => {
+          let cody = await User.create({
+            email: 'cody@puppybook.com',
+            password: 'bones',
+            zip: '10001',
+            country: 'Canada'
+          })
+
+          expect(cody.country).to.be.equal('Canada')
+        })
       })
     })
 }) // end describe('User model')
