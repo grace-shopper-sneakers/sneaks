@@ -1,3 +1,4 @@
+import axios from 'axios'
 // ACTION TYPES
 const GOT_ORDERS = 'GOT_ORDERS'
 const GOT_SINGLE_ORDER = 'GOT_SINGLE_ORDER'
@@ -30,6 +31,49 @@ const newOrder = order => {
   }
 }
 //THUNK
+export const getOrdersThunk = () => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get('/api/orders')
+      dispatch(gotOrders(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const getSingleOrderThunk = orderId => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/orders/${orderId}`)
+      dispatch(gotSingleOrder(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const removeOrderThunk = orderId => {
+  return async dispatch => {
+    try {
+      await axios.delete(`/api/orders/${orderId}`)
+      dispatch(removeOrder(orderId))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const newOrderThunk = newOrder => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.post('/api/orders', newOrder)
+      dispatch(newOrder(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
 
 // INITIAL STATE
 const initialState = {
@@ -52,3 +96,5 @@ const ordersReducer = (state = initialState, action) => {
       return state
   }
 }
+
+export default ordersReducer
