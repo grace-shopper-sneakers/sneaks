@@ -1,7 +1,6 @@
 import axios from 'axios'
 // ACTION TYPES
 const GOT_ORDERS = 'GOT_ORDERS'
-const GOT_SINGLE_ORDER = 'GOT_SINGLE_ORDER'
 const REMOVE_ORDER = 'REMOVE_ORDER'
 const NEW_ORDER = 'NEW_ORDER'
 
@@ -10,12 +9,6 @@ const gotOrders = orders => {
   return {
     type: GOT_ORDERS,
     orders
-  }
-}
-const gotSingleOrder = order => {
-  return {
-    type: GOT_SINGLE_ORDER,
-    order
   }
 }
 const removeOrder = orderId => {
@@ -36,17 +29,6 @@ export const getOrdersThunk = () => {
     try {
       const {data} = await axios.get('/api/orders')
       dispatch(gotOrders(data))
-    } catch (error) {
-      console.error(error)
-    }
-  }
-}
-
-export const getSingleOrderThunk = orderId => {
-  return async dispatch => {
-    try {
-      const {data} = await axios.get(`/api/orders/${orderId}`)
-      dispatch(gotSingleOrder(data))
     } catch (error) {
       console.error(error)
     }
@@ -76,21 +58,17 @@ export const newOrderThunk = newOrder => {
 }
 
 // INITIAL STATE
-const initialState = {
-  orders: [],
-  order: {}
-}
+const initialState = []
 
 //ORDERS REDUCER
 const ordersReducer = (state = initialState, action) => {
   console.log('ORDERS REDUCER', state)
   switch (action.type) {
     case GOT_ORDERS:
-      return {...state, orders: action.orders}
-    case GOT_SINGLE_ORDER:
-      return {...state, order: action.order}
+      return action.orders
+
     case REMOVE_ORDER:
-      return state.orders.filter(order => orderId !== action.order.id)
+      return state.filter(order => orderId !== action.order.id)
     case NEW_ORDER:
       return {...state, orders: [...orders, action.orders]}
     default:

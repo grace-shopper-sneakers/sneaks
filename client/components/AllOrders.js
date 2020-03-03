@@ -2,11 +2,10 @@ import React from 'react'
 import {Order} from './index'
 
 const AllOrders = props => {
-  console.log('Orders Component', props)
+  console.log('AllOrders Component', props.orders)
   return (
     <div>
-      <Order />
-      {/* {props.shoes.map(shoe => <Shoe shoe={shoe} key={shoe.id} />)} */}
+      {props.orders.map(order => <Order order={order} key={order.id} />)}
     </div>
   )
 }

@@ -28,8 +28,10 @@ class Routes extends Component {
         <Route path="/shoes">
           <AllShoes shoes={this.props.shoes} />
         </Route>
-        <Route path="/orders" component={AllOrders} />
-        {/* orders should only be available when logged in, but we're testing the routes first */}
+        <Route path="/orders">
+          <AllOrders orders={this.props.orders} />
+        </Route>
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -53,7 +55,6 @@ const mapState = state => {
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
     shoes: state.shoes,
-    // orders: state.ordersReducer.orders
     orders: state.orders
   }
 }
