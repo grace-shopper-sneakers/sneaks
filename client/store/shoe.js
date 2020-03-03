@@ -11,7 +11,7 @@ const gotShoe = shoe => ({
 
 //thunk creators
 export const getShoe = id => async dispatch => {
-  const shoe = await Axios.get('/api/shoes/' + id)
+  const {data: shoe} = await Axios.get('/api/shoes/' + id)
   dispatch(gotShoe(shoe))
 }
 
