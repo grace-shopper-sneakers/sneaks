@@ -11,7 +11,8 @@ import {
   AddShoe,
   AllOrders
 } from './components'
-import {me, getShoes} from './store'
+
+import {me, getShoes, getOrdersThunk} from './store'
 /**
  * COMPONENT
  */

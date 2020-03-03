@@ -1,7 +1,9 @@
 import React from 'react'
 
 const Order = props => {
-  console.log('Order Card', props)
+  if (!props.order) {
+    return <h1>No orders yet.</h1>
+  }
   const {
     orderId,
     orderDate,
@@ -28,6 +30,7 @@ const Order = props => {
       <h2>Pics: {image}</h2>
       <h2>userId: {userId}</h2>
       <h2>Price: {price}</h2>
+      <hr />
     </div>
   )
 }
