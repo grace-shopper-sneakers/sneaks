@@ -33,6 +33,7 @@ const Shoe = db.define('shoe', {
   },
   color: {
     type: Sequelize.STRING,
+
     allowNull: false
   },
   model: {
