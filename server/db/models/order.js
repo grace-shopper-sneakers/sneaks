@@ -40,7 +40,7 @@ const Order = db.define('order', {
   },
   color: {
     type: Sequelize.STRING,
-    allowNUll: false
+    allowNull: false
   },
   model: {
     type: Sequelize.STRING,
