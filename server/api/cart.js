@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const Cart = require('../db/models/cart')
-const Shoe = require('../db/models/shoe')
+// const Shoe = require('../db/models/shoe');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -14,9 +14,5 @@ router.get('/', async (req, res, next) => {
     next(error)
   }
 })
-
-// router.put();
-
-// router.delete();
 
 module.exports = router

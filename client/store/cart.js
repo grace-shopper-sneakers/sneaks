@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 export const ADD_SHOE = 'ADD_SHOE'
-// const DELETE_SHOE = 'DELETE_SHOE';
 
 export const addedItem = shoe => ({
   type: ADD_SHOE,
