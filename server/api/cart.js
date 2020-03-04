@@ -37,4 +37,22 @@ router.put('/', async (req, res, next) => {
   }
 })
 
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const userCart = await Cart.findOne({
+      where: {
+        userId: req.user.id
+      }
+    })
+
+    const removedShoe = await Shoe.findByPk(req.params.id)
+
+    const cartedShoe = await userCart.removeShoe(removedShoe)
+
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
+
 module.exports = router
