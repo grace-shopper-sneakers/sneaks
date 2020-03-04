@@ -1,10 +1,21 @@
 import React from 'react'
-import {addShoeToCart, getUserCart} from '../store'
+import {addShoeToCart, getUserCart, removeFromCart} from '../store'
 import {connect} from 'react-redux'
 import Shoe from './Shoe'
 
 export const Cart = props => {
-  return <div>{props.cart.map(shoe => <Shoe key={shoe.id} shoe={shoe} />)}</div>
+  return (
+    <div>
+      {props.cart.map(shoe => (
+        <div key={shoe.id}>
+          <Shoe shoe={shoe} />
+          <button type="button" onClick={() => props.removeFromCart(shoe.id)}>
+            Remove from Cart
+          </button>
+        </div>
+      ))}
+    </div>
+  )
 }
 
 const mapStateToProps = state => ({
@@ -17,6 +28,9 @@ const mapDispatchToProps = dispatch => ({
   },
   getCart: () => {
     dispatch(getUserCart())
+  },
+  removeFromCart: id => {
+    dispatch(removeFromCart(id))
   }
 })
 
