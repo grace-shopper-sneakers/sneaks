@@ -1760,6 +1760,11 @@ async function seed() {
   await createdUsers[5].addOrder(4)
   await createdUsers[5].addOrder(5)
 
+  await createdUsers[0].setCart(3)
+  await createdUsers[1].setCart(2)
+  await createdUsers[2].setCart(4)
+  await createdUsers[3].setCart(1)
+
   // const users = await Promise.all([
   //   User.create({email: 'cody@email.com', password: '123'}),
   //   User.create({email: 'murphy@email.com', password: '123'})
