@@ -9,7 +9,8 @@ import {
   AllShoes,
   SingleShoe,
   AddShoe,
-  AllOrders
+  AllOrders,
+  SingleOrder
 } from './components'
 
 import {me, getShoes, getOrdersThunk} from './store'
@@ -37,6 +38,7 @@ class Routes extends Component {
         <Route path="/shoes">
           <AllShoes shoes={this.props.shoes} />
         </Route>
+        <Route path="/orders/:id" component={SingleOrder} />
         <Route path="/orders">
           <AllOrders orders={this.props.orders} />
         </Route>
@@ -58,7 +60,6 @@ class Routes extends Component {
  * CONTAINER
  */
 const mapState = state => {
-  console.log('MAPSTATE', state)
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey

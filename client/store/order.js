@@ -11,6 +11,8 @@ const gotSingleOrder = order => {
     order
   }
 }
+
+// for Admin only?
 // const removeOrder = orderId => {
 //   return {
 //     type: REMOVE_ORDER,
@@ -67,9 +69,10 @@ const singleOrderReducer = (state = initialState, action) => {
     case GOT_SINGLE_ORDER:
       return action.order
     // case REMOVE_ORDER:
-    //   return state.orders.filter(order => orderId !== action.order.id)
+    //   if (state.id === action.id) return {}
+    //   else return state
     // case NEW_ORDER:
-    //   return {...state, orders: [...orders, action.orders]}
+    //   return action.order
     default:
       return state
   }
