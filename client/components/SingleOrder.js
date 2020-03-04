@@ -2,6 +2,7 @@ import React from 'react'
 import Order from './Order'
 import {connect} from 'react-redux'
 import {getSingleOrderThunk, removeOrderThunk} from '../store'
+import AllOrders from './AllOrders'
 
 class SingleOrder extends React.Component {
   componentDidMount() {
@@ -10,7 +11,7 @@ class SingleOrder extends React.Component {
   render() {
     return (
       <div>
-        <Order order={this.props.order} />
+        <AllOrders orders={this.props.order} />
         {this.props.user.isAdmin && this.props.order ? (
           <button
             type="button"

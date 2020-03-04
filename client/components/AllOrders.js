@@ -13,7 +13,7 @@ const AllOrders = props => {
       ) : user.isAdmin ? (
         props.orders.map(order => (
           <div key={order.id}>
-            <Link to={`/orders/${order.id}`}>
+            <Link to={`/orders/${order.orderId}`}>
               <Order order={order} />
             </Link>
 
@@ -26,7 +26,7 @@ const AllOrders = props => {
       ) : (
         props.orders.filter(order => order.userId === user.id).map(order => (
           <div key={order.id}>
-            <Link to={`/orders/${orderId}`}>
+            <Link to={`/orders/${order.orderId}`}>
               <Order order={order} />
             </Link>
           </div>
