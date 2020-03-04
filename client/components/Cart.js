@@ -1,6 +1,7 @@
 import React from 'react'
 import {addShoeToCart, getUserCart, removeFromCart} from '../store'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import Shoe from './Shoe'
 
 export const Cart = props => {
@@ -14,6 +15,9 @@ export const Cart = props => {
           </button>
         </div>
       ))}
+      <Link to="/checkout">
+        <button type="button">Checkout</button>
+      </Link>
     </div>
   )
 }

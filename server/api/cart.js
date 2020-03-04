@@ -18,7 +18,6 @@ router.get('/', async (req, res, next) => {
 })
 
 router.put('/', async (req, res, next) => {
-  console.log(req.user)
   try {
     const userCart = await Cart.findOne({
       where: {
@@ -47,7 +46,7 @@ router.delete('/:id', async (req, res, next) => {
 
     const removedShoe = await Shoe.findByPk(req.params.id)
 
-    const cartedShoe = await userCart.removeShoe(removedShoe)
+    await userCart.removeShoe(removedShoe)
 
     res.sendStatus(204)
   } catch (error) {
