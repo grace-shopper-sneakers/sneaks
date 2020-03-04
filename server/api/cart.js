@@ -10,7 +10,6 @@ router.get('/', async (req, res, next) => {
       },
       include: [Shoe]
     })
-    console.log('usercart', userCart)
     res.json(userCart.shoes)
   } catch (error) {
     next(error)
@@ -18,7 +17,6 @@ router.get('/', async (req, res, next) => {
 })
 
 router.put('/', async (req, res, next) => {
-  console.log(req.user)
   try {
     const userCart = await Cart.findOne({
       where: {
@@ -28,15 +26,27 @@ router.put('/', async (req, res, next) => {
 
     const addedShoe = await Shoe.findByPk(req.body.id)
 
-    const cartedShoe = await userCart.addShoe(addedShoe)
+    await userCart.addShoe(addedShoe)
 
-    console.log(cartedShoe)
     res.json(addedShoe)
   } catch (error) {
     next(error)
   }
 })
-
+router.delete('/checkout', async (req, res, next) => {
+  try {
+    const userCart = await Cart.findOne({
+      where: {
+        userId: req.user.id
+      }
+    })
+    const shoes = await userCart.getShoes()
+    await userCart.setShoes([])
+    res.status(200).json(shoes)
+  } catch (error) {
+    next(error)
+  }
+})
 router.delete('/:id', async (req, res, next) => {
   try {
     const userCart = await Cart.findOne({
@@ -47,7 +57,7 @@ router.delete('/:id', async (req, res, next) => {
 
     const removedShoe = await Shoe.findByPk(req.params.id)
 
-    const cartedShoe = await userCart.removeShoe(removedShoe)
+    await userCart.removeShoe(removedShoe)
 
     res.sendStatus(204)
   } catch (error) {
