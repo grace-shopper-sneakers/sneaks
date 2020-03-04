@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const Shoe = require('../db/models/shoe')
-const adminsOnly = require('./gatewayutils')
+const {adminsOnly} = require('./gatewayutils')
 
 //get a shoe by its id
 router.get('/:id', async (req, res, next) => {
