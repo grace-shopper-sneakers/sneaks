@@ -5,7 +5,7 @@ import {getSingleOrderThunk, removeOrderThunk} from '../store'
 
 class SingleOrder extends React.Component {
   componentDidMount() {
-    this.props.getOrder(this.props.match.params.id)
+    this.props.getOrder(this.props.match.params.orderId)
   }
   render() {
     return (
@@ -33,8 +33,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getOrder: orderId => dispatch(getSingleOrderThunk(orderId)),
-  delete: orderId => {
-    dispatch(removeOrderThunk(orderId))
+  delete: id => {
+    dispatch(removeOrderThunk(id))
     ownProps.history.push('/orders')
   }
 })

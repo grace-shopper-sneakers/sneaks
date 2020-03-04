@@ -10,25 +10,25 @@ const AllOrders = props => {
     <div>
       {props.orders.length === 0 ? (
         <h1>No Orders</h1>
-      ) : (
+      ) : user.isAdmin ? (
         props.orders.map(order => (
           <div key={order.id}>
             <Link to={`/orders/${order.id}`}>
               <Order order={order} />
             </Link>
-            {/* {user.isAdmin ? (
-              <button type="button" onClick={() => props.delete(order.id)}>
-                Delete
-              </button>
-            ) : (
-              ''
-            )} */}
-            {
-              <button type="button" onClick={() => props.delete(order.id)}>
-                Delete
-              </button>
-            }
+
+            <button type="button" onClick={() => props.delete(order.id)}>
+              Delete
+            </button>
             <hr />
+          </div>
+        ))
+      ) : (
+        props.orders.filter(order => order.userId === user.id).map(order => (
+          <div key={order.id}>
+            <Link to={`/orders/${orderId}`}>
+              <Order order={order} />
+            </Link>
           </div>
         ))
       )}
