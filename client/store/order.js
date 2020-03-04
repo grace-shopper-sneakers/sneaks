@@ -1,12 +1,10 @@
 import axios from 'axios'
 // ACTION TYPES
-
 const GOT_SINGLE_ORDER = 'GOT_SINGLE_ORDER'
 // const REMOVE_ORDER = 'REMOVE_ORDER'
 // const NEW_ORDER = 'NEW_ORDER'
 
 // ACTION CREATORS
-
 const gotSingleOrder = order => {
   return {
     type: GOT_SINGLE_ORDER,
@@ -25,8 +23,8 @@ const gotSingleOrder = order => {
 //     order
 //   }
 // }
-//THUNK
 
+//THUNK
 export const getSingleOrderThunk = orderId => {
   return async dispatch => {
     try {
@@ -63,9 +61,8 @@ export const getSingleOrderThunk = orderId => {
 // INITIAL STATE
 const initialState = {}
 
-//ORDERS REDUCER
+//ORDER REDUCER
 const singleOrderReducer = (state = initialState, action) => {
-  console.log('single ORDER REDUCER', state)
   switch (action.type) {
     case GOT_SINGLE_ORDER:
       return action.order
