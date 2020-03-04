@@ -19,6 +19,7 @@ router.get('/:orderId', async (req, res, next) => {
       where: {orderId: req.params.orderId}
     })
     console.log('req.params.id', req.params.orderId)
+
     if (foundOrder) res.json(foundOrder)
     else res.sendStatus(404)
   } catch (error) {
