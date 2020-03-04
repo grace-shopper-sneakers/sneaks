@@ -46,10 +46,10 @@ export const removeOrderThunk = id => {
   }
 }
 
-export const newOrderThunk = newOrder => {
+export const newOrderThunk = order => {
   return async dispatch => {
     try {
-      const {data} = await axios.post('/api/orders', newOrder)
+      const {data} = await axios.post('/api/orders', order)
       dispatch(newOrder(data))
     } catch (error) {
       console.error(error)

@@ -1,14 +1,14 @@
 import React from 'react'
 
 const initialState = {
-  firstName: '',
-  lastName: '',
-  street: '',
-  apartmentNumber: '',
-  city: '',
-  zip: '',
-  country: '',
-  phoneNumber: ''
+  firstName: 'a',
+  lastName: 'a',
+  street: 'a',
+  apartmentNumber: 'a',
+  city: 'a',
+  zip: 'd',
+  country: 'a',
+  phoneNumber: 'a'
 }
 
 class ShippingForm extends React.Component {
@@ -18,6 +18,7 @@ class ShippingForm extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+
   handleChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value
@@ -30,7 +31,6 @@ class ShippingForm extends React.Component {
     } else {
       console.log('form is not valid')
     }
-    console.log(this.state)
   }
   validate() {
     let isValid = true

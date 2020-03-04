@@ -20,8 +20,6 @@ import {me, getShoes, getOrdersThunk, getUserCart} from './store'
 /**
  * COMPONENT
  */
-
-console.log('addshoe', AddShoe)
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
