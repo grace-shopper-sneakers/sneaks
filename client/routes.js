@@ -8,9 +8,12 @@ import {
   UserHome,
   AllShoes,
   SingleShoe,
-  AddShoe
+  AddShoe,
+  AllOrders,
+  SingleOrder
 } from './components'
-import {me, getShoes} from './store'
+
+import {me, getShoes, getOrdersThunk} from './store'
 /**
  * COMPONENT
  */
@@ -20,6 +23,7 @@ class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
     this.props.getShoes()
+    this.props.getOrders()
   }
 
   render() {
@@ -34,6 +38,11 @@ class Routes extends Component {
         <Route path="/shoes">
           <AllShoes shoes={this.props.shoes} />
         </Route>
+        <Route path="/orders/:id" component={SingleOrder} />
+        <Route path="/orders">
+          <AllOrders orders={this.props.orders} />
+        </Route>
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -55,7 +64,8 @@ const mapState = state => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
-    shoes: state.shoes
+    shoes: state.shoes,
+    orders: state.orders
   }
 }
 
@@ -66,6 +76,9 @@ const mapDispatch = dispatch => {
     },
     getShoes() {
       dispatch(getShoes())
+    },
+    getOrders() {
+      dispatch(getOrdersThunk())
     }
   }
 }
