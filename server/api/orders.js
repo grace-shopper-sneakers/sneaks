@@ -33,4 +33,15 @@ router.post('/', async (req, res, next) => {
     next(error)
   }
 })
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const foundOrder = await Order.findByPk(req.params.id)
+    await foundOrder.destroy()
+    res.send('Order deleted')
+  } catch (error) {
+    next(error)
+  }
+})
+
 module.exports = router

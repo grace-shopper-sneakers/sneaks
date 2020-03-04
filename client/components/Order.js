@@ -30,7 +30,6 @@ const Order = props => {
       <h2>Pics: {image}</h2>
       <h2>userId: {userId}</h2>
       <h2>Price: {price}</h2>
-      <hr />
     </div>
   )
 }

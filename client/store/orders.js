@@ -11,10 +11,10 @@ const gotOrders = orders => {
     orders
   }
 }
-const removeOrder = orderId => {
+const removeOrder = id => {
   return {
     type: REMOVE_ORDER,
-    orderId
+    id
   }
 }
 const newOrder = order => {
@@ -35,11 +35,11 @@ export const getOrdersThunk = () => {
   }
 }
 
-export const removeOrderThunk = orderId => {
+export const removeOrderThunk = id => {
   return async dispatch => {
     try {
-      await axios.delete(`/api/orders/${orderId}`)
-      dispatch(removeOrder(orderId))
+      await axios.delete(`/api/orders/${id}`)
+      dispatch(removeOrder(id))
     } catch (error) {
       console.error(error)
     }
@@ -66,7 +66,7 @@ const ordersReducer = (state = initialState, action) => {
     case GOT_ORDERS:
       return action.orders
     case REMOVE_ORDER:
-      return state.filter(order => orderId !== action.id)
+      return state.filter(order => order.id !== action.id)
     case NEW_ORDER:
       return [...state, action.order]
     default:
