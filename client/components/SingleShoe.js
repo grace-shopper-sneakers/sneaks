@@ -1,15 +1,23 @@
 import React from 'react'
 import Shoe from './Shoe'
 import {connect} from 'react-redux'
-import {getShoe, deleteShoe} from '../store'
+import {getShoe, deleteShoe, addShoeToCart} from '../store'
 
 class SingleShoe extends React.Component {
   componentDidMount() {
     this.props.getShoe(this.props.match.params.id)
   }
   render() {
+    console.log('ADD SHOE FUNC', this.props.addShoe)
     return (
       <div>
+        <button
+          type="button"
+          onClick={() => this.props.addShoe(this.props.shoe)}
+        >
+          ADD TO CART
+        </button>
+
         <Shoe shoe={this.props.shoe} />
         {this.props.user.isAdmin && this.props.shoe ? (
           <button
@@ -34,7 +42,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   delete: id => {
     dispatch(deleteShoe(id))
     ownProps.history.push('/shoes')
-  }
+  },
+  addShoe: shoe => dispatch(addShoeToCart(shoe))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleShoe)
