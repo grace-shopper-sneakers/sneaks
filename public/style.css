@@ -19,3 +19,28 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.shoe-image {
+  display: flex;
+  max-width: 200px;
+  max-height: 200px;
+  justify-content: center;
+}
+
+.all-shoes {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.shoe {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 160px;
+  justify-content: space-around;
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+  margin: 3px;
+  padding: 5px;
+  align-items: stretch;
+}
