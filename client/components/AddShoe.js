@@ -25,14 +25,11 @@ class AddShoe extends React.Component {
   }
   handleSubmit(evt) {
     evt.preventDefault()
-    console.log('submit')
     if (this.validate()) {
-      console.log('did validate')
       this.props.addShoe(this.state)
     } else {
       console.log('did not validate')
     }
-    console.log(this.state)
   }
   validate() {
     return this.state.brand && this.state.model && this.state.size

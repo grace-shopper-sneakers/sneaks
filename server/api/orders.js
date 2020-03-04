@@ -15,7 +15,6 @@ router.get('/', async (req, res, next) => {
 router.get('/:orderId', async (req, res, next) => {
   try {
     const foundOrder = await Order.findByPk(req.params.orderId)
-    console.log('req.params.id', req.params.orderId)
     if (foundOrder) res.json(foundOrder)
     else res.sendStatus(404)
   } catch (error) {
