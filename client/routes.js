@@ -8,7 +8,8 @@ import {
   UserHome,
   AllShoes,
   SingleShoe,
-  AddShoe
+  AddShoe,
+  Cart
 } from './components'
 import {me, getShoes} from './store'
 /**
