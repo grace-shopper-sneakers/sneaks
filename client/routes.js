@@ -10,7 +10,8 @@ import {
   SingleShoe,
   AddShoe,
   AllOrders,
-  SingleOrder
+  SingleOrder,
+  Checkout
 } from './components'
 
 import {me, getShoes, getOrdersThunk} from './store'
@@ -39,6 +40,9 @@ class Routes extends Component {
           <AllShoes shoes={this.props.shoes} />
         </Route>
         <Route path="/orders/:id" component={SingleOrder} />
+        <Route path="/checkout">
+          <Checkout orders={this.props.orders} />
+        </Route>
         <Route path="/orders">
           <AllOrders orders={this.props.orders} />
         </Route>
