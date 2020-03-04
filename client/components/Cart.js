@@ -21,6 +21,8 @@ export class Cart extends Component {
   }
 
   render() {
+    const numberValue = parseInt(this.state.value, 10)
+
     return (
       <div>
         {this.props.cart.map(shoe => (
@@ -45,6 +47,7 @@ export class Cart extends Component {
               </label>
               <input type="submit" value="Submit" />
             </form>
+            <p>Total: ${numberValue * shoe.price}</p>
           </div>
         ))}
       </div>
