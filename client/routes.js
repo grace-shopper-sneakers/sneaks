@@ -10,10 +10,11 @@ import {
   SingleShoe,
   AddShoe,
   AllOrders,
-  SingleOrder
+  SingleOrder,
+  Cart
 } from './components'
 
-import {me, getShoes, getOrdersThunk} from './store'
+import {me, getShoes, getOrdersThunk, getUserCart} from './store'
 /**
  * COMPONENT
  */
@@ -24,6 +25,7 @@ class Routes extends Component {
     this.props.loadInitialData()
     this.props.getShoes()
     this.props.getOrders()
+    this.props.getCart()
   }
 
   render() {
@@ -80,6 +82,9 @@ const mapDispatch = dispatch => {
     },
     getOrders() {
       dispatch(getOrdersThunk())
+    },
+    getCart() {
+      dispatch(getUserCart())
     }
   }
 }
