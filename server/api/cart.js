@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const Cart = require('../db/models/cart')
 const Shoe = require('../db/models/shoe')
+const adminsOnly = require('./gatewayutils')
 
 router.get('/', async (req, res, next) => {
   try {

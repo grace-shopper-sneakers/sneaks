@@ -1,7 +1,8 @@
 const router = require('express').Router()
 const Order = require('../db/models/order')
+const adminsOnly = require('./gatewayutils')
 
-router.get('/', async (req, res, next) => {
+router.get('/', adminsOnly, async (req, res, next) => {
   try {
     const allOrders = await Order.findAll()
     if (allOrders) {
@@ -34,7 +35,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', adminsOnly, async (req, res, next) => {
   try {
     const foundOrder = await Order.findByPk(req.params.id)
     await foundOrder.destroy()

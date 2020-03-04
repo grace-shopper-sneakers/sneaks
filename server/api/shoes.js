@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const Shoe = require('../db/models/shoe')
+const adminsOnly = require('./gatewayutils')
+
 //get a shoe by its id
 router.get('/:id', async (req, res, next) => {
   try {
@@ -9,7 +11,7 @@ router.get('/:id', async (req, res, next) => {
     next(e)
   }
 })
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', adminsOnly, async (req, res, next) => {
   try {
     const shoe = await Shoe.findByPk(req.params.id)
     await shoe.destroy()
@@ -18,7 +20,7 @@ router.delete('/:id', async (req, res, next) => {
     next(e)
   }
 })
-router.post('/', async (req, res, next) => {
+router.post('/', adminsOnly, async (req, res, next) => {
   try {
     const shoe = await Shoe.create(req.body)
     res.json(shoe)
