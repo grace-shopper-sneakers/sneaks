@@ -1,12 +1,8 @@
 import axios from 'axios'
 import {newOrderThunk} from './index'
-
 export const ADD_SHOE_TO_CART = 'ADD_SHOE_TO_CART'
-
 export const GET_USER_CART = 'GET_USER_CART'
-
 export const REMOVE_FROM_CART = 'DELETE_FROM_CART'
-
 export const CHECKOUT = 'CHECKOUT'
 
 export const addedShoe = shoe => ({
@@ -39,7 +35,6 @@ export const addShoeToCart = shoe => async dispatch => {
 export const getUserCart = () => async dispatch => {
   try {
     const {data} = await axios.get('/api/cart')
-    console.log('in get user cart thunk', data)
     dispatch(gotCart(data))
   } catch (error) {
     console.error(error)

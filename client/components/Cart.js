@@ -10,11 +10,9 @@ export class Cart extends Component {
     this.state = {value: '1'}
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    console.log('cart props', props)
   }
   componentDidMount() {
     this.props.getCart()
-    console.log('mounted')
   }
   handleChange(event) {
     this.setState({value: event.target.value})
@@ -25,7 +23,6 @@ export class Cart extends Component {
   render() {
     const numberValue = parseInt(this.state.value, 10)
     const {shoes} = this.props
-    console.log('props in cart', this.props)
     return (
       <div>
         {!shoes || shoes.length === 0
@@ -73,7 +70,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch(addShoeToCart(shoe))
   },
   getCart: () => {
-    console.log('dispatching user cart..')
     dispatch(getUserCart())
   },
   removeFromCart: id => {
