@@ -4,6 +4,7 @@ const Order = props => {
   if (!props.order) {
     return <h1>No orders yet.</h1>
   }
+  console.log(props)
   const {
     orderId,
     orderDate,
@@ -27,9 +28,9 @@ const Order = props => {
       <h2>Model: {model}</h2>
       <h2>Name: {name}</h2>
       <h2>Description: {description}</h2>
-      <h2>Pics: {image}</h2>
       <h2>userId: {userId}</h2>
-      <h2>Price: {price}</h2>
+      <h2>Price: ${price}</h2>
+      <img src={image} />
     </div>
   )
 }

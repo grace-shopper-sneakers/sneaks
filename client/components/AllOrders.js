@@ -16,10 +16,13 @@ const AllOrders = props => {
             <Link to={`/orders/${order.orderId}`}>
               <Order order={order} />
             </Link>
-
-            <button type="button" onClick={() => props.delete(order.id)}>
-              Delete
-            </button>
+            {user.isAdmin ? (
+              <button type="button" onClick={() => props.delete(order.id)}>
+                Delete
+              </button>
+            ) : (
+              ''
+            )}
             <hr />
           </div>
         ))
