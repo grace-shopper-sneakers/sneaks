@@ -41,7 +41,7 @@ router.delete('/:id', adminsOnly, async (req, res, next) => {
   try {
     const foundOrder = await Order.findByPk(req.params.id)
     await foundOrder.destroy()
-    res.send('Order deleted')
+    res.sendStatus(204)
   } catch (error) {
     next(error)
   }
