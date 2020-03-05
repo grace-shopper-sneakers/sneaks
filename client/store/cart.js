@@ -39,6 +39,7 @@ export const addShoeToCart = shoe => async dispatch => {
 export const getUserCart = () => async dispatch => {
   try {
     const {data} = await axios.get('/api/cart')
+    console.log('in get user cart thunk', data)
     dispatch(gotCart(data))
   } catch (error) {
     console.error(error)
@@ -69,18 +70,19 @@ export const checkout = () => async dispatch => {
   }
 }
 
-export const cartReducer = (state = [], action) => {
+export const cartReducer = (state = {shoes: []}, action) => {
   switch (action.type) {
     case ADD_SHOE_TO_CART:
-      return [...state, action.shoe]
+      return {...state, shoes: [...state.shoes, action.shoe]}
     case GET_USER_CART:
       return action.cart
     case REMOVE_FROM_CART:
-      return state.filter(shoe => {
-        return shoe.id !== action.id
-      })
+      return {
+        ...state,
+        shoes: state.shoes.filter(shoe => shoe.id !== action.id)
+      }
     case CHECKOUT:
-      return []
+      return {...state, shoes: []}
     default:
       return state
   }
