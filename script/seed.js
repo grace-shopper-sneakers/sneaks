@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Shoe, Cart, Order} = require('../server/db/models')
+const {User, Shoe, Order} = require('../server/db/models')
 
 const users = [
   {
@@ -621,1103 +621,1019 @@ const users = [
 
 const shoes = [
   {
-    size: '11.5',
-    brand: 'Reebok',
-    color: 'lime',
-    model: 'Practical Cotton Fish',
-    name: 'Margaretta',
-    description: 'Fantastic',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '147.00'
-  },
-  {
-    size: '12',
-    brand: 'Adidas',
-    color: 'tan',
-    model: 'Handmade Soft Pizza',
-    name: 'Jaylen',
-    description: 'Fantastic',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '186.00'
-  },
-  {
-    size: '12.5',
-    brand: 'Adidas',
-    color: 'salmon',
-    model: 'Awesome Concrete Salad',
-    name: 'Elizabeth',
-    description: 'Small',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '96.00'
-  },
-  {
-    size: '11',
-    brand: 'Nike',
-    color: 'gold',
-    model: 'Tasty Plastic Mouse',
-    name: 'Richard',
-    description: 'Handmade',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '190.00'
-  },
-  {
-    size: '8.5',
-    brand: 'Reebok',
-    color: 'salmon',
-    model: 'Rustic Fresh Hat',
-    name: 'Noah',
-    description: 'Small',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '215.00'
-  },
-  {
-    size: '9.5',
-    brand: 'Adidas',
-    color: 'blue',
-    model: 'Fantastic Plastic Chicken',
-    name: 'Harry',
-    description: 'Small',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '122.00'
-  },
-  {
-    size: '12.5',
-    brand: 'Nike',
-    color: 'violet',
-    model: 'Rustic Frozen Sausages',
-    name: 'Jeff',
-    description: 'Fantastic',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '141.00'
-  },
-  {
-    size: '13.5',
-    brand: 'Reebok',
-    color: 'lime',
-    model: 'Handmade Metal Chips',
-    name: 'Mariane',
-    description: 'Handcrafted',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '111.00'
-  },
-  {
-    size: '12.5',
-    brand: 'Converse',
-    color: 'plum',
-    model: 'Generic Wooden Shoes',
-    name: 'Cathrine',
-    description: 'Incredible',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '267.00'
-  },
-  {
     size: '14',
-    brand: 'Reebok',
-    color: 'blue',
-    model: 'Gorgeous Steel Table',
-    name: 'Brooks',
-    description: 'Fantastic',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '255.00'
-  },
-  {
-    size: '11',
-    brand: 'Converse',
-    color: 'tan',
-    model: 'Intelligent Plastic Bacon',
-    name: 'Arnoldo',
-    description: 'Practical',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '296.00'
-  },
-  {
-    size: '12',
-    brand: 'Nike',
-    color: 'lavender',
-    model: 'Fantastic Cotton Table',
-    name: 'Charlene',
-    description: 'Incredible',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '272.00'
-  },
-  {
-    size: '11.5',
-    brand: 'Converse',
-    color: 'pink',
-    model: 'Generic Soft Sausages',
-    name: 'Mariana',
-    description: 'Intelligent',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '278.00'
-  },
-  {
-    size: '8',
     brand: 'Adidas',
-    color: 'magenta',
-    model: 'Tasty Concrete Keyboard',
-    name: 'Dolly',
-    description: 'Generic',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '88.00'
-  },
-  {
-    size: '7',
-    brand: 'Adidas',
-    color: 'maroon',
-    model: 'Intelligent Rubber Fish',
-    name: 'Glen',
-    description: 'Small',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '247.00'
-  },
-  {
-    size: '11',
-    brand: 'Nike',
-    color: 'indigo',
-    model: 'Tasty Fresh Fish',
-    name: 'Harvey',
-    description: 'Incredible',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '281.00'
-  },
-  {
-    size: '9.5',
-    brand: 'Converse',
-    color: 'blue',
-    model: 'Ergonomic Wooden Soap',
-    name: 'Regan',
-    description: 'Fantastic',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '192.00'
-  },
-  {
-    size: '7',
-    brand: 'Reebok',
-    color: 'lime',
-    model: 'Small Fresh Car',
-    name: 'Norris',
-    description: 'Handcrafted',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '130.00'
-  },
-  {
-    size: '7',
-    brand: 'Converse',
-    color: 'azure',
-    model: 'Tasty Soft Car',
-    name: 'Darrell',
-    description: 'Awesome',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '284.00'
-  },
-  {
-    size: '9.5',
-    brand: 'Converse',
-    color: 'ivory',
-    model: 'Refined Rubber Hat',
-    name: 'Armando',
-    description: 'Practical',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '183.00'
-  },
-  {
-    size: '7.5',
-    brand: 'Nike',
-    color: 'grey',
-    model: 'Sleek Frozen Hat',
-    name: 'Betty',
-    description: 'Licensed',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '259.00'
-  },
-  {
-    size: '8',
-    brand: 'Adidas',
-    color: 'ivory',
-    model: 'Tasty Cotton Pizza',
-    name: 'Enoch',
-    description: 'Incredible',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '150.00'
-  },
-  {
-    size: '8',
-    brand: 'Reebok',
-    color: 'teal',
-    model: 'Small Wooden Computer',
-    name: 'Alfonzo',
-    description: 'Awesome',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '135.00'
-  },
-  {
-    size: '8',
-    brand: 'Converse',
-    color: 'yellow',
-    model: 'Unbranded Metal Fish',
-    name: 'Bobbie',
-    description: 'Licensed',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '232.00'
-  },
-  {
-    size: '7',
-    brand: 'Adidas',
-    color: 'fuchsia',
-    model: 'Sleek Cotton Hat',
-    name: 'Madisyn',
-    description: 'Unbranded',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '245.00'
-  },
-  {
-    size: '7.5',
-    brand: 'Reebok',
-    color: 'white',
-    model: 'Refined Metal Table',
-    name: 'Leonel',
-    description: 'Practical',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '295.00'
-  },
-  {
-    size: '7.5',
-    brand: 'Converse',
-    color: 'sky blue',
-    model: 'Small Soft Bike',
-    name: 'Saul',
-    description: 'Sleek',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '245.00'
-  },
-  {
-    size: '9.5',
-    brand: 'Nike',
-    color: 'olive',
-    model: 'Tasty Rubber Car',
-    name: 'Uriel',
-    description: 'Incredible',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '161.00'
-  },
-  {
-    size: '13',
-    brand: 'Reebok',
-    color: 'magenta',
-    model: 'Rustic Metal Towels',
-    name: 'Ubaldo',
-    description: 'Practical',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '146.00'
-  },
-  {
-    size: '14',
-    brand: 'Converse',
-    color: 'pink',
-    model: 'Ergonomic Concrete Fish',
-    name: 'Jazlyn',
-    description: 'Handmade',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '111.00'
-  },
-  {
-    size: '7.5',
-    brand: 'Converse',
-    color: 'white',
-    model: 'Gorgeous Wooden Fish',
-    name: 'Verner',
-    description: 'Intelligent',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '219.00'
-  },
-  {
-    size: '12.5',
-    brand: 'Nike',
-    color: 'grey',
-    model: 'Incredible Cotton Cheese',
-    name: 'Else',
-    description: 'Sleek',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '89.00'
-  },
-  {
-    size: '10.5',
-    brand: 'Converse',
-    color: 'lavender',
-    model: 'Practical Fresh Table',
-    name: 'Rosalind',
-    description: 'Generic',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '135.00'
-  },
-  {
-    size: '7',
-    brand: 'Nike',
-    color: 'gold',
-    model: 'Licensed Soft Mouse',
-    name: 'Christophe',
-    description: 'Fantastic',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '248.00'
-  },
-  {
-    size: '10.5',
-    brand: 'Adidas',
-    color: 'blue',
-    model: 'Practical Wooden Table',
-    name: 'Itzel',
-    description: 'Intelligent',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '173.00'
-  },
-  {
-    size: '13',
-    brand: 'Reebok',
-    color: 'mint green',
-    model: 'Unbranded Wooden Cheese',
-    name: 'Geovanny',
-    description: 'Intelligent',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '158.00'
-  },
-  {
-    size: '10',
-    brand: 'Nike',
-    color: 'plum',
-    model: 'Generic Plastic Bacon',
-    name: 'Colten',
-    description: 'Incredible',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '266.00'
-  },
-  {
-    size: '7',
-    brand: 'Reebok',
-    color: 'yellow',
-    model: 'Handcrafted Cotton Chair',
-    name: 'Zaria',
-    description: 'Intelligent',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '122.00'
-  },
-  {
-    size: '13',
-    brand: 'Nike',
-    color: 'blue',
-    model: 'Small Plastic Tuna',
-    name: 'Dagmar',
-    description: 'Ergonomic',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '85.00'
-  },
-  {
-    size: '9.5',
-    brand: 'Nike',
-    color: 'teal',
-    model: 'Ergonomic Concrete Ball',
-    name: 'Christop',
-    description: 'Incredible',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '256.00'
-  },
-  {
-    size: '12',
-    brand: 'Reebok',
-    color: 'grey',
-    model: 'Practical Plastic Tuna',
-    name: 'Georgette',
-    description: 'Sleek',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '211.00'
-  },
-  {
-    size: '10',
-    brand: 'Reebok',
-    color: 'mint green',
-    model: 'Awesome Plastic Soap',
-    name: 'Alana',
-    description: 'Rustic',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '201.00'
-  },
-  {
-    size: '10',
-    brand: 'Converse',
-    color: 'turquoise',
-    model: 'Handcrafted Wooden Shoes',
-    name: 'Samanta',
-    description: 'Practical',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '110.00'
-  },
-  {
-    size: '8',
-    brand: 'Adidas',
-    color: 'blue',
-    model: 'Awesome Cotton Fish',
-    name: 'Mason',
-    description: 'Handcrafted',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '253.00'
-  },
-  {
-    size: '11.5',
-    brand: 'Nike',
-    color: 'lavender',
-    model: 'Incredible Granite Bike',
-    name: 'Earlene',
-    description: 'Incredible',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '149.00'
-  },
-  {
-    size: '14',
-    brand: 'Nike',
     color: 'black',
-    model: 'Gorgeous Metal Chair',
-    name: 'Vallie',
-    description: 'Ergonomic',
+    model: 'Gorgeous Steel Table',
+    name: 'Edward',
+    description: 'Intelligent',
     image: 'http://lorempixel.com/400/400/shoes',
-    price: '226.00'
-  },
-  {
-    size: '12.5',
-    brand: 'Nike',
-    color: 'pink',
-    model: 'Tasty Granite Car',
-    name: 'Ena',
-    description: 'Unbranded',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '84.00'
+    price: 23092
   },
   {
     size: '13.5',
-    brand: 'Reebok',
-    color: 'cyan',
-    model: 'Generic Metal Cheese',
-    name: 'Axel',
-    description: 'Handmade',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '281.00'
-  },
-  {
-    size: '7.5',
-    brand: 'Adidas',
-    color: 'mint green',
-    model: 'Tasty Wooden Fish',
-    name: 'Ella',
-    description: 'Rustic',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '290.00'
-  },
-  {
-    size: '10',
     brand: 'Nike',
-    color: 'lavender',
-    model: 'Rustic Granite Chicken',
-    name: 'Cory',
-    description: 'Fantastic',
+    color: 'indigo',
+    model: 'Licensed Plastic Tuna',
+    name: 'Westley',
+    description: 'Gorgeous',
     image: 'http://lorempixel.com/400/400/shoes',
-    price: '195.00'
-  },
-  {
-    size: '10.5',
-    brand: 'Reebok',
-    color: 'fuchsia',
-    model: 'Refined Cotton Pizza',
-    name: 'Denis',
-    description: 'Tasty',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '161.00'
+    price: 29831
   },
   {
     size: '13',
     brand: 'Converse',
-    color: 'green',
-    model: 'Handcrafted Wooden Sausages',
-    name: 'Wilbert',
-    description: 'Gorgeous',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '166.00'
-  },
-  {
-    size: '7',
-    brand: 'Reebok',
-    color: 'lavender',
-    model: 'Intelligent Rubber Shoes',
-    name: 'Desiree',
-    description: 'Handcrafted',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '273.00'
-  },
-  {
-    size: '12',
-    brand: 'Adidas',
-    color: 'gold',
-    model: 'Handmade Soft Shirt',
-    name: 'Ephraim',
-    description: 'Sleek',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '213.00'
-  },
-  {
-    size: '7.5',
-    brand: 'Reebok',
-    color: 'indigo',
-    model: 'Generic Rubber Bike',
-    name: 'Trinity',
-    description: 'Refined',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '132.00'
-  },
-  {
-    size: '10.5',
-    brand: 'Converse',
-    color: 'green',
-    model: 'Rustic Metal Shoes',
-    name: 'May',
-    description: 'Generic',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '219.00'
-  },
-  {
-    size: '8.5',
-    brand: 'Adidas',
-    color: 'green',
-    model: 'Awesome Metal Bike',
-    name: 'Cruz',
-    description: 'Generic',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '277.00'
-  },
-  {
-    size: '10.5',
-    brand: 'Reebok',
-    color: 'purple',
-    model: 'Incredible Metal Fish',
-    name: 'Golden',
-    description: 'Small',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '145.00'
-  },
-  {
-    size: '7.5',
-    brand: 'Reebok',
-    color: 'plum',
-    model: 'Sleek Metal Pants',
-    name: 'Lillian',
-    description: 'Sleek',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '91.00'
-  },
-  {
-    size: '7',
-    brand: 'Converse',
-    color: 'lavender',
-    model: 'Tasty Steel Chips',
-    name: 'Stefan',
-    description: 'Licensed',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '133.00'
-  },
-  {
-    size: '8.5',
-    brand: 'Converse',
-    color: 'green',
-    model: 'Handmade Concrete Towels',
-    name: 'Kathryne',
-    description: 'Awesome',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '252.00'
-  },
-  {
-    size: '13.5',
-    brand: 'Converse',
-    color: 'violet',
-    model: 'Ergonomic Concrete Pants',
-    name: 'Salvatore',
-    description: 'Generic',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '94.00'
-  },
-  {
-    size: '12',
-    brand: 'Nike',
-    color: 'maroon',
-    model: 'Handmade Wooden Tuna',
-    name: 'Kenna',
-    description: 'Refined',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '103.00'
-  },
-  {
-    size: '13.5',
-    brand: 'Adidas',
-    color: 'azure',
-    model: 'Licensed Soft Salad',
-    name: 'Nicole',
-    description: 'Practical',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '230.00'
-  },
-  {
-    size: '7.5',
-    brand: 'Converse',
-    color: 'lavender',
-    model: 'Handmade Steel Pants',
-    name: 'Carey',
-    description: 'Licensed',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '283.00'
-  },
-  {
-    size: '11.5',
-    brand: 'Nike',
-    color: 'plum',
-    model: 'Unbranded Rubber Car',
-    name: 'Jakayla',
-    description: 'Handmade',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '134.00'
-  },
-  {
-    size: '12',
-    brand: 'Nike',
-    color: 'purple',
-    model: 'Ergonomic Metal Towels',
-    name: 'Michaela',
+    color: 'black',
+    model: 'Incredible Steel Sausages',
+    name: 'Richard',
     description: 'Incredible',
     image: 'http://lorempixel.com/400/400/shoes',
-    price: '250.00'
-  },
-  {
-    size: '7',
-    brand: 'Nike',
-    color: 'plum',
-    model: 'Practical Granite Fish',
-    name: 'Emmanuel',
-    description: 'Gorgeous',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '292.00'
-  },
-  {
-    size: '8.5',
-    brand: 'Nike',
-    color: 'lime',
-    model: 'Sleek Fresh Gloves',
-    name: 'Dimitri',
-    description: 'Tasty',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '271.00'
-  },
-  {
-    size: '9.5',
-    brand: 'Reebok',
-    color: 'indigo',
-    model: 'Incredible Rubber Pizza',
-    name: 'Anderson',
-    description: 'Refined',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '212.00'
-  },
-  {
-    size: '11.5',
-    brand: 'Nike',
-    color: 'mint green',
-    model: 'Handmade Fresh Chicken',
-    name: 'Bobby',
-    description: 'Sleek',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '200.00'
-  },
-  {
-    size: '8.5',
-    brand: 'Reebok',
-    color: 'gold',
-    model: 'Handcrafted Concrete Cheese',
-    name: 'Aleen',
-    description: 'Refined',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '255.00'
-  },
-  {
-    size: '10',
-    brand: 'Converse',
-    color: 'sky blue',
-    model: 'Tasty Fresh Computer',
-    name: 'Delores',
-    description: 'Licensed',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '274.00'
-  },
-  {
-    size: '13.5',
-    brand: 'Adidas',
-    color: 'magenta',
-    model: 'Gorgeous Plastic Gloves',
-    name: 'Savanna',
-    description: 'Unbranded',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '189.00'
-  },
-  {
-    size: '11',
-    brand: 'Adidas',
-    color: 'salmon',
-    model: 'Generic Rubber Chicken',
-    name: 'Deshaun',
-    description: 'Awesome',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '129.00'
-  },
-  {
-    size: '7',
-    brand: 'Converse',
-    color: 'gold',
-    model: 'Unbranded Granite Soap',
-    name: 'Seamus',
-    description: 'Incredible',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '102.00'
-  },
-  {
-    size: '9.5',
-    brand: 'Nike',
-    color: 'orchid',
-    model: 'Incredible Wooden Computer',
-    name: 'Kathryn',
-    description: 'Tasty',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '285.00'
+    price: 19109
   },
   {
     size: '9',
     brand: 'Converse',
-    color: 'ivory',
-    model: 'Handcrafted Plastic Chair',
-    name: 'Marina',
-    description: 'Ergonomic',
+    color: 'pink',
+    model: 'Awesome Rubber Tuna',
+    name: 'Diego',
+    description: 'Handmade',
     image: 'http://lorempixel.com/400/400/shoes',
-    price: '225.00'
-  },
-  {
-    size: '7',
-    brand: 'Reebok',
-    color: 'yellow',
-    model: 'Licensed Granite Towels',
-    name: 'Angeline',
-    description: 'Handcrafted',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '163.00'
-  },
-  {
-    size: '7',
-    brand: 'Nike',
-    color: 'grey',
-    model: 'Sleek Metal Keyboard',
-    name: 'Rickie',
-    description: 'Awesome',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '298.00'
-  },
-  {
-    size: '11',
-    brand: 'Adidas',
-    color: 'cyan',
-    model: 'Small Granite Ball',
-    name: 'Stanley',
-    description: 'Tasty',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '156.00'
-  },
-  {
-    size: '7',
-    brand: 'Converse',
-    color: 'yellow',
-    model: 'Intelligent Steel Salad',
-    name: 'Tito',
-    description: 'Handcrafted',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '137.00'
-  },
-  {
-    size: '10',
-    brand: 'Adidas',
-    color: 'turquoise',
-    model: 'Fantastic Metal Pants',
-    name: 'Lea',
-    description: 'Handcrafted',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '260.00'
-  },
-  {
-    size: '14',
-    brand: 'Nike',
-    color: 'olive',
-    model: 'Unbranded Metal Chips',
-    name: 'Gabe',
-    description: 'Gorgeous',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '191.00'
-  },
-  {
-    size: '8',
-    brand: 'Nike',
-    color: 'orchid',
-    model: 'Intelligent Soft Bacon',
-    name: 'Scottie',
-    description: 'Awesome',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '172.00'
-  },
-  {
-    size: '7',
-    brand: 'Nike',
-    color: 'plum',
-    model: 'Small Fresh Table',
-    name: 'Susana',
-    description: 'Intelligent',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '120.00'
-  },
-  {
-    size: '10',
-    brand: 'Converse',
-    color: 'turquoise',
-    model: 'Small Frozen Shoes',
-    name: 'Dustin',
-    description: 'Fantastic',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '196.00'
-  },
-  {
-    size: '11.5',
-    brand: 'Nike',
-    color: 'fuchsia',
-    model: 'Small Metal Shoes',
-    name: 'Jake',
-    description: 'Practical',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '168.00'
-  },
-  {
-    size: '10.5',
-    brand: 'Nike',
-    color: 'azure',
-    model: 'Intelligent Cotton Chicken',
-    name: 'Jessika',
-    description: 'Small',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '177.00'
+    price: 15285
   },
   {
     size: '13.5',
-    brand: 'Reebok',
-    color: 'gold',
-    model: 'Tasty Wooden Salad',
-    name: 'Camryn',
-    description: 'Handmade',
+    brand: 'Adidas',
+    color: 'cyan',
+    model: 'Handcrafted Frozen Keyboard',
+    name: 'Herman',
+    description: 'Gorgeous',
     image: 'http://lorempixel.com/400/400/shoes',
-    price: '139.00'
+    price: 25896
   },
   {
     size: '14',
     brand: 'Reebok',
-    color: 'purple',
-    model: 'Awesome Soft Salad',
-    name: 'Kale',
+    color: 'black',
+    model: 'Ergonomic Soft Chair',
+    name: 'Shanny',
     description: 'Awesome',
     image: 'http://lorempixel.com/400/400/shoes',
-    price: '178.00'
+    price: 21122
   },
   {
-    size: '13',
-    brand: 'Reebok',
-    color: 'mint green',
-    model: 'Sleek Wooden Salad',
-    name: 'Chyna',
-    description: 'Handmade',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '192.00'
-  },
-  {
-    size: '9.5',
+    size: '7.5',
     brand: 'Nike',
-    color: 'white',
-    model: 'Intelligent Cotton Car',
-    name: 'Rachel',
-    description: 'Licensed',
+    color: 'ivory',
+    model: 'Awesome Rubber Shirt',
+    name: 'Kobe',
+    description: 'Tasty',
     image: 'http://lorempixel.com/400/400/shoes',
-    price: '217.00'
+    price: 23027
   },
   {
     size: '11.5',
-    brand: 'Converse',
-    color: 'blue',
-    model: 'Practical Wooden Pants',
-    name: 'Werner',
-    description: 'Unbranded',
+    brand: 'Nike',
+    color: 'orchid',
+    model: 'Intelligent Cotton Shoes',
+    name: 'Jarret',
+    description: 'Refined',
     image: 'http://lorempixel.com/400/400/shoes',
-    price: '140.00'
+    price: 13474
   },
   {
-    size: '13',
+    size: '8.5',
     brand: 'Converse',
-    color: 'ivory',
-    model: 'Gorgeous Concrete Keyboard',
-    name: 'Clark',
+    color: 'sky blue',
+    model: 'Handmade Wooden Tuna',
+    name: 'Emmanuelle',
+    description: 'Handcrafted',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 21858
+  },
+  {
+    size: '10',
+    brand: 'Converse',
+    color: 'plum',
+    model: 'Sleek Metal Gloves',
+    name: 'Mitchel',
+    description: 'Generic',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 13066
+  },
+  {
+    size: '11',
+    brand: 'Converse',
+    color: 'tan',
+    model: 'Awesome Frozen Tuna',
+    name: 'Tyler',
+    description: 'Rustic',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 26532
+  },
+  {
+    size: '7.5',
+    brand: 'Adidas',
+    color: 'sky blue',
+    model: 'Intelligent Soft Chips',
+    name: 'Oscar',
     description: 'Gorgeous',
     image: 'http://lorempixel.com/400/400/shoes',
-    price: '114.00'
+    price: 9076
   },
   {
-    size: '8',
+    size: '12',
     brand: 'Nike',
-    color: 'turquoise',
-    model: 'Ergonomic Plastic Pants',
-    name: 'Keyshawn',
-    description: 'Sleek',
+    color: 'violet',
+    model: 'Practical Cotton Ball',
+    name: 'Geovanni',
+    description: 'Awesome',
     image: 'http://lorempixel.com/400/400/shoes',
-    price: '222.00'
+    price: 27204
+  },
+  {
+    size: '7.5',
+    brand: 'Converse',
+    color: 'orange',
+    model: 'Ergonomic Concrete Salad',
+    name: 'Eliseo',
+    description: 'Licensed',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 8410
+  },
+  {
+    size: '13.5',
+    brand: 'Adidas',
+    color: 'fuchsia',
+    model: 'Fantastic Metal Keyboard',
+    name: 'Ashlee',
+    description: 'Handcrafted',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 28773
   },
   {
     size: '14',
     brand: 'Adidas',
-    color: 'silver',
-    model: 'Ergonomic Wooden Keyboard',
-    name: 'Luis',
-    description: 'Intelligent',
+    color: 'sky blue',
+    model: 'Licensed Wooden Mouse',
+    name: 'Owen',
+    description: 'Awesome',
     image: 'http://lorempixel.com/400/400/shoes',
-    price: '249.00'
+    price: 22250
   },
   {
-    size: '14',
-    brand: 'Reebok',
-    color: 'maroon',
-    model: 'Tasty Concrete Bike',
-    name: 'Lonnie',
-    description: 'Generic',
+    size: '9.5',
+    brand: 'Adidas',
+    color: 'pink',
+    model: 'Licensed Metal Pants',
+    name: 'Kitty',
+    description: 'Ergonomic',
     image: 'http://lorempixel.com/400/400/shoes',
-    price: '274.00'
+    price: 12406
   },
   {
-    size: '13',
-    brand: 'Reebok',
-    color: 'blue',
-    model: 'Ergonomic Fresh Sausages',
-    name: 'Willy',
-    description: 'Small',
+    size: '8',
+    brand: 'Converse',
+    color: 'salmon',
+    model: 'Incredible Fresh Chips',
+    name: 'Jordon',
+    description: 'Licensed',
     image: 'http://lorempixel.com/400/400/shoes',
-    price: '254.00'
+    price: 19416
+  },
+  {
+    size: '7.5',
+    brand: 'Nike',
+    color: 'green',
+    model: 'Handmade Wooden Fish',
+    name: 'Wayne',
+    description: 'Rustic',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 9391
   },
   {
     size: '8.5',
     brand: 'Reebok',
+    color: 'lavender',
+    model: 'Incredible Concrete Chair',
+    name: 'Henri',
+    description: 'Incredible',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 27622
+  },
+  {
+    size: '13.5',
+    brand: 'Converse',
     color: 'cyan',
-    model: 'Ergonomic Concrete Chair',
-    name: 'Mellie',
+    model: 'Rustic Metal Tuna',
+    name: 'Shaina',
+    description: 'Generic',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 14732
+  },
+  {
+    size: '13.5',
+    brand: 'Adidas',
+    color: 'ivory',
+    model: 'Tasty Concrete Bacon',
+    name: 'Andrew',
+    description: 'Incredible',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 29087
+  },
+  {
+    size: '12',
+    brand: 'Converse',
+    color: 'orange',
+    model: 'Sleek Plastic Pizza',
+    name: 'Linnie',
+    description: 'Incredible',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 22497
+  },
+  {
+    size: '7',
+    brand: 'Adidas',
+    color: 'black',
+    model: 'Sleek Steel Bacon',
+    name: 'Katlyn',
+    description: 'Handmade',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 15685
+  },
+  {
+    size: '14',
+    brand: 'Adidas',
+    color: 'indigo',
+    model: 'Tasty Rubber Ball',
+    name: 'Cecilia',
+    description: 'Handcrafted',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 13786
+  },
+  {
+    size: '8.5',
+    brand: 'Converse',
+    color: 'black',
+    model: 'Awesome Metal Ball',
+    name: 'Remington',
+    description: 'Handcrafted',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 24214
+  },
+  {
+    size: '13.5',
+    brand: 'Nike',
+    color: 'cyan',
+    model: 'Fantastic Fresh Table',
+    name: 'Frieda',
     description: 'Ergonomic',
     image: 'http://lorempixel.com/400/400/shoes',
-    price: '89.00'
-  }
-]
-
-const carts = [
-  {
-    id: 1,
-
-    checkedOut: false
+    price: 15494
   },
   {
-    id: 2,
-
-    checkedOut: true
+    size: '8.5',
+    brand: 'Adidas',
+    color: 'maroon',
+    model: 'Fantastic Steel Shoes',
+    name: 'Ezra',
+    description: 'Licensed',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 23623
   },
   {
-    id: 3,
-
-    checkedOut: false
+    size: '8',
+    brand: 'Converse',
+    color: 'tan',
+    model: 'Refined Soft Ball',
+    name: 'Norene',
+    description: 'Refined',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 8282
   },
   {
-    id: 4,
-
-    checkedOut: true
+    size: '14',
+    brand: 'Adidas',
+    color: 'blue',
+    model: 'Gorgeous Rubber Salad',
+    name: 'Alphonso',
+    description: 'Handmade',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 21648
+  },
+  {
+    size: '13.5',
+    brand: 'Nike',
+    color: 'lavender',
+    model: 'Tasty Soft Bike',
+    name: 'Felton',
+    description: 'Rustic',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 14377
+  },
+  {
+    size: '13.5',
+    brand: 'Converse',
+    color: 'plum',
+    model: 'Fantastic Steel Table',
+    name: 'Deondre',
+    description: 'Small',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 22960
+  },
+  {
+    size: '9.5',
+    brand: 'Adidas',
+    color: 'lavender',
+    model: 'Sleek Wooden Chicken',
+    name: 'Heath',
+    description: 'Ergonomic',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 28188
+  },
+  {
+    size: '13.5',
+    brand: 'Nike',
+    color: 'azure',
+    model: 'Awesome Metal Car',
+    name: 'Eva',
+    description: 'Fantastic',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 19544
+  },
+  {
+    size: '8',
+    brand: 'Adidas',
+    color: 'azure',
+    model: 'Handmade Wooden Fish',
+    name: 'Tyler',
+    description: 'Incredible',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 21804
+  },
+  {
+    size: '7.5',
+    brand: 'Nike',
+    color: 'silver',
+    model: 'Tasty Frozen Gloves',
+    name: 'Idell',
+    description: 'Small',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 11820
+  },
+  {
+    size: '13',
+    brand: 'Nike',
+    color: 'red',
+    model: 'Practical Wooden Bike',
+    name: 'Brice',
+    description: 'Tasty',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 29558
+  },
+  {
+    size: '12.5',
+    brand: 'Adidas',
+    color: 'ivory',
+    model: 'Unbranded Soft Pants',
+    name: 'Ignacio',
+    description: 'Tasty',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 28953
+  },
+  {
+    size: '7.5',
+    brand: 'Converse',
+    color: 'gold',
+    model: 'Incredible Wooden Mouse',
+    name: 'Marta',
+    description: 'Gorgeous',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 24525
+  },
+  {
+    size: '10',
+    brand: 'Adidas',
+    color: 'mint green',
+    model: 'Generic Concrete Soap',
+    name: 'Mariela',
+    description: 'Awesome',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 16412
+  },
+  {
+    size: '10.5',
+    brand: 'Nike',
+    color: 'indigo',
+    model: 'Awesome Steel Pizza',
+    name: 'Zora',
+    description: 'Small',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 11005
+  },
+  {
+    size: '7',
+    brand: 'Nike',
+    color: 'turquoise',
+    model: 'Small Metal Pants',
+    name: 'Abel',
+    description: 'Licensed',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 9818
+  },
+  {
+    size: '12',
+    brand: 'Reebok',
+    color: 'green',
+    model: 'Practical Soft Gloves',
+    name: 'Demario',
+    description: 'Practical',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 26454
+  },
+  {
+    size: '12',
+    brand: 'Nike',
+    color: 'olive',
+    model: 'Handcrafted Metal Bacon',
+    name: 'Grayce',
+    description: 'Gorgeous',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 27209
+  },
+  {
+    size: '10.5',
+    brand: 'Adidas',
+    color: 'white',
+    model: 'Small Frozen Shirt',
+    name: 'Ismael',
+    description: 'Handcrafted',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 13088
+  },
+  {
+    size: '8',
+    brand: 'Converse',
+    color: 'mint green',
+    model: 'Ergonomic Granite Shirt',
+    name: 'Austen',
+    description: 'Gorgeous',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 13613
+  },
+  {
+    size: '7',
+    brand: 'Nike',
+    color: 'orchid',
+    model: 'Refined Plastic Chicken',
+    name: 'Darien',
+    description: 'Sleek',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 20912
+  },
+  {
+    size: '14',
+    brand: 'Nike',
+    color: 'ivory',
+    model: 'Tasty Concrete Soap',
+    name: 'Alejandra',
+    description: 'Awesome',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 25096
+  },
+  {
+    size: '8.5',
+    brand: 'Converse',
+    color: 'violet',
+    model: 'Awesome Rubber Pizza',
+    name: 'Tre',
+    description: 'Small',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 22207
+  },
+  {
+    size: '7',
+    brand: 'Converse',
+    color: 'red',
+    model: 'Handcrafted Plastic Cheese',
+    name: 'Dimitri',
+    description: 'Ergonomic',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 26141
+  },
+  {
+    size: '11',
+    brand: 'Nike',
+    color: 'gold',
+    model: 'Sleek Plastic Mouse',
+    name: 'Zackary',
+    description: 'Small',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 22011
+  },
+  {
+    size: '12.5',
+    brand: 'Adidas',
+    color: 'green',
+    model: 'Tasty Cotton Soap',
+    name: 'King',
+    description: 'Incredible',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 13405
+  },
+  {
+    size: '11.5',
+    brand: 'Converse',
+    color: 'ivory',
+    model: 'Small Rubber Computer',
+    name: 'Annie',
+    description: 'Fantastic',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 19166
+  },
+  {
+    size: '11',
+    brand: 'Converse',
+    color: 'gold',
+    model: 'Licensed Fresh Sausages',
+    name: 'Alivia',
+    description: 'Licensed',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 25774
+  },
+  {
+    size: '12',
+    brand: 'Reebok',
+    color: 'cyan',
+    model: 'Unbranded Granite Bike',
+    name: 'Telly',
+    description: 'Small',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 15969
+  },
+  {
+    size: '9.5',
+    brand: 'Adidas',
+    color: 'lavender',
+    model: 'Tasty Concrete Hat',
+    name: 'Enrico',
+    description: 'Handcrafted',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 11125
+  },
+  {
+    size: '7',
+    brand: 'Converse',
+    color: 'orchid',
+    model: 'Sleek Fresh Bacon',
+    name: 'Roxane',
+    description: 'Practical',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 8415
+  },
+  {
+    size: '14',
+    brand: 'Adidas',
+    color: 'orchid',
+    model: 'Unbranded Rubber Gloves',
+    name: 'Beaulah',
+    description: 'Practical',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 14247
+  },
+  {
+    size: '9',
+    brand: 'Nike',
+    color: 'lavender',
+    model: 'Ergonomic Metal Hat',
+    name: 'Annabell',
+    description: 'Gorgeous',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 28032
+  },
+  {
+    size: '9.5',
+    brand: 'Nike',
+    color: 'mint green',
+    model: 'Handcrafted Concrete Ball',
+    name: 'Duane',
+    description: 'Handcrafted',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 17631
+  },
+  {
+    size: '7.5',
+    brand: 'Adidas',
+    color: 'turquoise',
+    model: 'Rustic Metal Car',
+    name: 'Kaia',
+    description: 'Refined',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 8604
+  },
+  {
+    size: '13',
+    brand: 'Converse',
+    color: 'violet',
+    model: 'Licensed Granite Computer',
+    name: 'Olaf',
+    description: 'Sleek',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 26740
+  },
+  {
+    size: '11.5',
+    brand: 'Adidas',
+    color: 'tan',
+    model: 'Tasty Wooden Bacon',
+    name: 'Skyla',
+    description: 'Licensed',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 28490
+  },
+  {
+    size: '14',
+    brand: 'Converse',
+    color: 'turquoise',
+    model: 'Tasty Steel Cheese',
+    name: 'Moshe',
+    description: 'Intelligent',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 13405
+  },
+  {
+    size: '7',
+    brand: 'Reebok',
+    color: 'green',
+    model: 'Small Rubber Table',
+    name: 'Mya',
+    description: 'Sleek',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 9977
+  },
+  {
+    size: '13',
+    brand: 'Reebok',
+    color: 'teal',
+    model: 'Incredible Steel Mouse',
+    name: 'Mathias',
+    description: 'Licensed',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 14360
+  },
+  {
+    size: '13.5',
+    brand: 'Converse',
+    color: 'red',
+    model: 'Sleek Wooden Tuna',
+    name: 'Jocelyn',
+    description: 'Handcrafted',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 26821
+  },
+  {
+    size: '11',
+    brand: 'Adidas',
+    color: 'sky blue',
+    model: 'Intelligent Wooden Cheese',
+    name: 'Haylie',
+    description: 'Tasty',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 12265
+  },
+  {
+    size: '7.5',
+    brand: 'Adidas',
+    color: 'mint green',
+    model: 'Ergonomic Cotton Table',
+    name: 'Colten',
+    description: 'Licensed',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 12226
+  },
+  {
+    size: '7.5',
+    brand: 'Converse',
+    color: 'violet',
+    model: 'Sleek Plastic Shirt',
+    name: 'Susanna',
+    description: 'Tasty',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 17720
+  },
+  {
+    size: '14',
+    brand: 'Reebok',
+    color: 'black',
+    model: 'Intelligent Granite Chicken',
+    name: 'Dashawn',
+    description: 'Tasty',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 12274
+  },
+  {
+    size: '9',
+    brand: 'Reebok',
+    color: 'tan',
+    model: 'Gorgeous Plastic Shoes',
+    name: 'Abbey',
+    description: 'Tasty',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 21803
+  },
+  {
+    size: '13',
+    brand: 'Converse',
+    color: 'cyan',
+    model: 'Intelligent Fresh Keyboard',
+    name: 'Christine',
+    description: 'Licensed',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 26936
+  },
+  {
+    size: '8',
+    brand: 'Converse',
+    color: 'lime',
+    model: 'Small Soft Chips',
+    name: 'Ladarius',
+    description: 'Sleek',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 23956
+  },
+  {
+    size: '8.5',
+    brand: 'Reebok',
+    color: 'teal',
+    model: 'Generic Steel Mouse',
+    name: 'Willa',
+    description: 'Handmade',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 28406
+  },
+  {
+    size: '7.5',
+    brand: 'Reebok',
+    color: 'mint green',
+    model: 'Gorgeous Metal Shirt',
+    name: 'Hester',
+    description: 'Rustic',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 17811
+  },
+  {
+    size: '14',
+    brand: 'Converse',
+    color: 'azure',
+    model: 'Intelligent Wooden Chair',
+    name: 'Amy',
+    description: 'Small',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 27063
+  },
+  {
+    size: '10',
+    brand: 'Converse',
+    color: 'lime',
+    model: 'Refined Metal Cheese',
+    name: 'Lucy',
+    description: 'Ergonomic',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 13310
+  },
+  {
+    size: '11.5',
+    brand: 'Adidas',
+    color: 'lavender',
+    model: 'Intelligent Soft Ball',
+    name: 'Celia',
+    description: 'Incredible',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 21080
+  },
+  {
+    size: '10.5',
+    brand: 'Reebok',
+    color: 'grey',
+    model: 'Licensed Plastic Keyboard',
+    name: 'Moses',
+    description: 'Refined',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 19864
+  },
+  {
+    size: '9.5',
+    brand: 'Converse',
+    color: 'tan',
+    model: 'Refined Granite Shoes',
+    name: 'Abner',
+    description: 'Licensed',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 21668
+  },
+  {
+    size: '13',
+    brand: 'Converse',
+    color: 'black',
+    model: 'Tasty Plastic Chips',
+    name: 'Rachelle',
+    description: 'Refined',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 26730
+  },
+  {
+    size: '10',
+    brand: 'Converse',
+    color: 'indigo',
+    model: 'Licensed Plastic Cheese',
+    name: 'Vergie',
+    description: 'Intelligent',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 17925
+  },
+  {
+    size: '12.5',
+    brand: 'Nike',
+    color: 'purple',
+    model: 'Intelligent Concrete Cheese',
+    name: 'Ariane',
+    description: 'Practical',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 11575
+  },
+  {
+    size: '8.5',
+    brand: 'Nike',
+    color: 'plum',
+    model: 'Generic Granite Cheese',
+    name: 'Haskell',
+    description: 'Sleek',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 21851
+  },
+  {
+    size: '10',
+    brand: 'Converse',
+    color: 'tan',
+    model: 'Awesome Fresh Mouse',
+    name: 'Adan',
+    description: 'Generic',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 13164
+  },
+  {
+    size: '10',
+    brand: 'Converse',
+    color: 'salmon',
+    model: 'Licensed Frozen Bacon',
+    name: 'Jamey',
+    description: 'Handmade',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 23327
+  },
+  {
+    size: '7',
+    brand: 'Reebok',
+    color: 'white',
+    model: 'Handmade Plastic Tuna',
+    name: 'Brisa',
+    description: 'Sleek',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 9669
+  },
+  {
+    size: '12',
+    brand: 'Adidas',
+    color: 'grey',
+    model: 'Handcrafted Steel Gloves',
+    name: 'Jennie',
+    description: 'Handmade',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 11360
+  },
+  {
+    size: '10',
+    brand: 'Converse',
+    color: 'fuchsia',
+    model: 'Gorgeous Metal Bacon',
+    name: 'Stan',
+    description: 'Sleek',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 20057
+  },
+  {
+    size: '7.5',
+    brand: 'Reebok',
+    color: 'maroon',
+    model: 'Practical Granite Chicken',
+    name: 'Delbert',
+    description: 'Generic',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 27453
+  },
+  {
+    size: '10.5',
+    brand: 'Adidas',
+    color: 'indigo',
+    model: 'Small Soft Bike',
+    name: 'Onie',
+    description: 'Awesome',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 11115
+  },
+  {
+    size: '11',
+    brand: 'Adidas',
+    color: 'fuchsia',
+    model: 'Generic Steel Fish',
+    name: 'Trycia',
+    description: 'Handcrafted',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 8195
+  },
+  {
+    size: '14',
+    brand: 'Converse',
+    color: 'violet',
+    model: 'Sleek Fresh Chair',
+    name: 'Quinton',
+    description: 'Sleek',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 17551
+  },
+  {
+    size: '10.5',
+    brand: 'Reebok',
+    color: 'indigo',
+    model: 'Tasty Concrete Car',
+    name: 'Elinor',
+    description: 'Handcrafted',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 27750
+  },
+  {
+    size: '12',
+    brand: 'Reebok',
+    color: 'blue',
+    model: 'Intelligent Rubber Hat',
+    name: 'Devyn',
+    description: 'Practical',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 17020
+  },
+  {
+    size: '9',
+    brand: 'Converse',
+    color: 'teal',
+    model: 'Licensed Cotton Shirt',
+    name: 'Kari',
+    description: 'Tasty',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 20772
+  },
+  {
+    size: '10.5',
+    brand: 'Nike',
+    color: 'lime',
+    model: 'Practical Steel Tuna',
+    name: 'Albina',
+    description: 'Gorgeous',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 16538
+  },
+  {
+    size: '11.5',
+    brand: 'Nike',
+    color: 'sky blue',
+    model: 'Refined Cotton Sausages',
+    name: 'Easter',
+    description: 'Handcrafted',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 21390
+  },
+  {
+    size: '7',
+    brand: 'Converse',
+    color: 'red',
+    model: 'Small Rubber Salad',
+    name: 'Zachery',
+    description: 'Intelligent',
+    image: 'http://lorempixel.com/400/400/shoes',
+    price: 22937
   }
 ]
 
 const orders = [
   {
-    orderId: 1,
-    orderDate: '2020-01-02',
-    size: '12',
-    brand: 'Adidas',
-    color: 'tan',
-    model: 'Handmade Soft Pizza',
-    name: 'Jaylen',
-    description: 'Fantastic',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '186.00'
-  },
-
-  {
-    orderId: 1,
-    orderDate: '2020-01-02',
-    size: '14',
-    brand: 'Converse',
-    color: 'pink',
-    model: 'Ergonomic Concrete Fish',
-    name: 'Jazlyn',
-    description: 'Handmade',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '111.00'
+    id: 1
   },
   {
-    orderId: 2,
-    orderDate: '2020-02-02',
-    size: '8',
-    brand: 'Nike',
-    color: 'turquoise',
-    model: 'Ergonomic Plastic Pants',
-    name: 'Keyshawn',
-    description: 'Sleek',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '222.00'
+    id: 2
   },
   {
-    orderId: 3,
-    orderDate: '2020-03-03',
-    size: '7',
-    brand: 'Converse',
-    color: 'gold',
-    model: 'Unbranded Granite Soap',
-    name: 'Seamus',
-    description: 'Incredible',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '102.00'
+    id: 3
   },
   {
-    orderId: 3,
-    orderDate: '2020-03-03',
-    size: '10.5',
-    brand: 'Adidas',
-    color: 'blue',
-    model: 'Practical Wooden Table',
-    name: 'Itzel',
-    description: 'Intelligent',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '173.00'
-  },
-  {
-    orderId: 4,
-    orderDate: '2020-01-05',
-    size: '9.5',
-    brand: 'Nike',
-    color: 'olive',
-    model: 'Tasty Rubber Car',
-    name: 'Uriel',
-    description: 'Incredible',
-    image: 'http://lorempixel.com/400/400/shoes',
-    price: '161.00'
+    id: 4
   }
 ]
 
@@ -1735,11 +1651,6 @@ async function seed() {
       return Shoe.create(shoe)
     })
   )
-  const createdCarts = await Promise.all(
-    carts.map(cart => {
-      return Cart.create(cart)
-    })
-  )
 
   const createdOrders = await Promise.all(
     orders.map(order => {
@@ -1747,11 +1658,11 @@ async function seed() {
     })
   )
 
-  await createdCarts[0].addShoe(0)
-  await createdCarts[0].addShoe(2)
-  await createdCarts[0].addShoe(1)
-  await createdCarts[1].addShoe(1)
-  await createdCarts[2].addShoe(2)
+  // await createdCarts[0].addShoe(0);
+  // await createdCarts[0].addShoe(2);
+  // await createdCarts[0].addShoe(1);
+  // await createdCarts[1].addShoe(1);
+  // await createdCarts[2].addShoe(2);
 
   await createdUsers[0].addOrder(1)
   await createdUsers[0].addOrder(2)
@@ -1760,10 +1671,16 @@ async function seed() {
   await createdUsers[5].addOrder(4)
   await createdUsers[5].addOrder(5)
 
-  await createdUsers[0].setCart(3)
-  await createdUsers[1].setCart(2)
-  await createdUsers[2].setCart(4)
-  await createdUsers[3].setCart(1)
+  // await createdOrders[0].addShoe(1);
+  // await createdOrders[0].addShoe(2);
+  // await createdOrders[0].addShoe(3);
+  // await createdOrders[1].addShoe(1);
+  // await createdOrders[1].addShoe(4);
+
+  // await createdUsers[0].setCart(3);
+  // await createdUsers[1].setCart(2);
+  // await createdUsers[2].setCart(4);
+  // await createdUsers[3].setCart(1);
 
   // const users = await Promise.all([
   //   User.create({email: 'cody@email.com', password: '123'}),
@@ -1772,7 +1689,6 @@ async function seed() {
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${shoes.length} shoes`)
-  console.log(`seeded ${carts.length} carts`)
   console.log(`seeded successfully`)
 }
 
