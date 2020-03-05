@@ -20,8 +20,6 @@ router.get('/:id', async (req, res, next) => {
       where: {id: req.params.id},
       include: [Shoe]
     })
-    console.log(foundOrder)
-
     if (foundOrder) res.json(foundOrder)
     else res.sendStatus(404)
   } catch (error) {

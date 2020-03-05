@@ -5,7 +5,6 @@ import {connect} from 'react-redux'
 import {removeOrderThunk} from '../store'
 
 const AllOrders = props => {
-  console.log('ALL ORDERS', props)
   const {user} = props
   return (
     <div>

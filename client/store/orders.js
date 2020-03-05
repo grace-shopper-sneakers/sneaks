@@ -28,7 +28,6 @@ export const getOrdersThunk = () => {
   return async dispatch => {
     try {
       const {data} = await axios.get('/api/orders')
-      console.log('getOrdersThunk -> data', data)
       dispatch(gotOrders(data))
     } catch (error) {
       console.error(error)
@@ -65,7 +64,6 @@ const initialState = []
 const ordersReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_ORDERS:
-      console.log('reducer', action.orders)
       return action.orders
     case REMOVE_ORDER:
       return state.filter(order => order.id !== action.id)

@@ -4,19 +4,6 @@ export default function Checkout(props) {
   if (!props.orders) {
     return <h1>No Orders!</h1>
   }
-  //   const {
-  //     orderId,-
-  //     orderDate,-
-  //     size, -
-  //     brand,-
-  //     color, -
-  //     model,-
-  //     name,-
-  //     description,-
-  //     image,
-  //     price,
-  //     userId
-  //   } = props.order
   return (
     <div>
       {props.orders.map(order => {
