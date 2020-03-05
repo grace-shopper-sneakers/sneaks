@@ -5,6 +5,7 @@ const Order = props => {
     return <h1>No orders yet.</h1>
   }
 
+
   const {id, createdAt} = props.order
   const {
     firstName,
@@ -27,6 +28,7 @@ const Order = props => {
   //   image,
   //   price
   // } = props.shoes
+
   return (
     <div>
       <h1>Order ID: {id}</h1>
@@ -44,6 +46,7 @@ const Order = props => {
       <hr />
       <h2>Order Date: {createdAt}</h2>
 
+
       {/* <h3>Name: {name}</h3>
       <h3>Model: {model}</h3>
       <h3>Brand: {brand}</h3>
@@ -52,6 +55,7 @@ const Order = props => {
       <h3>Description: {description}</h3>
       <h3>Price: ${price / 100}</h3>
       <img src={image} /> */}
+
     </div>
   )
 }
