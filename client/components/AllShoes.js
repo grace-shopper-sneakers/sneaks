@@ -7,7 +7,7 @@ const AllShoes = props => {
   const {user} = props
   return (
     <div className="all-shoes">
-      {props.shoes.length === 0 ? (
+      {!props.shoes || props.shoes.length === 0 ? (
         <h1>No shoes here!</h1>
       ) : (
         props.shoes.map(shoe => (

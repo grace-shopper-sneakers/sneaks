@@ -41,7 +41,7 @@ class Routes extends Component {
         <Route path="/shoes">
           <AllShoes shoes={this.props.shoes} />
         </Route>
-        <Route path="/orders/:orderId" component={SingleOrder} />
+        <Route path="/orders/:id" component={SingleOrder} />
         <Route path="/history">
           <Checkout orders={this.props.orders} />
         </Route>

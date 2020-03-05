@@ -3,25 +3,19 @@ import Order from './Order'
 import {connect} from 'react-redux'
 import {getSingleOrderThunk, removeOrderThunk} from '../store'
 import AllOrders from './AllOrders'
+import AllShoes from './AllShoes'
 
 class SingleOrder extends React.Component {
   componentDidMount() {
-    this.props.getOrder(this.props.match.params.orderId)
+    this.props.getOrder(this.props.match.params.id)
+    console.log(this.props.order)
   }
   render() {
+    console.log('IN RENDER')
     return (
       <div>
-        <AllOrders orders={this.props.order} />
-        {this.props.user.isAdmin && this.props.order ? (
-          <button
-            type="button"
-            onClick={() => this.props.delete(this.props.order.id)}
-          >
-            Delete
-          </button>
-        ) : (
-          ''
-        )}
+        <AllShoes shoes={this.props.shoes} />
+        <div>order</div>
       </div>
     )
   }
@@ -29,11 +23,12 @@ class SingleOrder extends React.Component {
 
 const mapStateToProps = state => ({
   order: state.order,
-  user: state.user
+  user: state.user,
+  shoes: state.order.shoes
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  getOrder: orderId => dispatch(getSingleOrderThunk(orderId)),
+  getOrder: id => dispatch(getSingleOrderThunk(id)),
   delete: id => {
     dispatch(removeOrderThunk(id))
     ownProps.history.push('/orders')

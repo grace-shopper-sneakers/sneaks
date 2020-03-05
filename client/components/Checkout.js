@@ -22,7 +22,7 @@ export default function Checkout(props) {
       {props.orders.map(order => {
         return (
           <ul key={order.id}>
-            <li>Order Number: {order.orderId}</li>
+            <li>Order Number: {order.id}</li>
             <li>Order Date: {order.orderDate}</li>
             <li>Customer Name: {order.name}</li>
             <li>Brand: {order.brand}</li>

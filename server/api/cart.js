@@ -34,20 +34,20 @@ router.put('/', async (req, res, next) => {
     next(error)
   }
 })
-router.delete('/checkout', async (req, res, next) => {
-  try {
-    const userCart = await Cart.findOne({
-      where: {
-        userId: req.user.id
-      }
-    })
-    const shoes = await userCart.getShoes()
-    await userCart.setShoes([])
-    res.status(200).json(shoes)
-  } catch (error) {
-    next(error)
-  }
-})
+// router.delete('/checkout', async (req, res, next) => {
+//   try {
+//     const userCart = await Cart.findOne({
+//       where: {
+//         userId: req.user.id
+//       }
+//     })
+//     const shoes = await userCart.getShoes()
+//     await userCart.setShoes([])
+//     res.status(200).json(shoes)
+//   } catch (error) {
+//     next(error)
+//   }
+// })
 router.delete('/:id', async (req, res, next) => {
   try {
     const userCart = await Cart.findOne({

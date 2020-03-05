@@ -1,13 +1,11 @@
 const router = require('express').Router()
-const Order = require('../db/models/')
+const Order = require('../db/models/order')
 const Shoe = require('../db/models/shoe')
 const {adminsOnly} = require('./gatewayutils')
 
 router.get('/', adminsOnly, async (req, res, next) => {
   try {
-    const allOrders = await Order.findAll({
-      include: [Shoe]
-    })
+    const allOrders = await Order.findAll()
     if (allOrders) {
       res.json(allOrders)
     } else res.sendStatus(404)
@@ -18,11 +16,11 @@ router.get('/', adminsOnly, async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const foundOrder = await Order.findAll({
+    const foundOrder = await Order.findOne({
       where: {id: req.params.id},
       include: [Shoe]
     })
-    console.log('req.params.id', req.params.id)
+    console.log(foundOrder)
 
     if (foundOrder) res.json(foundOrder)
     else res.sendStatus(404)
