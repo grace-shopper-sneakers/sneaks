@@ -12,8 +12,13 @@ class SingleOrder extends React.Component {
   render() {
     return (
       <div>
+        <Order
+          order={this.props.order}
+          user={this.props.user}
+          shoes={this.props.shoes}
+        />
         <AllShoes shoes={this.props.shoes} />
-        <div>order</div>
+        {/* <div>order</div> */}
       </div>
     )
   }

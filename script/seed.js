@@ -1634,6 +1634,15 @@ const orders = [
   },
   {
     id: 4
+  },
+  {
+    id: 5
+  },
+  {
+    id: 6
+  },
+  {
+    id: 7
   }
 ]
 
@@ -1667,7 +1676,8 @@ async function seed() {
   await createdUsers[0].addOrder(1)
   await createdUsers[0].addOrder(2)
   await createdUsers[1].addOrder(3)
-  await createdUsers[3].addOrder(6)
+  await createdUsers[2].addOrder(6)
+  await createdUsers[3].addOrder(7)
   await createdUsers[5].addOrder(4)
   await createdUsers[5].addOrder(5)
 
@@ -1676,6 +1686,7 @@ async function seed() {
   await createdOrders[0].addShoe(3)
   await createdOrders[1].addShoe(1)
   await createdOrders[1].addShoe(4)
+  await createdOrders[2].addShoe(2)
 
   // await createdUsers[0].setCart(3);
   // await createdUsers[1].setCart(2);
