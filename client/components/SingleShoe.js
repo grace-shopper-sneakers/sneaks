@@ -8,7 +8,6 @@ class SingleShoe extends React.Component {
     this.props.getShoe(this.props.match.params.id)
   }
   render() {
-    console.log('ADD SHOE FUNC', this.props.addShoe)
     return (
       <div>
         <button

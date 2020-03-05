@@ -1,10 +1,13 @@
 import axios from 'axios'
+import {newOrderThunk} from './index'
 
 export const ADD_SHOE_TO_CART = 'ADD_SHOE_TO_CART'
 
 export const GET_USER_CART = 'GET_USER_CART'
 
 export const REMOVE_FROM_CART = 'DELETE_FROM_CART'
+
+export const CHECKOUT = 'CHECKOUT'
 
 export const addedShoe = shoe => ({
   type: ADD_SHOE_TO_CART,
@@ -20,6 +23,9 @@ export const removedShoe = id => ({
   type: REMOVE_FROM_CART,
   id
 })
+export const checkedOut = () => ({
+  type: CHECKOUT
+})
 
 export const addShoeToCart = shoe => async dispatch => {
   try {
@@ -33,6 +39,7 @@ export const addShoeToCart = shoe => async dispatch => {
 export const getUserCart = () => async dispatch => {
   try {
     const {data} = await axios.get('/api/cart')
+    console.log('in get user cart thunk', data)
     dispatch(gotCart(data))
   } catch (error) {
     console.error(error)
@@ -41,23 +48,41 @@ export const getUserCart = () => async dispatch => {
 
 export const removeFromCart = id => async dispatch => {
   try {
-    const {data} = await axios.delete(`/api/cart/${id}`)
+    await axios.delete(`/api/cart/${id}`)
     dispatch(removedShoe(id))
   } catch (error) {
     console.error(error)
   }
 }
+export const checkout = () => async dispatch => {
+  try {
+    const {data: oldCart} = await axios.delete('/api/cart/checkout')
+    const orderDate = Date.now()
+    const orderId = Math.floor(Math.random() * 100)
+    dispatch(checkedOut())
+    oldCart.forEach(shoe => {
+      const {model, color, brand, price, size} = shoe
+      const order = {model, color, brand, price, orderDate, orderId, size}
+      return dispatch(newOrderThunk(order))
+    })
+  } catch (e) {
+    console.error(e)
+  }
+}
 
-export const cartReducer = (state = [], action) => {
+export const cartReducer = (state = {shoes: []}, action) => {
   switch (action.type) {
     case ADD_SHOE_TO_CART:
-      return [...state, action.shoe]
+      return {...state, shoes: [...state.shoes, action.shoe]}
     case GET_USER_CART:
       return action.cart
     case REMOVE_FROM_CART:
-      return state.filter(shoe => {
-        return shoe.id !== action.id
-      })
+      return {
+        ...state,
+        shoes: state.shoes.filter(shoe => shoe.id !== action.id)
+      }
+    case CHECKOUT:
+      return {...state, shoes: []}
     default:
       return state
   }

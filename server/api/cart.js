@@ -1,54 +1,68 @@
 const router = require('express').Router()
-const Cart = require('../db/models/cart')
+const Order = require('../db/models/order')
 const Shoe = require('../db/models/shoe')
 const {adminsOnly} = require('./gatewayutils')
 
 router.get('/', async (req, res, next) => {
   try {
-    const userCart = await Cart.findOne({
+    const userCart = await Order.findOne({
       where: {
-        userId: req.user.id
+        userId: req.user.id,
+        isCart: true
       },
       include: [Shoe]
     })
-    console.log('usercart', userCart)
-    res.json(userCart.shoes)
+    res.json(userCart)
   } catch (error) {
     next(error)
   }
 })
 
 router.put('/', async (req, res, next) => {
-  console.log(req.user)
   try {
-    const userCart = await Cart.findOne({
+    const userCart = await Order.findOne({
       where: {
-        userId: req.user.id
+        userId: req.user.id,
+        isCart: true
       }
     })
 
     const addedShoe = await Shoe.findByPk(req.body.id)
 
-    const cartedShoe = await userCart.addShoe(addedShoe)
+    await userCart.addShoe(addedShoe)
 
-    console.log(cartedShoe)
-    res.json(addedShoe)
+    res.json(userCart)
   } catch (error) {
     next(error)
   }
 })
-
-router.delete('/:id', async (req, res, next) => {
+router.delete('/checkout', async (req, res, next) => {
   try {
-    const userCart = await Cart.findOne({
+    const userCart = await Order.findOne({
       where: {
-        userId: req.user.id
+        userId: req.user.id,
+        isCart: true
+      }
+    })
+    const shoes = await userCart.getShoes()
+    await userCart.setShoes([])
+    res.status(200).json(shoes)
+  } catch (error) {
+    next(error)
+  }
+})
+router.put('/shoes/:id', async (req, res, next) => {
+  try {
+    const userCart = await Order.findOne({
+      where: {
+        userId: req.user.id,
+        isCart: true
       }
     })
 
     const removedShoe = await Shoe.findByPk(req.params.id)
 
-    const cartedShoe = await userCart.removeShoe(removedShoe)
+    await userCart.removeShoe(removedShoe)
 
     res.sendStatus(204)
   } catch (error) {

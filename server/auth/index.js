@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const User = require('../db/models/user')
 module.exports = router
+const Order = require('../db/models/order')
 
 router.post('/login', async (req, res, next) => {
   try {
@@ -22,6 +23,8 @@ router.post('/login', async (req, res, next) => {
 router.post('/signup', async (req, res, next) => {
   try {
     const user = await User.create(req.body)
+    const order = await Order.create()
+    // user.setOrder(order);
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {

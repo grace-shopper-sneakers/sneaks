@@ -27,10 +27,10 @@ const gotSingleOrder = order => {
 // }
 
 //THUNK
-export const getSingleOrderThunk = orderId => {
+export const getSingleOrderThunk = id => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/orders/${orderId}`)
+      const {data} = await axios.get(`/api/orders/${id}`)
       dispatch(gotSingleOrder(data))
     } catch (error) {
       console.error(error)
