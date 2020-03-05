@@ -31,7 +31,6 @@ export const getSingleOrderThunk = id => {
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/orders/${id}`)
-      console.log('data in order THUNK', data)
       dispatch(gotSingleOrder(data))
     } catch (error) {
       console.error(error)
