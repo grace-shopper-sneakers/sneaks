@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 const Shoe = require('./shoe')
+const Order = require('./order')
 
 const OrderShoe = db.define(
   'orderShoe',
@@ -17,7 +18,10 @@ const OrderShoe = db.define(
     hooks: {
       beforeBulkCreate: async orderShoes => {
         const shoe = await Shoe.findOne({where: {id: orderShoes[0].shoeId}})
-        orderShoes[0].priceAtPurchase = shoe.price
+        const cart = await Order.findOne({where: {id: orderShoes[0].orderId}})
+        if (cart) {
+          orderShoes[0].priceAtPurchase = shoe.price
+        }
       }
     }
   }
