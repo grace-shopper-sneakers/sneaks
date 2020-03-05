@@ -1671,11 +1671,11 @@ async function seed() {
   await createdUsers[5].addOrder(4)
   await createdUsers[5].addOrder(5)
 
-  // await createdOrders[0].addShoe(1);
-  // await createdOrders[0].addShoe(2);
-  // await createdOrders[0].addShoe(3);
-  // await createdOrders[1].addShoe(1);
-  // await createdOrders[1].addShoe(4);
+  await createdOrders[0].addShoe(1)
+  await createdOrders[0].addShoe(2)
+  await createdOrders[0].addShoe(3)
+  await createdOrders[1].addShoe(1)
+  await createdOrders[1].addShoe(4)
 
   // await createdUsers[0].setCart(3);
   // await createdUsers[1].setCart(2);
