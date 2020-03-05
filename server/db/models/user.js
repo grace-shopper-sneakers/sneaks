@@ -89,6 +89,8 @@ User.generateSalt = function() {
   return crypto.randomBytes(16).toString('base64')
 }
 
+User.addCart = () => {}
+
 User.encryptPassword = function(plainText, salt) {
   return crypto
     .createHash('RSA-SHA256')
