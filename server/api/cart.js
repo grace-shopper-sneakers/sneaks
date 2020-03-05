@@ -1,17 +1,18 @@
 const router = require('express').Router()
-const Cart = require('../db/models/cart')
+const Order = require('../db/models/order')
 const Shoe = require('../db/models/shoe')
 const {adminsOnly} = require('./gatewayutils')
 
 router.get('/', async (req, res, next) => {
   try {
-    const userCart = await Cart.findOne({
+    const userCart = await Order.findOne({
       where: {
-        userId: req.user.id
+        userId: req.user.id,
+        isCart: true
       },
       include: [Shoe]
     })
-    res.json(userCart.shoes)
+    res.json(userCart)
   } catch (error) {
     next(error)
   }
@@ -19,9 +20,10 @@ router.get('/', async (req, res, next) => {
 
 router.put('/', async (req, res, next) => {
   try {
-    const userCart = await Cart.findOne({
+    const userCart = await Order.findOne({
       where: {
-        userId: req.user.id
+        userId: req.user.id,
+        isCart: true
       }
     })
 
@@ -29,16 +31,17 @@ router.put('/', async (req, res, next) => {
 
     await userCart.addShoe(addedShoe)
 
-    res.json(addedShoe)
+    res.json(userCart)
   } catch (error) {
     next(error)
   }
 })
 router.delete('/checkout', async (req, res, next) => {
   try {
-    const userCart = await Cart.findOne({
+    const userCart = await Order.findOne({
       where: {
-        userId: req.user.id
+        userId: req.user.id,
+        isCart: true
       }
     })
     const shoes = await userCart.getShoes()
@@ -48,11 +51,12 @@ router.delete('/checkout', async (req, res, next) => {
     next(error)
   }
 })
-router.delete('/:id', async (req, res, next) => {
+router.put('/shoes/:id', async (req, res, next) => {
   try {
-    const userCart = await Cart.findOne({
+    const userCart = await Order.findOne({
       where: {
-        userId: req.user.id
+        userId: req.user.id,
+        isCart: true
       }
     })
 

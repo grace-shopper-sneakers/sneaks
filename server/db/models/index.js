@@ -1,7 +1,7 @@
 const User = require('./user')
 const Shoe = require('./shoe')
-const OrderShoe = require('./orderShoe')
 const Order = require('./order')
+const OrderShoe = require('./orderShoe')
 
 User.hasMany(Order)
 Order.belongsTo(User)
