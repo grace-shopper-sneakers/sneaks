@@ -8,10 +8,8 @@ import AllShoes from './AllShoes'
 class SingleOrder extends React.Component {
   componentDidMount() {
     this.props.getOrder(this.props.match.params.id)
-    console.log(this.props.order)
   }
   render() {
-    console.log('IN RENDER')
     return (
       <div>
         <AllShoes shoes={this.props.shoes} />
