@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom'
 import Shoe from './Shoe'
 import React, {Component} from 'react'
 
-
 export class Cart extends Component {
   constructor(props) {
     super(props)

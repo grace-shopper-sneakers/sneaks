@@ -1,23 +1,23 @@
 // const {expect} = require('chai')
 // const db = require('../index')
-// const Cart = db.model('cart')
+// const Order = db.model('order')
 
-// describe('Cart model', () => {
+// describe('Order model', () => {
 //   beforeEach(() => {
 //     return db.sync({force: true})
 //   })
 //   describe('checkedOut', () => {
 //     it('the default value should be false', async () => {
-//       let cart = await Cart.create({})
-//       expect(cart.checkedOut).to.be.equal(false)
+//       let order = await Order.create({})
+//       expect(order.checkedOut).to.be.equal(false)
 //     })
 
 //     it('checkedOut value can be set', async () => {
-//       let cart = await Cart.create({
+//       let order = await Order.create({
 //         checkedOut: true
 //       })
 
-//       expect(cart.checkedOut).to.be.equal(true)
+//       expect(order.checkedOut).to.be.equal(true)
 //     })
 //   })
 // })
