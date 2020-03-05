@@ -3,11 +3,18 @@ const Order = require('../db/models/order')
 const Shoe = require('../db/models/shoe')
 const {adminsOnly} = require('./gatewayutils')
 
-router.get('/', adminsOnly, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const allOrders = await Order.findAll()
-    if (allOrders) {
+    console.log('allOrders', allOrders)
+    if (allOrders && req.user.isAdmin) {
       res.json(allOrders)
+    } else if (allOrders && req.user) {
+      let filteredOrders = allOrders.filter(
+        order => order.userId === req.user.id
+      )
+      console.log('filteredOrders', filteredOrders)
+      res.json(filteredOrders)
     } else res.sendStatus(404)
   } catch (err) {
     next(err)
@@ -20,8 +27,12 @@ router.get('/:id', async (req, res, next) => {
       where: {id: req.params.id},
       include: [Shoe]
     })
-    if (foundOrder) res.json(foundOrder)
-    else res.sendStatus(404)
+    // if admin or userid matches foundOrder.userId, you can look
+    // console.log('foundOrder', foundOrder.userId)
+    // console.log('req.user', req.user)
+    if (foundOrder && (req.user.id === foundOrder.userId || req.user.isAdmin)) {
+      res.json(foundOrder)
+    } else res.status(404).send('Not Authorized')
   } catch (error) {
     next(error)
   }
@@ -42,7 +53,7 @@ router.delete('/:id', adminsOnly, async (req, res, next) => {
   try {
     const foundOrder = await Order.findByPk(req.params.id)
     await foundOrder.destroy()
-    res.send('Order deleted')
+    res.sendStatus(204)
   } catch (error) {
     next(error)
   }
