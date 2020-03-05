@@ -70,7 +70,7 @@ export const cartReducer = (state = {shoes: []}, action) => {
     case ADD_SHOE_TO_CART:
       return {...state, shoes: [...state.shoes, action.shoe]}
     case GET_USER_CART:
-      return action.cart
+      return {...state, ...action.cart}
     case REMOVE_FROM_CART:
       return {
         ...state,
