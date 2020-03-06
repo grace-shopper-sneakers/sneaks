@@ -6,14 +6,14 @@ const {adminsOnly} = require('./gatewayutils')
 router.get('/', async (req, res, next) => {
   try {
     const allOrders = await Order.findAll()
-    console.log('allOrders', allOrders)
+    // console.log('allOrders', allOrders)
     if (allOrders && req.user.isAdmin) {
       res.json(allOrders)
     } else if (allOrders && req.user) {
       let filteredOrders = allOrders.filter(
         order => order.userId === req.user.id
       )
-      console.log('filteredOrders', filteredOrders)
+      // console.log('filteredOrders', filteredOrders)
       res.json(filteredOrders)
     } else res.sendStatus(404)
   } catch (err) {
