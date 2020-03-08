@@ -2,7 +2,6 @@ import React from 'react'
 import Order from './Order'
 import {connect} from 'react-redux'
 import {getSingleOrderThunk, removeOrderThunk} from '../store'
-import AllOrders from './AllOrders'
 import AllShoes from './AllShoes'
 
 class SingleOrder extends React.Component {
@@ -12,9 +11,8 @@ class SingleOrder extends React.Component {
   render() {
     return (
       <div>
-        <Order />
-        {/* <Order order={this.props.order} shoes={this.props.shoes} /> */}
-        <AllShoes shoes={this.props.cart.shoes} />
+        <Order order={this.props.order} />
+        <AllShoes shoes={this.props.shoes} />
       </div>
     )
   }
