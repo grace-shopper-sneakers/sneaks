@@ -59,6 +59,7 @@ router.put('/shoes/:id', async (req, res, next) => {
         isCart: true
       }
     })
+    console.log('userCart', userCart)
 
     const removedShoe = await Shoe.findByPk(req.params.id)
 

@@ -49,6 +49,7 @@ export const removeOrderThunk = id => {
 export const newOrderThunk = order => {
   return async dispatch => {
     try {
+      console.log('NEW ORDER THUNK', order)
       const {data} = await axios.post('/api/orders', order)
       dispatch(newOrder(data))
     } catch (error) {
