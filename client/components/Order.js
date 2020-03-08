@@ -2,15 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 const Order = props => {
-  if (!props.order) {
+  if (!props.order.id) {
     return <h1>No orders yet.</h1>
   }
   const {order} = props
   const {id, createdAt} = order
-
   return (
     <div>
-      {props.user.isAdmin ? (
+      {order.user.isAdmin ? (
         <div>
           <h1>Admin Portal</h1>
           <h1>Order ID: {id}</h1>
@@ -22,6 +21,7 @@ const Order = props => {
           </h2>
           <h2>
             {order.user.city}, {order.user.zip}
+            isCart: {order.isCart ? 'true' : 'false'}
           </h2>
           <h2>{order.user.country}</h2>
           <h2>{order.user.phoneNumber}</h2>

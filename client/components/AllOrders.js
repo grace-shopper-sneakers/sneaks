@@ -1,50 +1,72 @@
 import React from 'react'
-import {Order} from './index'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {removeOrderThunk} from '../store'
+import {removeOrderThunk, getOrdersThunk} from '../store'
 
-const AllOrders = props => {
-  const {user} = props
+class AllOrders extends React.Component {
+  componentDidMount() {
+    console.log('mounting...')
+    this.props.getOrders()
+  }
 
-  return (
-    <div>
-      {props.orders.length === 0 ? (
-        <h1>No Orders</h1>
-      ) : user.isAdmin ? (
-        props.orders.map(order => (
-          <div key={order.id}>
-            <Link to={`/orders/${order.id}`}>
-              <h2>All Customer Orders</h2>
-              <h2>Order# {order.id}</h2>
-            </Link>
+  render() {
+    const {user, orders} = this.props
 
-            <button type="button" onClick={() => props.delete(order.id)}>
-              Delete
-            </button>
+    return (
+      <div>
+        {orders.length === 0 ? (
+          <h1>No Orders</h1>
+        ) : user.isAdmin ? (
+          orders.map(order => {
+            return (
+              <div key={order.id}>
+                <Link to={`/orders/${order.id}`}>
+                  <h2>All Customer Orders</h2>
+                  <h2>Order #{order.id}</h2>
+                  {order.user ? (
+                    <h3>
+                      Placed by: {order.user.firstName} {order.user.lastName}
+                    </h3>
+                  ) : (
+                    ''
+                  )}
+                </Link>
 
-            <hr />
-          </div>
-        ))
-      ) : (
-        props.orders.filter(order => order.userId === user.id).map(order => (
-          <div key={order.id}>
-            <Link to={`/orders/${order.id}`}>
-              <h2>Order# {order.id}</h2>
-            </Link>
-          </div>
-        ))
-      )}
-    </div>
-  )
+                <button
+                  type="button"
+                  onClick={() => this.props.delete(order.id)}
+                >
+                  Delete
+                </button>
+
+                <hr />
+              </div>
+            )
+          })
+        ) : (
+          orders.filter(order => order.userId === user.id).map(order => (
+            <div key={order.id}>
+              <Link to={`/orders/${order.id}`}>
+                <h2>Order #{order.id}</h2>
+              </Link>
+            </div>
+          ))
+        )}
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  orders: state.orders
 })
 const mapDispatchToProps = dispatch => ({
   delete: id => {
     dispatch(removeOrderThunk(id))
+  },
+  getOrders: () => {
+    dispatch(getOrdersThunk())
   }
 })
 export default connect(mapStateToProps, mapDispatchToProps)(AllOrders)

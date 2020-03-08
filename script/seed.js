@@ -1624,25 +1624,25 @@ const shoes = [
 
 const orders = [
   {
-    id: 1
+    isCart: false
   },
   {
-    id: 2
+    isCart: false
   },
   {
-    id: 3
+    isCart: false
   },
   {
-    id: 4
+    isCart: false
   },
   {
-    id: 5
+    isCart: false
   },
   {
-    id: 6
+    isCart: false
   },
   {
-    id: 7
+    isCart: false
   }
 ]
 
@@ -1655,6 +1655,7 @@ async function seed() {
       return User.create(user)
     })
   )
+
   const createdShoes = await Promise.all(
     shoes.map(shoe => {
       return Shoe.create(shoe)
@@ -1664,6 +1665,11 @@ async function seed() {
   const createdOrders = await Promise.all(
     orders.map(order => {
       return Order.create(order)
+    })
+  )
+  await Promise.all(
+    createdUsers.map(user => {
+      return user.createOrder({isCart: true})
     })
   )
 

@@ -51,6 +51,7 @@ export const newOrderThunk = order => {
     try {
       console.log('NEW ORDER THUNK', order)
       const {data} = await axios.post('/api/orders', order)
+      console.log('posting to store', data)
       dispatch(newOrder(data))
     } catch (error) {
       console.error(error)
