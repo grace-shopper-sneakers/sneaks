@@ -35,6 +35,18 @@ router.post('/signup', async (req, res, next) => {
   }
 })
 
+// get user by id will be per user or as Admin you can get anyone.
+router.get('/:id', (req, res, next) => {
+  try {
+    const foundUser = User.findByPk(req.params.id)
+    if (foundUser && (req.user.id === foundUser.userId || req.user.isAdmin)) {
+      res.json(foundUser)
+    } else res.status(404).send('Not Authorized')
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.post('/logout', (req, res) => {
   req.logout()
   req.session.destroy()
