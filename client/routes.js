@@ -46,6 +46,7 @@ class Routes extends Component {
           <Checkout orders={this.props.orders} />
         </Route>
         <Route path="/checkout" component={CheckoutPage} />
+        {/* <Route path="/checkoutstripe" component={CheckoutStripe} /> */}
         <Route path="/orders">
           <AllOrders orders={this.props.orders} />
         </Route>
