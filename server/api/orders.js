@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const Order = require('../db/models/order')
 const Shoe = require('../db/models/shoe')
+const User = require('../db/models/user')
 const {adminsOnly} = require('./gatewayutils')
 
 router.get('/', async (req, res, next) => {
@@ -25,8 +26,10 @@ router.get('/:id', async (req, res, next) => {
   try {
     const foundOrder = await Order.findOne({
       where: {id: req.params.id},
-      include: [Shoe]
+      // include: [Shoe]
+      include: [User]
     })
+    // console.log('foundOrder', foundOrder)
     // if admin or userid matches foundOrder.userId, you can look
     // console.log('foundOrder', foundOrder.userId)
     // console.log('req.user', req.user)
@@ -41,6 +44,7 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const newOrder = await Order.create(req.body)
+    console.log('newOrder', newOrder.userId)
     if (newOrder) {
       res.json(newOrder)
     } else res.send('New Order not created')

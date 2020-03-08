@@ -12,13 +12,9 @@ class SingleOrder extends React.Component {
   render() {
     return (
       <div>
-        <Order
-          order={this.props.order}
-          user={this.props.user}
-          shoes={this.props.shoes}
-        />
-        <AllShoes shoes={this.props.shoes} />
-        {/* <div>order</div> */}
+        <Order />
+        {/* <Order order={this.props.order} shoes={this.props.shoes} /> */}
+        <AllShoes shoes={this.props.cart.shoes} />
       </div>
     )
   }
@@ -27,7 +23,8 @@ class SingleOrder extends React.Component {
 const mapStateToProps = state => ({
   order: state.order,
   user: state.user,
-  shoes: state.order.shoes
+  shoes: state.order.shoes,
+  cart: state.cart
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

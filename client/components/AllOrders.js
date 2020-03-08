@@ -6,7 +6,7 @@ import {removeOrderThunk} from '../store'
 
 const AllOrders = props => {
   const {user} = props
-  console.log('props', props)
+
   return (
     <div>
       {props.orders.length === 0 ? (
@@ -15,7 +15,8 @@ const AllOrders = props => {
         props.orders.map(order => (
           <div key={order.id}>
             <Link to={`/orders/${order.id}`}>
-              <Order order={order} user={user} />
+              <h2>All Customer Orders</h2>
+              <h2>Order# {order.id}</h2>
             </Link>
 
             <button type="button" onClick={() => props.delete(order.id)}>
@@ -29,7 +30,7 @@ const AllOrders = props => {
         props.orders.filter(order => order.userId === user.id).map(order => (
           <div key={order.id}>
             <Link to={`/orders/${order.id}`}>
-              <Order order={order} user={user} />
+              <h2>Order# {order.id}</h2>
             </Link>
           </div>
         ))

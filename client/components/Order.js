@@ -1,63 +1,61 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 const Order = props => {
   if (!props.order) {
     return <h1>No orders yet.</h1>
   }
-
-
-  const {id, createdAt} = props.order
-  const {
-    firstName,
-    lastName,
-    street,
-    apartmentNumber,
-    city,
-    state,
-    zip,
-    country,
-    phoneNumber
-  } = props.user
-  // const {
-  //   size,
-  //   brand,
-  //   color,
-  //   model,
-  //   name,
-  //   description,
-  //   image,
-  //   price
-  // } = props.shoes
+  const {order} = props
+  const {id, createdAt} = order
 
   return (
     <div>
-      <h1>Order ID: {id}</h1>
-      <h2>
-        {firstName} {lastName}
-      </h2>
-      <h2>
-        {street}, {apartmentNumber}
-      </h2>
-      <h2>
-        {city}, {state} {zip}
-      </h2>
-      <h2>{country}</h2>
-      <h2>{phoneNumber}</h2>
-      <hr />
-      <h2>Order Date: {createdAt}</h2>
-
-
-      {/* <h3>Name: {name}</h3>
-      <h3>Model: {model}</h3>
-      <h3>Brand: {brand}</h3>
-      <h3>Color: {color}</h3>
-      <h3>Size: {size}</h3>
-      <h3>Description: {description}</h3>
-      <h3>Price: ${price / 100}</h3>
-      <img src={image} /> */}
-
+      {props.user.isAdmin ? (
+        <div>
+          <h1>Admin Portal</h1>
+          <h1>Order ID: {id}</h1>
+          <h2>
+            {order.user.firstName} {order.user.lastName}
+          </h2>
+          <h2>
+            {order.user.street}, {order.user.apartmentNumber}
+          </h2>
+          <h2>
+            {order.user.city}, {order.user.zip}
+          </h2>
+          <h2>{order.user.country}</h2>
+          <h2>{order.user.phoneNumber}</h2>
+          <hr />
+          <h2>Order Date: {createdAt}</h2>
+        </div>
+      ) : (
+        <div>
+          <h1>My Orders</h1>
+          <h1>Order ID: {id}</h1>
+          <h2>
+            {props.user.firstName} {props.user.lastName}
+          </h2>
+          <h2>
+            {props.user.street}, {props.user.apartmentNumber}
+          </h2>
+          <h2>
+            {props.user.city}, {props.user.zip}
+          </h2>
+          <h2>{props.user.country}</h2>
+          <h2>{props.user.phoneNumber}</h2>
+          <hr />
+          <h2>Order Date: {createdAt}</h2>
+        </div>
+      )}
     </div>
   )
 }
 
-export default Order
+const mapStateToProps = state => ({
+  order: state.order,
+  user: state.user,
+  shoes: state.order.shoes,
+  cart: state.cart
+})
+
+export default connect(mapStateToProps, null)(Order)
