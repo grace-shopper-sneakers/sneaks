@@ -53,8 +53,6 @@ export const checkout = () => async dispatch => {
   try {
     const {data: newOrder} = await axios.delete('/api/cart/checkout')
 
-    console.log('newOrder', newOrder)
-
     //clear cart in redux
     dispatch(checkedOut())
 

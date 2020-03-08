@@ -100,7 +100,6 @@ class ShippingForm extends React.Component {
     event.preventDefault()
     const isValid = this.validate()
     if (isValid) {
-      console.log(this.state)
       this.props.checkout()
       this.setState(initialState)
     }

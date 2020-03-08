@@ -47,9 +47,7 @@ router.delete('/checkout', async (req, res, next) => {
       {include: [Shoe]}
     )
     const shoes = await userCart.getShoes()
-    console.log('shoes!!', shoes)
     await userCart.setShoes([])
-    console.log('shoes should be empty', userCart)
     const order = {
       isCart: false,
       shoes,
@@ -68,7 +66,6 @@ router.put('/shoes/:id', async (req, res, next) => {
         isCart: true
       }
     })
-    console.log('userCart', userCart)
 
     const removedShoe = await Shoe.findByPk(req.params.id)
 

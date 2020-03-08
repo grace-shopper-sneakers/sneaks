@@ -5,7 +5,6 @@ import {removeOrderThunk, getOrdersThunk} from '../store'
 
 class AllOrders extends React.Component {
   componentDidMount() {
-    console.log('mounting...')
     this.props.getOrders()
   }
 

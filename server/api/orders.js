@@ -29,10 +29,6 @@ router.get('/:id', async (req, res, next) => {
       where: {id: req.params.id},
       include: [User, Shoe]
     })
-    // console.log('foundOrder', foundOrder)
-    // if admin or userid matches foundOrder.userId, you can look
-    // console.log('foundOrder', foundOrder.userId)
-    // console.log('req.user', req.user)
     if (foundOrder && (req.user.id === foundOrder.userId || req.user.isAdmin)) {
       res.json(foundOrder)
     } else res.status(401).send('Not Authorized')
@@ -44,11 +40,8 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const {shoes, isCart, userId} = req.body
-
     const order = await Order.create({isCart, userId}, {include: [Shoe, User]})
     await order.setShoes(shoes.map(shoe => shoe.id))
-    //await order.addShoes(shoes);
-    console.log('posting this order:', order)
     if (order) {
       res.json(order)
     } else res.send('New Order not created')
