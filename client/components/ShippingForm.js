@@ -108,6 +108,7 @@ class ShippingForm extends React.Component {
     if (isValid) {
       console.log(this.state)
       // clear form
+      this.props.checkout()
       this.setState(initialState)
     }
     // validate() {
