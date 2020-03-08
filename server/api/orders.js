@@ -1,20 +1,21 @@
 const router = require('express').Router()
-const Order = require('../db/models/order')
-const Shoe = require('../db/models/shoe')
-const User = require('../db/models/user')
+const {User, Shoe, Order} = require('../db/models/')
 const {adminsOnly} = require('./gatewayutils')
 
 router.get('/', async (req, res, next) => {
   try {
-    const allOrders = await Order.findAll()
-    // console.log('allOrders', allOrders)
-    if (allOrders && req.user.isAdmin) {
+    const allOrders = await Order.findAll({
+      where: {
+        isCart: false
+      },
+      include: [User]
+    })
+    if (allOrders && req.user && req.user.isAdmin) {
       res.json(allOrders)
     } else if (allOrders && req.user) {
       let filteredOrders = allOrders.filter(
-        order => order.userId === req.user.id
+        order => order.userId === req.user.id && !order.isCart
       )
-      // console.log('filteredOrders', filteredOrders)
       res.json(filteredOrders)
     } else res.sendStatus(404)
   } catch (err) {
@@ -26,16 +27,11 @@ router.get('/:id', async (req, res, next) => {
   try {
     const foundOrder = await Order.findOne({
       where: {id: req.params.id},
-      // include: [Shoe]
-      include: [User]
+      include: [User, Shoe]
     })
-    // console.log('foundOrder', foundOrder)
-    // if admin or userid matches foundOrder.userId, you can look
-    // console.log('foundOrder', foundOrder.userId)
-    // console.log('req.user', req.user)
     if (foundOrder && (req.user.id === foundOrder.userId || req.user.isAdmin)) {
       res.json(foundOrder)
-    } else res.status(404).send('Not Authorized')
+    } else res.status(401).send('Not Authorized')
   } catch (error) {
     next(error)
   }
@@ -43,10 +39,11 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const newOrder = await Order.create(req.body)
-    console.log('newOrder', newOrder.userId)
-    if (newOrder) {
-      res.json(newOrder)
+    const {shoes, isCart, userId} = req.body
+    const order = await Order.create({isCart, userId}, {include: [Shoe, User]})
+    await order.setShoes(shoes.map(shoe => shoe.id))
+    if (order) {
+      res.json(order)
     } else res.send('New Order not created')
   } catch (error) {
     next(error)
