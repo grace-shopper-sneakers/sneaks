@@ -167,7 +167,9 @@ class ShippingForm extends React.Component {
           <div> {this.state.phoneNumberError}</div>
           <div> {this.state.mustBeNumber}</div>
           <p />
-          <button type="submit">Confirm Purchase</button>
+          <button className="btn" type="submit">
+            Confirm Purchase
+          </button>
         </fieldset>
       </form>
     )

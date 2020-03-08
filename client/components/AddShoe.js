@@ -66,7 +66,9 @@ class AddShoe extends React.Component {
               <option value="9">9</option>
               <option value="10">10</option>
             </select>
-            <button type="submit">Add</button>
+            <button className="btn" type="submit">
+              Add
+            </button>
           </fieldset>
         </form>
         <AllShoes shoes={this.props.shoes} />
