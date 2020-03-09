@@ -50,7 +50,7 @@ export class Cart extends Component {
                       <option value="4">4</option>
                     </select> */}
                   {/* </label> */}
-                  <input type="submit" value="Submit" />
+                  {/* <input type="submit" value="Submit" /> */}
                 </form>
               </div>
             ))}

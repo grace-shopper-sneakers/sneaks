@@ -25,7 +25,6 @@ const Order = props => {
           </h2>
           <h2>
             {order.user.city}, {order.user.zip}
-            isCart: {order.isCart ? 'true' : 'false'}
           </h2>
           <h2>{order.user.country}</h2>
           <h2>{order.user.phoneNumber}</h2>
