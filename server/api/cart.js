@@ -3,15 +3,18 @@ const {Order, Shoe} = require('../db/models/')
 
 router.get('/', async (req, res, next) => {
   try {
-    const userCart = await Order.findOne({
-      where: {
-        userId: req.user.id,
-        isCart: true
-      },
-      include: [Shoe]
-    })
-    console.log('userCart', userCart)
-    res.json(userCart.shoes.map(shoe => shoe.id))
+    if (req.user) {
+      const userCart = await Order.findOne({
+        where: {
+          userId: req.user.id,
+          isCart: true
+        },
+        include: [Shoe]
+      })
+      res.json(userCart.shoes.map(shoe => shoe.id))
+    } else {
+      res.send({status: 404})
+    }
   } catch (error) {
     next(error)
   }
@@ -19,20 +22,23 @@ router.get('/', async (req, res, next) => {
 
 router.put('/', async (req, res, next) => {
   try {
-    const userCart = await Order.findOne(
-      {
-        where: {
-          userId: req.user.id,
-          isCart: true
-        }
-      },
-      {include: [Shoe]}
-    )
-    const addedShoe = await Shoe.findByPk(req.body.id)
+    if (req.user) {
+      const userCart = await Order.findOne(
+        {
+          where: {
+            userId: req.user.id,
+            isCart: true
+          }
+        },
+        {include: [Shoe]}
+      )
+      const addedShoe = await Shoe.findByPk(req.body.id)
 
-    await userCart.addShoe(addedShoe)
-
-    res.json(addedShoe.id)
+      await userCart.addShoe(addedShoe)
+      res.json(req.body.id)
+    } else {
+      res.send({status: 404})
+    }
   } catch (error) {
     next(error)
   }

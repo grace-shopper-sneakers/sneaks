@@ -26,7 +26,37 @@ export const checkedOut = () => ({
 export const addShoeToCart = shoeId => async dispatch => {
   try {
     const response = await axios.put(`/api/cart/`, {id: shoeId})
-    dispatch(addedShoe(response.data))
+
+    //not logged in.
+    if (response.data.status === 404) {
+      console.log('no cart found')
+      console.log(
+        'checking truthyness of get Item: ',
+        sessionStorage.getItem('cart')
+      )
+      //no cart found on local storage
+      //cart found on frontend storage
+
+      if (sessionStorage.cart === 'empty') {
+        //case if first item in session storage
+        console.log('cart is empty')
+        sessionStorage.setItem('cart', shoeId)
+        console.log('set cart to', sessionStorage.getItem('cart'))
+      } else {
+        console.log('cart is not empty')
+        console.log('storage is', sessionStorage.cart)
+        const splitShoes = sessionStorage.getItem('cart').split(',')
+        splitShoes.push(shoeId)
+
+        console.log('splitshoes post push', splitShoes)
+        sessionStorage.setItem('cart', splitShoes)
+
+        console.log('sessionStorage is now', sessionStorage.cart)
+      }
+      dispatch(addedShoe(shoeId))
+    } else {
+      dispatch(addedShoe(response.data))
+    }
   } catch (error) {
     console.error(error)
   }
@@ -34,8 +64,24 @@ export const addShoeToCart = shoeId => async dispatch => {
 
 export const getUserCart = () => async dispatch => {
   try {
-    const {data} = await axios.get('/api/cart')
-    dispatch(gotCart(data))
+    const response = await axios.get('/api/cart')
+    //guest check
+    if (response.data.status === 404) {
+      //no cart found on local storage
+      if (!sessionStorage.getItem('cart')) {
+        sessionStorage.setItem('cart', 'empty')
+        dispatch(gotCart([]))
+      } else if (sessionStorage.cart === 'empty') {
+        //cart found on frontend storage
+        dispatch(gotCart([]))
+      } else {
+        const splitShoes = sessionStorage.getItem('cart').split(',')
+        const mappedShoes = splitShoes.map(shoeId => parseInt(shoeId, 10))
+        dispatch(gotCart(mappedShoes))
+      }
+    } else {
+      dispatch(gotCart(response.data))
+    }
   } catch (error) {
     console.error(error)
   }
