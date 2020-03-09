@@ -34,6 +34,7 @@ router.get('/:id', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const foundUser = await User.findByPk(req.params.id)
+    console.log('foundUser', foundUser, req.body)
     if (foundUser && req.user.isAdmin) {
       req.body.isAdmin = true
       const updatedUser = await foundUser.update(req.body)

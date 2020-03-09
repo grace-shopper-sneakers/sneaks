@@ -25,6 +25,15 @@ const UserProfileForm = props => {
           value={props.lastName}
           onChange={props.handleChange}
         />
+        <label htmlFor="password">PASSWORD</label>
+        <input
+          id="password"
+          name="password"
+          type="text"
+          placeholder={props.user.password}
+          value={props.password}
+          onChange={props.handleChange}
+        />
         {/* <div> {lastNameError}</div> */}
         <label htmlFor="street-address">Street Address</label>
         <input

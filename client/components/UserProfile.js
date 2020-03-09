@@ -9,6 +9,7 @@ class UserProfile extends React.Component {
     super(props)
     this.state = {
       email: '',
+      password: '',
       firstName: '',
       lastName: '',
       street: '',
@@ -34,7 +35,9 @@ class UserProfile extends React.Component {
       email: !evt.target.email.value
         ? this.props.user.email
         : evt.target.email.value,
-      // password: this.props.user.password,
+      password: !evt.target.password.value
+        ? this.props.user.password
+        : evt.target.password.value,
       firstName: !evt.target.firstName.value
         ? this.props.user.firstName
         : evt.target.firstName.value,
