@@ -8,9 +8,6 @@ const Order = props => {
   const {order} = props
   const {id, createdAt} = order
 
-  console.log('order props', props)
-  if (order.user) console.log(order.user)
-
   return (
     <div>
       {props.user.isAdmin ? (
