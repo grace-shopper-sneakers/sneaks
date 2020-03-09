@@ -17,7 +17,7 @@ const AllShoes = props => {
             </Link>
             {user.isAdmin ? (
               <button
-                className="btn"
+                className="btn red accent-2"
                 type="button"
                 onClick={() => props.delete(shoe.id)}
               >

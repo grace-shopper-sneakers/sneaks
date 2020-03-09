@@ -32,7 +32,7 @@ export class Cart extends Component {
               <div key={shoe.id}>
                 <Shoe shoe={shoe} />
                 <button
-                  className="btn"
+                  className="btn red accent-2"
                   type="button"
                   onClick={() => this.props.removeFromCart(shoe.id)}
                 >

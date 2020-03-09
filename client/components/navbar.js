@@ -6,7 +6,8 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <nav>
+    <img src="img/logo2.png" className="logo" />
+    <nav className="teal">
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}

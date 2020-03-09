@@ -25,7 +25,7 @@ const AuthForm = props => {
           <input name="password" type="password" />
         </div>
         <div>
-          <button className="btn" type="submit">
+          <button className="btn red accent-2" type="submit">
             {displayName}
           </button>
         </div>

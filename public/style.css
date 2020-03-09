@@ -46,3 +46,13 @@ form div {
   padding: 5px;
   align-items: stretch;
 }
+
+.logo {
+  max-width: 300px;
+}
+
+.orderForm {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}

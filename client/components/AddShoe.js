@@ -66,7 +66,7 @@ class AddShoe extends React.Component {
               <option value="9">9</option>
               <option value="10">10</option>
             </select>
-            <button className="btn" type="submit">
+            <button className=" red accent-2" type="submit">
               Add
             </button>
           </fieldset>

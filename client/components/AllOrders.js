@@ -32,7 +32,7 @@ class AllOrders extends React.Component {
                 </Link>
 
                 <button
-                  className="btn"
+                  className="btn red accent-2"
                   type="button"
                   onClick={() => this.props.delete(order.id)}
                 >

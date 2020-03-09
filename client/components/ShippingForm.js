@@ -107,7 +107,7 @@ class ShippingForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="orderForm">
         <fieldset>
           <legend>Order Form</legend>
           <label htmlFor="first-name">First Name</label>
@@ -167,7 +167,7 @@ class ShippingForm extends React.Component {
           <div> {this.state.phoneNumberError}</div>
           <div> {this.state.mustBeNumber}</div>
           <p />
-          <button className="btn" type="submit">
+          <button className="btn red accent-2" type="submit">
             Confirm Purchase
           </button>
         </fieldset>
