@@ -9,7 +9,7 @@ const CheckoutPage = props => {
       <h1>Your cart:</h1>
       <Cart />
       <h2>Total price: ${props.cartPrice}</h2>
-      <ShippingForm checkout={props.checkout} />
+      <ShippingForm checkout={props.checkout} cartPrice={props.cartPrice} />
     </div>
   )
 }

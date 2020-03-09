@@ -11,7 +11,12 @@ const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
 
-module.exports = app
+// const SERVER_CONFIGS = require('./constants/server');
+// const configureServer = require('./server');
+// const configureRoutes = require('./routes');
+
+// configureServer(app);
+// configureRoutes(app);
 
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.

@@ -21,8 +21,8 @@ const initialState = {
 }
 
 class ShippingForm extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = initialState
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -124,6 +124,7 @@ class ShippingForm extends React.Component {
   }
 
   render() {
+    console.log('this.props.cartprice', this.props.cartPrice)
     return (
       <form onSubmit={this.handleSubmit}>
         <fieldset>
@@ -185,8 +186,11 @@ class ShippingForm extends React.Component {
           <div> {this.state.phoneNumberError}</div>
           <div> {this.state.mustBeNumber}</div>
           <p />
-
-          <CheckoutStripe />
+          <button type="submit">Confirm Purchase</button>
+          <CheckoutStripe
+            cartPrice={this.props.cartPrice}
+            customerInfo={this.state}
+          />
         </fieldset>
       </form>
     )
