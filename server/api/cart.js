@@ -10,6 +10,7 @@ router.get('/', async (req, res, next) => {
       },
       include: [Shoe]
     })
+    console.log('userCart', userCart)
     res.json(userCart.shoes.map(shoe => shoe.id))
   } catch (error) {
     next(error)
