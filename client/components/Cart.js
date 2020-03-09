@@ -23,7 +23,6 @@ export class Cart extends Component {
   render() {
     const numberValue = parseInt(this.state.value, 10)
     const {shoes} = this.props
-    console.log(this.props)
     return (
       <div>
         {!shoes || shoes.length === 0
