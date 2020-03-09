@@ -53,9 +53,7 @@ const Order = props => {
 
 const mapStateToProps = state => ({
   order: state.order,
-  user: state.user,
-  shoes: state.order.shoes,
-  cart: state.cart
+  user: state.user
 })
 
 export default connect(mapStateToProps, null)(Order)
