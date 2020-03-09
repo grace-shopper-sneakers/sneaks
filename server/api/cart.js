@@ -10,7 +10,7 @@ router.get('/', async (req, res, next) => {
       },
       include: [Shoe]
     })
-    res.json(userCart)
+    res.json(userCart.shoes.map(shoe => shoe.id))
   } catch (error) {
     next(error)
   }
@@ -31,7 +31,7 @@ router.put('/', async (req, res, next) => {
 
     await userCart.addShoe(addedShoe)
 
-    res.json(userCart)
+    res.json(addedShoe.id)
   } catch (error) {
     next(error)
   }

@@ -22,25 +22,25 @@ export class Cart extends Component {
   }
   render() {
     const numberValue = parseInt(this.state.value, 10)
-    const {shoes} = this.props
+    const {cart, shoes} = this.props
     return (
       <div>
-        {!shoes || shoes.length === 0
+        {cart.length === 0
           ? 'Empty cart :('
-          : shoes.map(shoe => (
-              <div key={shoe.id}>
-                <Shoe shoe={shoe} />
+          : cart.map(shoeId => (
+              <div key={shoeId}>
+                <Shoe shoe={shoes.find(shoe => shoe.id === shoeId)} />
                 <button
                   type="button"
-                  onClick={() => this.props.removeFromCart(shoe.id)}
+                  onClick={() => this.props.removeFromCart(shoeId)}
                 >
                   Remove from Cart
                 </button>
                 <p />
                 <form onSubmit={this.handleSubmit}>
-                  <label>
+                  {/* <label>
                     Quantity:
-                    <select
+                    {/* <select
                       value={this.state.value}
                       onChange={this.handleChange}
                     >
@@ -48,11 +48,10 @@ export class Cart extends Component {
                       <option value="2">2</option>
                       <option value="3">3</option>
                       <option value="4">4</option>
-                    </select>
-                  </label>
+                    </select> */}
+                  {/* </label> */}
                   <input type="submit" value="Submit" />
                 </form>
-                <p>Total: ${numberValue * shoe.price}</p>
               </div>
             ))}
       </div>
@@ -62,12 +61,12 @@ export class Cart extends Component {
 
 const mapStateToProps = state => ({
   cart: state.cart,
-  shoes: state.cart.shoes
+  shoes: state.shoes
 })
 
 const mapDispatchToProps = dispatch => ({
-  addToCart: shoe => {
-    dispatch(addShoeToCart(shoe))
+  addToCart: shoeId => {
+    dispatch(addShoeToCart(shoeId))
   },
   getCart: () => {
     dispatch(getUserCart())
