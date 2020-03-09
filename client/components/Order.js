@@ -8,9 +8,6 @@ const Order = props => {
   const {order} = props
   const {id, createdAt} = order
 
-  console.log('order props', props)
-  if (order.user) console.log(order.user)
-
   return (
     <div>
       {props.user.isAdmin ? (
@@ -25,7 +22,6 @@ const Order = props => {
           </h2>
           <h2>
             {order.user.city}, {order.user.zip}
-            isCart: {order.isCart ? 'true' : 'false'}
           </h2>
           <h2>{order.user.country}</h2>
           <h2>{order.user.phoneNumber}</h2>
@@ -57,9 +53,7 @@ const Order = props => {
 
 const mapStateToProps = state => ({
   order: state.order,
-  user: state.user,
-  shoes: state.order.shoes,
-  cart: state.cart
+  user: state.user
 })
 
 export default connect(mapStateToProps, null)(Order)

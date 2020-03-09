@@ -2,7 +2,7 @@ import axios from 'axios'
 // ACTION TYPES
 const GET_SINGLE_ORDER = 'GET_SINGLE_ORDER'
 // const REMOVE_ORDER = 'REMOVE_ORDER'
-// const NEW_ORDER = 'NEW_ORDER'
+const MADE_ORDER = 'MADE_ORDER'
 
 // ACTION CREATORS
 const gotSingleOrder = order => {
@@ -19,12 +19,12 @@ const gotSingleOrder = order => {
 //     orderId
 //   }
 // }
-// const newOrder = order => {
-//   return {
-//     type: NEW_ORDER,
-//     order
-//   }
-// }
+const madeOrder = order => {
+  return {
+    type: MADE_ORDER,
+    order
+  }
+}
 
 //THUNK
 export const getSingleOrderThunk = id => {
@@ -49,16 +49,16 @@ export const getSingleOrderThunk = id => {
 //   }
 // }
 
-// export const newOrderThunk = newOrder => {
-//   return async dispatch => {
-//     try {
-//       const {data} = await axios.post('/api/orders', newOrder)
-//       dispatch(newOrder(data))
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
-// }
+export const newOrderThunk = newOrder => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.post('/api/orders', newOrder)
+      dispatch(madeOrder(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
 
 // INITIAL STATE
 const initialState = {}
@@ -71,8 +71,8 @@ const singleOrderReducer = (state = initialState, action) => {
     // case REMOVE_ORDER:
     //   if (state.id === action.id) return {}
     //   else return state
-    // case NEW_ORDER:
-    //   return action.order
+    case MADE_ORDER:
+      return action.order
     default:
       return state
   }

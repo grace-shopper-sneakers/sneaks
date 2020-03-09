@@ -14,7 +14,11 @@ const CheckoutPage = props => {
   )
 }
 const mapStateToProps = state => ({
-  cartPrice: state.cart.shoes.reduce((agg, item) => agg + item.price / 100, 0)
+  cartPrice: state.cart.reduce((agg, shoeId) => {
+    if (state.shoes.length > 0) {
+      return agg + state.shoes.find(shoe => shoe.id === shoeId, 0).price / 100
+    }
+  }, 0)
 })
 const mapDispatchToProps = dispatch => ({
   checkout: () => dispatch(checkout())

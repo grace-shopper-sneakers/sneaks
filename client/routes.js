@@ -24,8 +24,8 @@ import UserProfileForm from './components/UserProfileForm'
  */
 class Routes extends Component {
   componentDidMount() {
-    this.props.loadInitialData()
     this.props.getShoes()
+    this.props.loadInitialData()
     this.props.getOrders()
     this.props.getCart()
   }
@@ -86,6 +86,7 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+      dispatch(getUserCart())
     },
     getShoes() {
       dispatch(getShoes())
@@ -93,9 +94,7 @@ const mapDispatch = dispatch => {
     getOrders() {
       dispatch(getOrdersThunk())
     },
-    getCart() {
-      dispatch(getUserCart())
-    }
+    getCart() {}
   }
 }
 

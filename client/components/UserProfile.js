@@ -62,11 +62,9 @@ class UserProfile extends React.Component {
     }
 
     this.props.editUser(editedUser, editedUser.id)
-    console.log('handleSubmit -> editedUser', editedUser)
   }
   render() {
     const {user} = this.props
-    console.log('UserProfile -> render -> user', user)
     return (
       <div>
         <h1>
