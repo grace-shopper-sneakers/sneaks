@@ -3,10 +3,6 @@ import axios from 'axios'
 import {connect} from 'react-redux'
 import StripeCheckout from 'react-stripe-checkout'
 
-import {toast} from 'react-toastify'
-
-toast.configure()
-
 const handleToken = async token => {
   console.log('TOKEN', {token})
 
@@ -15,11 +11,9 @@ const handleToken = async token => {
   const {status} = res.data
 
   if (status === 'success') {
-    toast('Success!', {
-      type: 'success'
-    })
+    console.log('success!')
   } else {
-    toast('something went wrong', {type: 'error'})
+    console.log('something went wrong')
   }
 }
 
