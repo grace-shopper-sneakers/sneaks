@@ -16,10 +16,13 @@ import {
   CheckoutPage,
   CheckoutStripe,
   UserProfile
+
   // UserProfileForm
 } from './components'
 
 import {me, getShoes, getOrdersThunk, getUserCart} from './store'
+
+// import CheckoutStripes from '../react-express-stripe/frontend/Checkout';
 /**
  * COMPONENT
  */
