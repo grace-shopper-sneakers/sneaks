@@ -15,16 +15,30 @@ const Order = props => {
           <h1>Admin Portal</h1>
           <h1>Order ID: {id}</h1>
           <h2>
-            {order.user.firstName} {order.user.lastName}
+            {order.user
+              ? order.user.firstName + ' ' + order.user.lastName
+              : 'guest order'}
           </h2>
           <h2>
-            {order.user.street}, {order.user.apartmentNumber}
+            {order.user ? (
+              <div>
+                {order.user.street}, {order.user.apartmentNumber}
+              </div>
+            ) : (
+              ''
+            )}
           </h2>
           <h2>
-            {order.user.city}, {order.user.zip}
+            {order.user ? (
+              <div>
+                {order.user.city}, {order.user.zip}
+                <h2>{order.user.country}</h2>
+                <h2>{order.user.phoneNumber}</h2>
+              </div>
+            ) : (
+              ''
+            )}
           </h2>
-          <h2>{order.user.country}</h2>
-          <h2>{order.user.phoneNumber}</h2>
           <hr />
           <h2>Order Date: {createdAt}</h2>
         </div>

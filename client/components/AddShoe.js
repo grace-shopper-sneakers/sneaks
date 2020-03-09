@@ -8,7 +8,7 @@ const initialState = {
   model: '',
   size: '8',
   color: 'black',
-  price: 99.99
+  price: 99
 }
 
 class AddShoe extends React.Component {

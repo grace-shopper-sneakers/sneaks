@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
         order => order.userId === req.user.id && !order.isCart
       )
       res.json(filteredOrders)
-    } else res.sendStatus(404)
+    } else res.sendStatus(401)
   } catch (err) {
     next(err)
   }
