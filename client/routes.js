@@ -14,11 +14,12 @@ import {
   Checkout,
   Cart,
   CheckoutPage,
-  UserProfile
+  UserProfile,
+  AdminPortal
 } from './components'
 
 import {me, getShoes, getOrdersThunk, getUserCart} from './store'
-import UserProfileForm from './components/UserProfileForm'
+
 /**
  * COMPONENT
  */
@@ -31,11 +32,11 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
+    const {isLoggedIn, user} = this.props
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        {/* {user.isAdmin ? <Route path="/admin" component={Admin} />} */}
+
         <Route path="/login" component={Login} />
         <Route path="/cart" component={Cart} />
         <Route path="/signup" component={Signup} />
@@ -58,6 +59,7 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
+            {user.isAdmin && <Route path="/admin" component={AdminPortal} />}
             <Route path="/home" component={UserHome} />
           </Switch>
         )}
