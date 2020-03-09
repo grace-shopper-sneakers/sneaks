@@ -1,9 +1,9 @@
 import React from 'react'
 
-const UserProfileForm = ({handleChange, handleSubmit, user}) => {
+const UserProfileForm = props => {
   // Need some validation checks here
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={props.handleSubmit}>
       <fieldset>
         <legend>Edit your profile</legend>
         <label htmlFor="first-name">First Name</label>
@@ -11,9 +11,9 @@ const UserProfileForm = ({handleChange, handleSubmit, user}) => {
           id="first-name"
           name="firstName"
           type="text"
-          placeholder={user.firstName}
-          value={user.firstName}
-          onChange={handleChange}
+          placeholder={props.user.firstName}
+          value={props.firstName}
+          onChange={props.handleChange}
         />
         {/* <div> {firstNameError}</div> */}
         <label htmlFor="last-name">Last Name</label>
@@ -21,9 +21,9 @@ const UserProfileForm = ({handleChange, handleSubmit, user}) => {
           id="last-name"
           name="lastName"
           type="text"
-          placeholder={user.lastName}
-          value={user.lastName}
-          onChange={handleChange}
+          placeholder={props.user.lastName}
+          value={props.lastName}
+          onChange={props.handleChange}
         />
         {/* <div> {lastNameError}</div> */}
         <label htmlFor="street-address">Street Address</label>
@@ -31,9 +31,9 @@ const UserProfileForm = ({handleChange, handleSubmit, user}) => {
           id="street-address"
           name="street"
           type="text"
-          placeholder={user.street}
-          value={user.street}
-          onChange={handleChange}
+          placeholder={props.user.street}
+          value={props.street}
+          onChange={props.handleChange}
         />
         {/* <div> {streetError}</div> */}
         <label htmlFor="apartmentNumber">Apt #</label>
@@ -41,18 +41,18 @@ const UserProfileForm = ({handleChange, handleSubmit, user}) => {
           id="apartmentNumber"
           name="apartmentNumber"
           type="integer"
-          placeholder={user.apartmentNumber}
-          value={user.apartmentNumber}
-          onChange={handleChange}
+          placeholder={props.user.apartmentNumber}
+          value={props.apartmentNumber}
+          onChange={props.handleChange}
         />
         <label htmlFor="city">City</label>
         <input
           id="city"
           name="city"
           type="text"
-          placeholder={user.city}
-          value={user.city}
-          onChange={handleChange}
+          placeholder={props.user.city}
+          value={props.city}
+          onChange={props.handleChange}
         />
         {/* <div> {cityError}</div> */}
         <label htmlFor="country">Country</label>
@@ -60,9 +60,9 @@ const UserProfileForm = ({handleChange, handleSubmit, user}) => {
           id="country"
           name="country"
           type="text"
-          placeholder={user.country}
-          value={user.country}
-          onChange={handleChange}
+          placeholder={props.user.country}
+          value={props.country}
+          onChange={props.handleChange}
         />
         {/* <div> {countryError}</div> */}
         <label htmlFor="zip">Zipcode</label>
@@ -70,9 +70,9 @@ const UserProfileForm = ({handleChange, handleSubmit, user}) => {
           id="zip"
           name="zip"
           type="text"
-          placeholder={user.zip}
-          value={user.zip}
-          onChange={handleChange}
+          placeholder={props.user.zip}
+          value={props.zip}
+          onChange={props.handleChange}
         />
         {/* <div> {zipError}</div> */}
         <label htmlFor="phoneNumber">Phone #</label>
@@ -80,9 +80,9 @@ const UserProfileForm = ({handleChange, handleSubmit, user}) => {
           id="phoneNumber"
           name="phoneNumber"
           type="tel"
-          placeholder={user.phoneNumber}
-          value={user.phoneNumber}
-          onChange={handleChange}
+          placeholder={props.user.phoneNumber}
+          value={props.phoneNumber}
+          onChange={props.handleChange}
         />
         {/* <div> {phoneNumberError}</div>
         <div> {mustBeNumber}</div> */}
@@ -91,9 +91,9 @@ const UserProfileForm = ({handleChange, handleSubmit, user}) => {
           id="email"
           name="email"
           type="email"
-          placeholder={user.email}
-          value={user.email}
-          onChange={handleChange}
+          placeholder={props.user.email}
+          value={props.email}
+          onChange={props.handleChange}
         />
         <p />
         <button type="submit">Edit</button>

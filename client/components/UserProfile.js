@@ -4,18 +4,27 @@ import UserProfileForm from './UserProfileForm'
 import {editUser} from '../store'
 
 class UserProfile extends React.Component {
-  constructor({user}) {
-    super({user})
+  constructor(props) {
+    super(props)
     this.state = {
-      email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      street: user.street,
-      apartmentNumber: user.apartmentNumber,
-      city: user.city,
-      zip: user.zip,
-      country: user.country,
-      phoneNumber: user.phoneNumber
+      // email: props.user.email,
+      // firstName: props.user.firstName,
+      // lastName: props.user.lastName,
+      // street: props.user.street,
+      // apartmentNumber: props.user.apartmentNumber,
+      // city: props.user.city,
+      // zip: props.user.zip,
+      // country: props.user.country,
+      // phoneNumber: props.user.phoneNumber
+      email: '',
+      firstName: '',
+      lastName: '',
+      street: '',
+      apartmentNumber: '',
+      city: '',
+      zip: '',
+      country: '',
+      phoneNumber: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -29,17 +38,33 @@ class UserProfile extends React.Component {
     evt.preventDefault()
 
     const editedUser = {
-      email: evt.target.email.value,
-      // password: this.props.user.password,
-      firstName: evt.target.firstName.value,
-      lastName: evt.target.lastName.value,
-      street: evt.target.street.value,
-      apartmentNumber: evt.target.apartmentNumber.value,
-      city: evt.target.city.value,
-      zip: evt.target.zip.value,
-      country: evt.target.country.value,
-      phoneNumber: evt.target.phoneNumber.value,
       id: this.props.user.id,
+      email: !evt.target.email.value
+        ? this.props.user.email
+        : evt.target.email.value,
+      // password: this.props.user.password,
+      firstName: !evt.target.firstName.value
+        ? this.props.user.firstName
+        : evt.target.firstName.value,
+      lastName: !evt.target.lastName.value
+        ? this.props.user.lastName
+        : evt.target.lastName.value,
+      street: !evt.target.street.value
+        ? this.props.user.street
+        : evt.target.street.value,
+      apartmentNumber: !evt.target.apartmentNumber.value
+        ? this.props.user.apartmentNumber
+        : evt.target.apartmentNumber.value,
+      city: !evt.target.city.value
+        ? this.props.user.city
+        : evt.target.city.value,
+      zip: !evt.target.zip.value ? this.props.user.zip : evt.target.zip.value,
+      country: !evt.target.country.value
+        ? this.props.user.country
+        : evt.target.country.value,
+      phoneNumber: !evt.target.phoneNumber.value
+        ? this.props.user.phoneNumber
+        : evt.target.phoneNumber.value,
       isAdmin: this.props.user.isAdmin,
       googleId: this.props.user.googleId
     }
@@ -56,6 +81,7 @@ class UserProfile extends React.Component {
           {user.firstName} {user.lastName}
         </h1>
         <UserProfileForm
+          {...this.state}
           user={user}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
