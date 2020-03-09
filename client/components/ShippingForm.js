@@ -97,30 +97,13 @@ class ShippingForm extends React.Component {
     return true
   }
 
-  handleSubmit(evt) {
-    // evt.preventDefault()
-    // if (this.validate()) {
-    //   this.props.checkout()
-    // } else {
-    //   console.log('form is not valid')
-    // }
+  handleSubmit(event) {
     event.preventDefault()
     const isValid = this.validate()
     if (isValid) {
-      console.log(this.state)
-      // clear form
+      this.props.checkout()
       this.setState(initialState)
     }
-    // validate() {
-    //   let isValid = true
-    //   Object.keys(this.state).forEach(key => {
-    //     if (this.state[key] === '') {
-    //       console.log(key + ' cannot be empty!')
-    //       isValid = false
-    //     }
-    //   })
-    //   return isValid
-    // }
   }
 
   render() {

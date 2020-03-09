@@ -51,15 +51,12 @@ export const removeFromCart = id => async dispatch => {
 }
 export const checkout = () => async dispatch => {
   try {
-    const {data: oldCart} = await axios.delete('/api/cart/checkout')
-    const orderDate = Date.now()
-    const orderId = Math.floor(Math.random() * 100)
+    const {data: newOrder} = await axios.delete('/api/cart/checkout')
+
+    //clear cart in redux
     dispatch(checkedOut())
-    oldCart.forEach(shoe => {
-      const {model, color, brand, price, size} = shoe
-      const order = {model, color, brand, price, orderDate, orderId, size}
-      return dispatch(newOrderThunk(order))
-    })
+
+    dispatch(newOrderThunk(newOrder))
   } catch (e) {
     console.error(e)
   }
