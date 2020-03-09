@@ -1,17 +1,17 @@
 import axios from 'axios'
 // ACTION TYPES
-const GOT_ORDERS = 'GOT_ORDERS'
+const GET_ORDERS = 'GET_ORDERS'
 const REMOVE_ORDER = 'REMOVE_ORDER'
 const NEW_ORDER = 'NEW_ORDER'
 
 // ACTION CREATORS
 const gotOrders = orders => {
   return {
-    type: GOT_ORDERS,
+    type: GET_ORDERS,
     orders
   }
 }
-const removeOrder = id => {
+const removedOrder = id => {
   return {
     type: REMOVE_ORDER,
     id
@@ -39,7 +39,7 @@ export const removeOrderThunk = id => {
   return async dispatch => {
     try {
       await axios.delete(`/api/orders/${id}`)
-      dispatch(removeOrder(id))
+      dispatch(removedOrder(id))
     } catch (error) {
       console.error(error)
     }
@@ -65,7 +65,7 @@ const initialState = []
 //ORDERS REDUCER
 const ordersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GOT_ORDERS:
+    case GET_ORDERS:
       return action.orders
     case REMOVE_ORDER:
       return state.filter(order => order.id !== action.id)

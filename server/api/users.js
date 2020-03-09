@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const User = require('../db/models/user')
 module.exports = router
 
 // router.get('/', async (req, res, next) => {
@@ -23,8 +23,7 @@ module.exports = router
 router.get('/:id', async (req, res, next) => {
   try {
     const foundUser = await User.findByPk(req.params.id)
-    console.log('foundUser', foundUser)
-    if (foundUser && (req.user.id === foundUser.userId || req.user.isAdmin)) {
+    if (foundUser && (req.user.id === foundUser.id || req.user.isAdmin)) {
       res.json(foundUser)
     } else res.status(404).send('Not Authorized')
   } catch (error) {
@@ -35,12 +34,11 @@ router.get('/:id', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const foundUser = await User.findByPk(req.params.id)
-    console.log('foundUser', foundUser)
     if (foundUser && req.user.isAdmin) {
       req.body.isAdmin = true
       const updatedUser = await foundUser.update(req.body)
       res.json(updatedUser)
-    } else if (foundUser && req.user.id === foundUser.userId) {
+    } else if (foundUser && req.user.id === foundUser.id) {
       if (foundUser.isAdmin === req.body.isAdmin) {
         req.body.isAdmin = false
         const updatedUser = await foundUser.update(req.body)

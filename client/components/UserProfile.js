@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import React from 'react'
 import {connect} from 'react-redux'
 import UserProfileForm from './UserProfileForm'
@@ -7,15 +8,6 @@ class UserProfile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      // email: props.user.email,
-      // firstName: props.user.firstName,
-      // lastName: props.user.lastName,
-      // street: props.user.street,
-      // apartmentNumber: props.user.apartmentNumber,
-      // city: props.user.city,
-      // zip: props.user.zip,
-      // country: props.user.country,
-      // phoneNumber: props.user.phoneNumber
       email: '',
       firstName: '',
       lastName: '',
