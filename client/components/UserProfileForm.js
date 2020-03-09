@@ -29,7 +29,7 @@ const UserProfileForm = props => {
         <input
           id="password"
           name="password"
-          type="text"
+          type="password"
           placeholder={props.user.password}
           value={props.password}
           onChange={props.handleChange}

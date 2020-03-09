@@ -1,9 +1,9 @@
 const router = require('express').Router()
 const User = require('../db/models/user')
-const isAdmin = require('./gatewayutils')
+const {adminsOnly} = require('./gatewayutils')
 module.exports = router
 
-router.get('/', isAdmin, async (req, res, next) => {
+router.get('/', adminsOnly, async (req, res, next) => {
   try {
     const allUsers = await User.findAll({
       attributes: ['id', 'firstName', 'lastName', 'email']
