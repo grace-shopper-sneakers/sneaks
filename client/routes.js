@@ -14,11 +14,15 @@ import {
   Checkout,
   Cart,
   CheckoutPage,
+  CheckoutStripe,
   UserProfile
+
+  // UserProfileForm
 } from './components'
 
 import {me, getShoes, getOrdersThunk, getUserCart} from './store'
-import UserProfileForm from './components/UserProfileForm'
+
+// import CheckoutStripes from '../react-express-stripe/frontend/Checkout';
 /**
  * COMPONENT
  */
@@ -49,6 +53,7 @@ class Routes extends Component {
           <Checkout orders={this.props.orders} />
         </Route>
         <Route path="/checkout" component={CheckoutPage} />
+        <Route path="/payment" component={CheckoutStripe} />
         <Route path="/orders">
           <AllOrders orders={this.props.orders} />
         </Route>
