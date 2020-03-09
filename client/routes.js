@@ -15,11 +15,13 @@ import {
   Cart,
   CheckoutPage,
   UserProfile,
-  AdminPortal
+  AdminPortal,
+  CheckoutStripe
 } from './components'
 
 import {me, getShoes, getOrdersThunk, getUserCart} from './store'
 
+// import CheckoutStripes from '../react-express-stripe/frontend/Checkout';
 /**
  * COMPONENT
  */
@@ -27,7 +29,9 @@ class Routes extends Component {
   componentDidMount() {
     this.props.getShoes()
     this.props.loadInitialData()
-    this.props.getOrders()
+    if (this.props.isLoggedIn) {
+      this.props.getOrders()
+    }
     this.props.getCart()
   }
 
@@ -50,6 +54,7 @@ class Routes extends Component {
           <Checkout orders={this.props.orders} />
         </Route>
         <Route path="/checkout" component={CheckoutPage} />
+        <Route path="/payment" component={CheckoutStripe} />
         <Route path="/orders">
           <AllOrders orders={this.props.orders} />
         </Route>
