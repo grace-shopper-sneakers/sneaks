@@ -110,7 +110,7 @@ class ShippingForm extends React.Component {
   render() {
     console.log('this.props.cartprice', this.props.cartPrice)
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="orderForm">
         <fieldset>
           <legend>Order Form</legend>
           <label htmlFor="first-name">First Name</label>
@@ -170,9 +170,12 @@ class ShippingForm extends React.Component {
           <div> {this.state.phoneNumberError}</div>
           <div> {this.state.mustBeNumber}</div>
           <p />
-          <Link to="/payment">
-            <button type="submit">Confirm Purchase</button>
-          </Link>
+      <Link to="/payment">
+          <button className="btn red accent-2" type="submit">
+            Confirm Purchase
+          </button>
+        </Link>
+
         </fieldset>
       </form>
     )
