@@ -41,13 +41,10 @@ const onToken = (amount, description) => token =>
 const CheckoutStripe = props => {
   return (
     <StripeCheckout
-      name={`${props.customerInfo.firstName} ${props.customerInfo.lastName}`}
-      description={`${props.customerInfo.firstName}'s shoe order`}
+      // name={`${props.customerInfo.firstName} ${props.customerInfo.lastName}`}
+      // description={`${props.customerInfo.firstName}'s shoe order`}
       amount={fromDollarToCent(props.cartPrice)}
-      token={onToken(
-        props.cartPrice,
-        `${props.customerInfo.firstName}'s order`
-      )}
+      // token={onToken(props.cartPrice, `${props.customerInfo.firstName}'s order`)}
       currency={CURRENCY}
       stripeKey={STRIPE_PUBLISHABLE}
     />

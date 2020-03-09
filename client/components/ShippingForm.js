@@ -1,6 +1,7 @@
 /* eslint-disable complexity */
 import React from 'react'
 import CheckoutStripe from './CheckoutStripe'
+import {Link} from 'react-router-dom'
 
 const initialState = {
   firstName: '',
@@ -169,11 +170,9 @@ class ShippingForm extends React.Component {
           <div> {this.state.phoneNumberError}</div>
           <div> {this.state.mustBeNumber}</div>
           <p />
-          <button type="submit">Confirm Purchase</button>
-          <CheckoutStripe
-            cartPrice={this.props.cartPrice}
-            customerInfo={this.state}
-          />
+          <Link to="/payment">
+            <button type="submit">Confirm Purchase</button>
+          </Link>
         </fieldset>
       </form>
     )
