@@ -14,7 +14,9 @@ import {
   Checkout,
   Cart,
   CheckoutPage,
-  CheckoutStripe
+  CheckoutStripe,
+  UserProfile
+  // UserProfileForm
 } from './components'
 
 import {me, getShoes, getOrdersThunk, getUserCart} from './store'
@@ -34,6 +36,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        {/* {user.isAdmin ? <Route path="/admin" component={Admin} />} */}
         <Route path="/login" component={Login} />
         <Route path="/cart" component={Cart} />
         <Route path="/signup" component={Signup} />
@@ -51,7 +54,9 @@ class Routes extends Component {
         <Route path="/orders">
           <AllOrders orders={this.props.orders} />
         </Route>
-
+        <Route path="/myaccount">
+          <UserProfile user={this.props.user} />
+        </Route>
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -74,7 +79,8 @@ const mapState = state => {
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
     shoes: state.shoes,
-    orders: state.orders
+    orders: state.orders,
+    user: state.user
   }
 }
 

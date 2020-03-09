@@ -1,13 +1,13 @@
 import axios from 'axios'
 // ACTION TYPES
-const GOT_SINGLE_ORDER = 'GOT_SINGLE_ORDER'
+const GET_SINGLE_ORDER = 'GET_SINGLE_ORDER'
 // const REMOVE_ORDER = 'REMOVE_ORDER'
 // const NEW_ORDER = 'NEW_ORDER'
 
 // ACTION CREATORS
 const gotSingleOrder = order => {
   return {
-    type: GOT_SINGLE_ORDER,
+    type: GET_SINGLE_ORDER,
     order
   }
 }
@@ -66,7 +66,7 @@ const initialState = {}
 //ORDER REDUCER
 const singleOrderReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GOT_SINGLE_ORDER:
+    case GET_SINGLE_ORDER:
       return action.order
     // case REMOVE_ORDER:
     //   if (state.id === action.id) return {}
