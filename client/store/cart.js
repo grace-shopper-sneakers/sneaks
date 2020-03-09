@@ -29,29 +29,15 @@ export const addShoeToCart = shoeId => async dispatch => {
 
     //not logged in.
     if (response.data.status === 404) {
-      console.log('no cart found')
-      console.log(
-        'checking truthyness of get Item: ',
-        sessionStorage.getItem('cart')
-      )
       //no cart found on local storage
       //cart found on frontend storage
-
       if (sessionStorage.cart === 'empty') {
         //case if first item in session storage
-        console.log('cart is empty')
         sessionStorage.setItem('cart', shoeId)
-        console.log('set cart to', sessionStorage.getItem('cart'))
       } else {
-        console.log('cart is not empty')
-        console.log('storage is', sessionStorage.cart)
         const splitShoes = sessionStorage.getItem('cart').split(',')
         splitShoes.push(shoeId)
-
-        console.log('splitshoes post push', splitShoes)
         sessionStorage.setItem('cart', splitShoes)
-
-        console.log('sessionStorage is now', sessionStorage.cart)
       }
       dispatch(addedShoe(shoeId))
     } else {

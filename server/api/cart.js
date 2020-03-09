@@ -47,9 +47,7 @@ router.put('/', async (req, res, next) => {
 router.put('/checkout', async (req, res, next) => {
   try {
     let order
-    console.log('req.user', req.user)
     if (!req.user) {
-      console.log('req.body', req.body)
       const shoes = await Shoe.findAll({
         where: {
           id: {
@@ -57,7 +55,6 @@ router.put('/checkout', async (req, res, next) => {
           }
         }
       })
-      console.log('shoes', shoes)
       order = {
         isCart: false,
         shoes
