@@ -10,9 +10,8 @@ export const AdminPortal = props => {
   return (
     <div>
       <h3>Welcome to the ADMIN PORTAL, {email}</h3>
-      <div>Users</div>
-      <div>Shoe Inventory</div>
-      <div>Users</div>
+      <div>All Registered Users</div>
+      <div>Shoe Inventory and Management</div>
     </div>
   )
 }
