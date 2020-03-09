@@ -16,7 +16,11 @@ const AllShoes = props => {
               <Shoe shoe={shoe} />
             </Link>
             {user.isAdmin ? (
-              <button type="button" onClick={() => props.delete(shoe.id)}>
+              <button
+                className="btn red accent-2"
+                type="button"
+                onClick={() => props.delete(shoe.id)}
+              >
                 delete{' '}
               </button>
             ) : (

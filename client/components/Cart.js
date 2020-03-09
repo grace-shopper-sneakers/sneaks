@@ -31,6 +31,7 @@ export class Cart extends Component {
               <div key={shoeId}>
                 <Shoe shoe={shoes.find(shoe => shoe.id === shoeId)} />
                 <button
+                  className="btn red accent-2"
                   type="button"
                   onClick={() => this.props.removeFromCart(shoeId)}
                 >
