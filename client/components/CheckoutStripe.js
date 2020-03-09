@@ -4,13 +4,15 @@ import {connect} from 'react-redux'
 import StripeCheckout from 'react-stripe-checkout'
 
 const handleToken = async token => {
-  console.log('TOKEN', {token})
+  console.log('TOKEN', token)
 
-  const res = await axios.post('/api/payment', {token})
+  const res = await axios.post('/api/payment', token)
 
   const {status} = res.data
 
-  if (status === 'success') {
+  console.log(res)
+
+  if (status === '200') {
     console.log('success!')
   } else {
     console.log('something went wrong')
