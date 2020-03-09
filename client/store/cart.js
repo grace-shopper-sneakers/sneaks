@@ -97,7 +97,9 @@ export const removeFromCart = id => async dispatch => {
 }
 export const checkout = () => async dispatch => {
   try {
-    const {data: newOrder} = await axios.delete('/api/cart/checkout')
+    const splitShoes = sessionStorage.getItem('cart').split(',')
+    const mappedShoes = splitShoes.map(shoeId => parseInt(shoeId, 10))
+    const {data: newOrder} = await axios.put('/api/cart/checkout', mappedShoes)
 
     //clear cart in redux
     dispatch(checkedOut())

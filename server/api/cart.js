@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Order, Shoe} = require('../db/models/')
+const {Op} = require('sequelize')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -43,24 +44,44 @@ router.put('/', async (req, res, next) => {
     next(error)
   }
 })
-router.delete('/checkout', async (req, res, next) => {
+router.put('/checkout', async (req, res, next) => {
   try {
-    const userCart = await Order.findOne(
-      {
+    let order
+    console.log('req.user', req.user)
+    if (!req.user) {
+      console.log('req.body', req.body)
+      const shoes = await Shoe.findAll({
         where: {
-          userId: req.user.id,
-          isCart: true
+          id: {
+            [Op.in]: req.body
+          }
         }
-      },
-      {include: [Shoe]}
-    )
-    const shoes = await userCart.getShoes()
-    await userCart.setShoes([])
-    const order = {
-      isCart: false,
-      shoes,
-      userId: req.user.id
+      })
+      console.log('shoes', shoes)
+      order = {
+        isCart: false,
+        shoes
+      }
+    } else {
+      const userCart = await Order.findOne(
+        {
+          where: {
+            userId: req.user.id,
+            isCart: true
+          }
+        },
+        {include: [Shoe]}
+      )
+
+      const shoes = await userCart.getShoes()
+      await userCart.setShoes([])
+      order = {
+        isCart: false,
+        shoes,
+        userId: req.user.id
+      }
     }
+
     res.status(200).json(order)
   } catch (error) {
     next(error)

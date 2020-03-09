@@ -26,7 +26,9 @@ class Routes extends Component {
   componentDidMount() {
     this.props.getShoes()
     this.props.loadInitialData()
-    this.props.getOrders()
+    if (this.props.isLoggedIn) {
+      this.props.getOrders()
+    }
     this.props.getCart()
   }
 
