@@ -24,7 +24,6 @@ form div {
   display: flex;
   max-width: 350px;
   max-height: 200px;
-  min-width: 300px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -39,12 +38,13 @@ form div {
   flex-direction: column;
   flex: 1 1 160px;
   justify-content: space-around;
-  border-color: black;
+  border-color: lightgray;
   border-width: 2px;
   border-style: solid;
-  margin: 3px;
-  padding: 5px;
+  margin: 11px;
+  padding: 11px;
   align-items: stretch;
+  min-width: 275px;
 }
 
 .logo {
@@ -55,4 +55,8 @@ form div {
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.center {
+  text-align: center;
 }
