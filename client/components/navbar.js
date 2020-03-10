@@ -8,7 +8,7 @@ const Navbar = ({handleClick, isLoggedIn, user, cart}) => {
   return (
     <div>
       <img src="img/logo2.png" className="logo" />
-      <nav className="teal">
+      <nav className="blue lighten-2">
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
