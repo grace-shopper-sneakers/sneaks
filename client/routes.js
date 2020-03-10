@@ -16,6 +16,7 @@ import {
   CheckoutPage,
   UserProfile,
   AdminPortal,
+  AdminUsersPortal,
   CheckoutStripe
 } from './components'
 
@@ -65,6 +66,9 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             {user.isAdmin && <Route path="/admin" component={AdminPortal} />}
+            {user.isAdmin && (
+              <Route path="/users" component={AdminUsersPortal} />
+            )}
             <Route path="/home" component={UserHome} />
           </Switch>
         )}

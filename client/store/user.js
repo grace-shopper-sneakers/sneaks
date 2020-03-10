@@ -59,7 +59,6 @@ export const logout = () => async dispatch => {
 export const editUser = (user, userId) => async dispatch => {
   try {
     const {data} = await axios.put(`/api/users/${userId}`, user)
-    console.log('EDITUSER THUNK', data)
     dispatch(editedUser(data))
   } catch (error) {
     console.error(error)
