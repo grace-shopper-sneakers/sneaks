@@ -81,7 +81,6 @@ class AllShoes extends React.Component {
         ) : (
           <div>
             <div>
-              <h1>ALL {this.props.shoes.length} SHOES LEFT IN STOCK</h1>
               <hr />
               {currentPage && (
                 <span>
