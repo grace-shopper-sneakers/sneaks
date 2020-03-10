@@ -31,7 +31,7 @@ export const addShoeToCart = shoeId => async dispatch => {
     if (response.data.status === 404) {
       //no cart found on local storage
       //cart found on frontend storage
-      if (sessionStorage.cart === 'empty') {
+      if (!sessionStorage.cart || sessionStorage.cart === 'empty') {
         //case if first item in session storage
         sessionStorage.setItem('cart', shoeId)
       } else {
@@ -92,16 +92,26 @@ export const removeFromCart = id => async dispatch => {
 }
 export const checkout = () => async dispatch => {
   try {
-    const splitShoes = sessionStorage.getItem('cart').split(',')
-    const mappedShoes = splitShoes.map(shoeId => {
-      parseInt(shoeId, 10)
-    })
-    const {data: newOrder} = await axios.put('/api/cart/checkout', mappedShoes)
-
+    let orderToSend
+    if (sessionStorage.using === 'true') {
+      const splitShoes = sessionStorage.getItem('cart').split(',')
+      const mappedShoes = splitShoes.map(shoeId => {
+        parseInt(shoeId, 10)
+      })
+      sessionStorage.cart = 'empty'
+      const {data: newOrder} = await axios.put(
+        '/api/cart/checkout',
+        mappedShoes
+      )
+      orderToSend = newOrder
+    } else {
+      const {data: newOrder} = await axios.put('/api/cart/checkout')
+      orderToSend = newOrder
+    }
     //clear cart in redux
     dispatch(checkedOut())
 
-    dispatch(newOrderThunk(newOrder))
+    dispatch(newOrderThunk(orderToSend))
   } catch (e) {
     console.error(e)
   }
