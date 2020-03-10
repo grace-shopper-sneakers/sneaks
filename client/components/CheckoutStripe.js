@@ -29,12 +29,12 @@ const CheckoutStripe = props => {
         shippingAddress
         amount={props.cartPrice * 100}
       />
-      <p>Price: {props.cartPrice}</p>
     </div>
   )
 }
 
 const mapStateToProps = state => ({
+  // cartPrice: state.cart.reduce((agg, item) => agg + item.price / 100, 0)
   cartPrice: state.cart.reduce((agg, shoeId) => {
     if (state.shoes.length > 0) {
       return agg + state.shoes.find(shoe => shoe.id === shoeId, 0).price / 100
