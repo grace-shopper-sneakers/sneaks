@@ -75,7 +75,16 @@ export const getUserCart = () => async dispatch => {
 
 export const removeFromCart = id => async dispatch => {
   try {
-    await axios.put(`/api/cart/shoes/${id}`)
+    //using frontend storage?
+    if (sessionStorage.getItem('using') === 'false') {
+      await axios.put(`/api/cart/shoes/${id}`)
+    } else {
+      const splitShoes = sessionStorage.getItem('cart').split(',')
+      const mappedShoes = splitShoes.filter(shoeId => shoeId !== `${id}`)
+      sessionStorage.setItem('cart', mappedShoes)
+      console.log('replaced shoes', mappedShoes)
+    }
+
     dispatch(removedShoe(id))
   } catch (error) {
     console.error(error)
@@ -84,7 +93,9 @@ export const removeFromCart = id => async dispatch => {
 export const checkout = () => async dispatch => {
   try {
     const splitShoes = sessionStorage.getItem('cart').split(',')
-    const mappedShoes = splitShoes.map(shoeId => parseInt(shoeId, 10))
+    const mappedShoes = splitShoes.map(shoeId => {
+      parseInt(shoeId, 10)
+    })
     const {data: newOrder} = await axios.put('/api/cart/checkout', mappedShoes)
 
     //clear cart in redux

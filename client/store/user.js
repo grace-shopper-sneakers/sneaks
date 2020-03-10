@@ -24,6 +24,11 @@ const editedUser = user => ({type: EDIT_USER, user})
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
+    if (res.data) {
+      sessionStorage.setItem('using', false)
+    } else {
+      sessionStorage.setItem('using', true)
+    }
     dispatch(gotUser(res.data || defaultUser))
   } catch (err) {
     console.error(err)
@@ -32,8 +37,18 @@ export const me = () => async dispatch => {
 
 export const auth = (email, password, method) => async dispatch => {
   let res
+  const items = {email, password}
   try {
-    res = await axios.post(`/auth/${method}`, {email, password})
+    if (method === 'signup') {
+      if (sessionStorage.cart !== '' && sessionStorage.cart !== 'empty') {
+        const mapShoes = sessionStorage.cart
+          .split(',')
+          .map(shoeId => parseInt(shoeId, 10))
+        items.shoes = mapShoes
+        sessionStorage.clear()
+      }
+    }
+    res = await axios.post(`/auth/${method}`, items)
   } catch (authError) {
     return dispatch(gotUser({error: authError}))
   }
@@ -50,6 +65,7 @@ export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
     dispatch(removedUser())
+    sessionStorage.setItem('using', 'true')
     history.push('/login')
   } catch (err) {
     console.error(err)
