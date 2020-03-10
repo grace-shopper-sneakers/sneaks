@@ -35,13 +35,13 @@ class AdminPortal extends React.Component {
         </h3>
         <Link to="/users">
           <h4>All Registered Users</h4>
-          <AdminUsersPortal
-            adminUsers={adminUsers}
-            adminGetUser={adminGetUser}
-            adminEditUser={adminEditUser}
-            adminDeleteUser={adminDeleteUser}
-          />
         </Link>
+        <AdminUsersPortal
+          adminUsers={adminUsers}
+          adminGetUser={adminGetUser}
+          adminEditUser={adminEditUser}
+          adminDeleteUser={adminDeleteUser}
+        />
         <h4>Shoe Inventory and Management</h4>
       </div>
     )

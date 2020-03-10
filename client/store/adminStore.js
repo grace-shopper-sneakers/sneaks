@@ -7,17 +7,17 @@ const ADMIN_EDIT_USER = 'ADMIN_EDIT_USER'
 const ADMIN_DELETE_USER = 'ADMIN_DELETE_USER'
 
 // ACTION CREATORS
-const gotAllUsers = users => ({
+const gotAllUsers = adminUsers => ({
   type: ADMIN_GET_ALL_USERS,
-  users
+  adminUsers
 })
-const gotUser = users => ({
+const gotUser = adminUser => ({
   type: ADMIN_GET_USER,
-  user
+  adminUser
 })
-const editedUser = users => ({
+const editedUser = adminUser => ({
   type: ADMIN_EDIT_USER,
-  user
+  adminUser
 })
 const deletedUser = id => ({
   type: ADMIN_DELETE_USER,
@@ -41,9 +41,9 @@ export const adminGetUser = id => async dispatch => {
     console.error(error)
   }
 }
-export const adminEditUser = (user, userId) => async dispatch => {
+export const adminEditUser = (adminUser, adminUserId) => async dispatch => {
   try {
-    const {data} = await axios.put(`/api/users/${userId}`, user)
+    const {data} = await axios.put(`/api/users/${adminUserId}`, adminUser)
     dispatch(editedUser(data))
   } catch (error) {
     console.error(error)
@@ -65,13 +65,13 @@ const initialState = []
 const adminUsersReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADMIN_GET_ALL_USERS:
-      return action.users
+      return action.adminUsers
     case ADMIN_GET_USER:
-      return action.user
+      return action.adminUser
     case ADMIN_EDIT_USER:
-      return action.user
+      return action.adminUser
     case ADMIN_DELETE_USER:
-      return state.filter(user => user.id !== action.id)
+      return state.filter(adminUser => adminUser.id !== action.id)
     default:
       return state
   }

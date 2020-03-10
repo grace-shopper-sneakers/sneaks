@@ -2,7 +2,9 @@ import React from 'react'
 
 export default function AdminUsersPortal(props) {
   console.log('AdminUsersPortal -> props', props)
-
+  if (!props.adminUsers) {
+    return <h1>No Users. Chapter 11 here we come!</h1>
+  }
   return (
     <div>
       <ul>
@@ -15,13 +17,37 @@ export default function AdminUsersPortal(props) {
               <th>#</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Edit</th>
+              <th>Delete FOREVER</th>
             </tr>
           </thead>
           <tbody>
-            {/* {props.users &&
-              props.users.map(user =>
-                makeRow(user, props.adminDelUsers, props.adminPromoteUser)
-              )} */}
+            {props.adminUsers &&
+              props.adminUsers.map(adminUser => {
+                return (
+                  <tr key={adminUser.id}>
+                    <td>{adminUser.id}</td>
+                    <td>
+                      {adminUser.firstName} {adminUser.lastName}
+                    </td>
+                    <td>{adminUser.email}</td>
+                    <td>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          props.adminEditUser(adminUser, adminUser.id)
+                        }
+                      />
+                    </td>
+                    <td>
+                      <button
+                        type="button"
+                        onClick={() => props.adminDeleteUser(adminUser.id)}
+                      />
+                    </td>
+                  </tr>
+                )
+              })}
           </tbody>
         </table>
       </div>
