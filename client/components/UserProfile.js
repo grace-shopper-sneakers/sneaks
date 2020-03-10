@@ -2,7 +2,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import UserProfileForm from './UserProfileForm'
-import {editUser} from '../store'
+import {editUser, adminGetUser} from '../store'
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -66,29 +66,51 @@ class UserProfile extends React.Component {
 
     this.props.editUser(editedUser, editedUser.id)
   }
+
   render() {
-    const {user} = this.props
     return (
       <div>
-        <h1>
-          {user.firstName} {user.lastName}
-        </h1>
-        <UserProfileForm
-          {...this.state}
-          user={user}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
+        {this.props.adminUser ? (
+          <h1>
+            {this.props.adminUser.firstName} {this.props.adminUser.lastName}
+          </h1>
+        ) : (
+          <h1>
+            {this.props.user.firstName} {this.props.user.lastName}
+          </h1>
+        )}
+
+        <div>
+          {this.props.adminUser ? (
+            <UserProfileForm
+              {...this.state}
+              user={this.props.adminUser}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+            />
+          ) : (
+            <UserProfileForm
+              {...this.state}
+              user={this.props.user}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+            />
+          )}
+        </div>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  adminUser: state.adminUser
 })
 
 const mapDispatchToProps = dispatch => ({
+  adminGetUser: id => {
+    dispatch(adminGetUser(id))
+  },
   editUser: (user, userId) => dispatch(editUser(user, userId))
 })
 
