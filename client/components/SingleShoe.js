@@ -12,7 +12,7 @@ class SingleShoe extends React.Component {
       <div>
         <button
           type="button"
-          onClick={() => this.props.addShoe(this.props.shoe)}
+          onClick={() => this.props.addShoe(this.props.shoe.id)}
         >
           ADD TO CART
         </button>
@@ -42,7 +42,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(deleteShoe(id))
     ownProps.history.push('/shoes')
   },
-  addShoe: shoe => dispatch(addShoeToCart(shoe))
+  addShoe: shoeId => dispatch(addShoeToCart(shoeId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleShoe)

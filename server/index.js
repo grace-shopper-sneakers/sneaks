@@ -10,7 +10,11 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
-module.exports = app
+const cors = require('cors')
+
+// const SERVER_CONFIGS = require('./constants/server');
+// const configureServer = require('./server');
+// const configureRoutes = require('./routes');
 
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.
@@ -47,6 +51,9 @@ const createApp = () => {
   // body parsing middleware
   app.use(express.json())
   app.use(express.urlencoded({extended: true}))
+
+  //cors middleware
+  app.use(cors())
 
   // compression middleware
   app.use(compression())

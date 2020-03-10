@@ -6,7 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
-
+const EDIT_USER = 'EDIT_USER'
 /**
  * INITIAL STATE
  */
@@ -15,16 +15,16 @@ const defaultUser = {}
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({type: GET_USER, user})
-const removeUser = () => ({type: REMOVE_USER})
-
+const gotUser = user => ({type: GET_USER, user})
+const removedUser = () => ({type: REMOVE_USER})
+const editedUser = user => ({type: EDIT_USER, user})
 /**
  * THUNK CREATORS
  */
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
-    dispatch(getUser(res.data || defaultUser))
+    dispatch(gotUser(res.data || defaultUser))
   } catch (err) {
     console.error(err)
   }
@@ -35,11 +35,11 @@ export const auth = (email, password, method) => async dispatch => {
   try {
     res = await axios.post(`/auth/${method}`, {email, password})
   } catch (authError) {
-    return dispatch(getUser({error: authError}))
+    return dispatch(gotUser({error: authError}))
   }
 
   try {
-    dispatch(getUser(res.data))
+    dispatch(gotUser(res.data))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
@@ -49,10 +49,20 @@ export const auth = (email, password, method) => async dispatch => {
 export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
-    dispatch(removeUser())
+    dispatch(removedUser())
     history.push('/login')
   } catch (err) {
     console.error(err)
+  }
+}
+
+export const editUser = (user, userId) => async dispatch => {
+  try {
+    const {data} = await axios.put(`/api/users/${userId}`, user)
+    console.log('EDITUSER THUNK', data)
+    dispatch(editedUser(data))
+  } catch (error) {
+    console.error(error)
   }
 }
 
@@ -65,6 +75,8 @@ export default function(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case EDIT_USER:
+      return action.user
     default:
       return state
   }

@@ -1,5 +1,7 @@
 /* eslint-disable complexity */
 import React from 'react'
+import CheckoutStripe from './CheckoutStripe'
+import {Link, Redirect} from 'react-router-dom'
 
 const initialState = {
   firstName: '',
@@ -20,8 +22,8 @@ const initialState = {
 }
 
 class ShippingForm extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = initialState
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -102,6 +104,7 @@ class ShippingForm extends React.Component {
     if (isValid) {
       this.props.checkout()
       this.setState(initialState)
+      console.log(this.props)
     }
   }
 
@@ -167,9 +170,11 @@ class ShippingForm extends React.Component {
           <div> {this.state.phoneNumberError}</div>
           <div> {this.state.mustBeNumber}</div>
           <p />
-          <button className="btn red accent-2" type="submit">
-            Confirm Purchase
-          </button>
+          <Link to="/payment">
+            <button className="btn red accent-2" type="submit">
+              Confirm Purchase
+            </button>
+          </Link>
         </fieldset>
       </form>
     )
