@@ -85,8 +85,8 @@ class UserProfile extends React.Component {
     // const {user} = this.props.adminUsers
     //   ? this.props.adminGetUser(adminAccessUserId)
     //   : this.props
-    // console.log('UserProfile -> render -> user', user)
-    // console.log('UserProfile -> render -> this.props', this.props)
+    console.log('UserProfile -> render -> user', user)
+    console.log('UserProfile -> render -> this.props', this.props)
 
     return (
       <div>
@@ -106,7 +106,8 @@ class UserProfile extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.user,
-  adminUsers: state.adminUsers
+  adminUsers: state.adminUsers,
+  adminUser: state.adminUser
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -49,7 +49,7 @@ const AdminUsersPortal = props => {
                       >
                         <button
                           type="button"
-                          // onClick={props.adminGetUser(adminUser.id)}
+                          onClick={() => props.adminGetUser(adminUser.id)}
                         >
                           Edit
                         </button>
@@ -74,7 +74,8 @@ const AdminUsersPortal = props => {
 }
 
 const mapStateToProps = state => ({
-  adminUsers: state.adminUsers
+  adminUsers: state.adminUsers,
+  adminUser: state.adminUser
 })
 
 const mapDispatchToProps = dispatch => ({

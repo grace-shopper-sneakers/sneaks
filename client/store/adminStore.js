@@ -67,9 +67,9 @@ const adminUsersReducer = (state = initialState, action) => {
     case ADMIN_GET_ALL_USERS:
       return action.adminUsers
     case ADMIN_GET_USER:
-      return action.adminUser
+      return state.filter(adminUser => adminUser.id === action.id)
     case ADMIN_EDIT_USER:
-      return action.adminUser
+      return state.filter(adminUser => adminUser.id === action.adminUserId)
     case ADMIN_DELETE_USER:
       return state.filter(adminUser => adminUser.id !== action.id)
     default:
