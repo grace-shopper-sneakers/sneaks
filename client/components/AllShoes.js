@@ -24,7 +24,14 @@ const AllShoes = props => {
                 delete{' '}
               </button>
             ) : (
-              ''
+              <button className="btn red accent-2" type="button">
+                <Link
+                  to={'/shoes/' + shoe.id}
+                  style={{textDecoration: 'none', color: 'white'}}
+                >
+                  Buy Now
+                </Link>
+              </button>
             )}
           </div>
         ))
