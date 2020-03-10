@@ -68,22 +68,35 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    const {user} = this.props
-    // const {user} = this.props.adminUser ? this.props.adminUser : this.props
-    console.log('UserProfile -> render -> user', user)
-    console.log('UserProfile -> render -> this.props', this.props)
-
     return (
       <div>
-        <h1>
-          {user.firstName} {user.lastName}
-        </h1>
-        <UserProfileForm
-          {...this.state}
-          user={user}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
+        {this.props.adminUser ? (
+          <h1>
+            {this.props.adminUser.firstName} {this.props.adminUser.lastName}
+          </h1>
+        ) : (
+          <h1>
+            {this.props.user.firstName} {this.props.user.lastName}
+          </h1>
+        )}
+
+        <div>
+          {this.props.adminUser ? (
+            <UserProfileForm
+              {...this.state}
+              user={this.props.adminUser}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+            />
+          ) : (
+            <UserProfileForm
+              {...this.state}
+              user={this.props.user}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+            />
+          )}
+        </div>
       </div>
     )
   }

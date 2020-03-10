@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {adminGetUser, adminEditUser, adminDeleteUser} from '../store'
+import {adminGetUser, adminDeleteUser} from '../store'
 import {Link} from 'react-router-dom'
 
 const AdminUsersPortal = props => {
@@ -76,9 +76,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   adminGetUser: id => {
     dispatch(adminGetUser(id))
-  },
-  adminEditUser: (user, userId) => {
-    dispatch(adminEditUser(user, userId))
   },
   adminDeleteUser: id => {
     dispatch(adminDeleteUser(id))
