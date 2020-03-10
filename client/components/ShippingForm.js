@@ -170,11 +170,10 @@ class ShippingForm extends React.Component {
           <div> {this.state.phoneNumberError}</div>
           <div> {this.state.mustBeNumber}</div>
           <p />
-          <Link to="/payment">
-            <button className="btn red accent-2" type="submit">
-              Confirm Purchase
-            </button>
-          </Link>
+
+          <button className="btn red accent-2" type="submit">
+            Confirm Purchase
+          </button>
         </fieldset>
       </form>
     )
