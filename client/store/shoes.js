@@ -5,6 +5,8 @@ const ADD_SHOE = 'ADD_SHOE'
 const GET_SHOES = 'GET_SHOES'
 const DELETE_SHOE = 'DELETE_SHOE'
 
+const SORT_SHOES_BY_BRAND = 'SORT_SHOES_BY_BRAND'
+
 //action creators
 const gotShoes = shoes => ({
   type: GET_SHOES,
@@ -17,6 +19,11 @@ const addedShoe = shoe => ({
 const deletedShoe = id => ({
   type: DELETE_SHOE,
   id
+})
+
+export const sortedShoesByBrand = brand => ({
+  type: SORT_SHOES_BY_BRAND,
+  brand
 })
 
 //thunk creators
@@ -55,6 +62,8 @@ export default function(state = defaultShoes, action) {
       return [...state, action.shoe]
     case DELETE_SHOE:
       return state.filter(shoe => shoe.id !== action.id)
+    case SORT_SHOES_BY_BRAND:
+      return state.filter(shoe => shoe.brand === action.brand)
     default:
       return state
   }
