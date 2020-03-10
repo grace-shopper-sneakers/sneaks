@@ -31,17 +31,17 @@ class AdminPortal extends React.Component {
     return (
       <div>
         <h3>
-          Welcome to the ADMIN PORTAL, {user.firstName} {user.lastName}
+          ADMIN PORTAL: {user.firstName} {user.lastName}
         </h3>
         <Link to="/users">
           <h4>All Registered Users</h4>
         </Link>
-        <AdminUsersPortal
+        {/* <AdminUsersPortal
           adminUsers={adminUsers}
           adminGetUser={adminGetUser}
           adminEditUser={adminEditUser}
           adminDeleteUser={adminDeleteUser}
-        />
+        /> */}
         <h4>Shoe Inventory and Management</h4>
       </div>
     )

@@ -1,6 +1,7 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
-export default function AdminUsersPortal(props) {
+const AdminUsersPortal = props => {
   console.log('AdminUsersPortal -> props', props)
   if (!props.adminUsers) {
     return <h1>No Users. Chapter 11 here we come!</h1>
@@ -54,3 +55,9 @@ export default function AdminUsersPortal(props) {
     </div>
   )
 }
+
+const mapStateToProps = state => ({
+  adminUsers: state.adminUsers
+})
+
+export default connect(mapStateToProps, null)(AdminUsersPortal)
