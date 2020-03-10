@@ -8,6 +8,10 @@ const AdminUsersPortal = props => {
   if (!props.adminUsers) {
     return <h1>No Users. Chapter 11 here we come!</h1>
   }
+  // const clickHandler = id => {
+  //   const user = props.adminGetUser(id)
+  //   props.adminEditUser(user, id)
+  // }
   return (
     <div>
       <ul>
@@ -35,10 +39,17 @@ const AdminUsersPortal = props => {
                     </td>
                     <td>{adminUser.email}</td>
                     <td>
-                      <Link to="/myaccount">
+                      <Link
+                        to={{
+                          pathname: '/myaccount',
+                          state: {
+                            adminAccessUserId: adminUser.id
+                          }
+                        }}
+                      >
                         <button
                           type="button"
-                          onClick={() => props.adminGetUser(adminUser.id)}
+                          // onClick={props.adminGetUser(adminUser.id)}
                         >
                           Edit
                         </button>
