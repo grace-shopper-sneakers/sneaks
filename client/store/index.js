@@ -8,6 +8,7 @@ import shoes from './shoes'
 import ordersReducer from './orders'
 import singleOrderReducer from './order'
 import cartReducer from './cart'
+import {adminUsersReducer, adminUserReducer} from './adminStore'
 
 const reducer = combineReducers({
   user,
@@ -15,7 +16,9 @@ const reducer = combineReducers({
   shoes,
   orders: ordersReducer,
   order: singleOrderReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  adminUsers: adminUsersReducer,
+  adminUser: adminUserReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
@@ -29,3 +32,4 @@ export * from './orders'
 export * from './order'
 export * from './shoe'
 export * from './cart'
+export * from './adminStore'

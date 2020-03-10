@@ -1,24 +1,18 @@
 const router = require('express').Router()
 const User = require('../db/models/user')
+const {adminsOnly} = require('./gatewayutils')
 module.exports = router
 
-// router.get('/', async (req, res, next) => {
-//   try {
-//     // const users = await User.findAll({
-//     //   // explicitly select only the id and email fields - even though
-//     //   // users' passwords are encrypted, it won't help if we just
-//     //   // send everything to anyone who asks!
-//     //   attributes: ['id', 'email']
-//     // })
-//     // res.json(users)
-//     res.send('Hello World!')
-//   } catch (err) {
-//     next(err)
-//   }
-
-//Admin will be able to get all Users in their portal
-// router.get('/'...)
-
+router.get('/', adminsOnly, async (req, res, next) => {
+  try {
+    const allUsers = await User.findAll({
+      attributes: ['id', 'firstName', 'lastName', 'email']
+    })
+    res.json(allUsers)
+  } catch (err) {
+    next(err)
+  }
+})
 // get user by id will be per user or as Admin you can get anyone.
 router.get('/:id', async (req, res, next) => {
   try {
@@ -48,6 +42,18 @@ router.put('/:id', async (req, res, next) => {
         res.send('You cannot update Admin status')
       }
     } else res.status(404).send('User not found')
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.delete('/:id', adminsOnly, async (req, res, next) => {
+  try {
+    const foundUser = await User.findByPk(req.params.id)
+    if (foundUser) {
+      await foundUser.destroy()
+      res.sendStatus(204)
+    } else res.sendStatus(404)
   } catch (error) {
     next(error)
   }
