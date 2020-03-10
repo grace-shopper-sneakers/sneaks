@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {adminGetUser, adminEditUser, adminDeleteUser} from '../store'
+import {Link} from 'react-router-dom'
 
 const AdminUsersPortal = props => {
   console.log('AdminUsersPortal -> props', props)
@@ -34,18 +35,22 @@ const AdminUsersPortal = props => {
                     </td>
                     <td>{adminUser.email}</td>
                     <td>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          props.adminEditUser(adminUser, adminUser.id)
-                        }
-                      />
+                      <Link to="/myaccount">
+                        <button
+                          type="button"
+                          onClick={() => props.adminGetUser(adminUser.id)}
+                        >
+                          Edit
+                        </button>
+                      </Link>
                     </td>
                     <td>
                       <button
                         type="button"
                         onClick={() => props.adminDeleteUser(adminUser.id)}
-                      />
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 )
@@ -73,4 +78,4 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(mapStateToProps, null)(AdminUsersPortal)
+export default connect(mapStateToProps, mapDispatchToProps)(AdminUsersPortal)

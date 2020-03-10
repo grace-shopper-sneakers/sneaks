@@ -47,7 +47,7 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
-router.delete(':/id', adminsOnly, async (req, res, next) => {
+router.delete('/:id', adminsOnly, async (req, res, next) => {
   try {
     const foundUser = await User.findByPk(req.params.id)
     if (foundUser) {
