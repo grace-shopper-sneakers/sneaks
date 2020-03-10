@@ -25,36 +25,29 @@ export class Cart extends Component {
     const {cart, shoes} = this.props
     return (
       <div>
-        {cart.length === 0
-          ? 'Empty cart :('
-          : cart.map(shoeId => (
-              <div key={shoeId}>
-                <Shoe shoe={shoes.find(shoe => shoe.id === shoeId)} />
-                <button
-                  className="btn red accent-2"
-                  type="button"
-                  onClick={() => this.props.removeFromCart(shoeId)}
-                >
-                  Remove from Cart
-                </button>
-                <p />
-                <form onSubmit={this.handleSubmit}>
-                  {/* <label>
-                    Quantity:
-                    {/* <select
-                      value={this.state.value}
-                      onChange={this.handleChange}
-                    >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                    </select> */}
-                  {/* </label> */}
-                  {/* <input type="submit" value="Submit" /> */}
-                </form>
-              </div>
-            ))}
+        {cart.length === 0 ? (
+          <div>
+            Empty cart :( Go checkout some shoes? <br />
+            <Link to="/shoes">
+              <button className="btn red accent-2" type="button">
+                See Shoes
+              </button>
+            </Link>
+          </div>
+        ) : (
+          cart.map(shoeId => (
+            <div key={shoeId}>
+              <Shoe shoe={shoes.find(shoe => shoe.id === shoeId)} />
+              <button
+                className="btn red accent-2"
+                type="button"
+                onClick={() => this.props.removeFromCart(shoeId)}
+              >
+                Remove from Cart
+              </button>
+            </div>
+          ))
+        )}
       </div>
     )
   }
