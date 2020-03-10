@@ -1,6 +1,6 @@
 import axios from 'axios'
 import history from '../history'
-
+import {checkedOut} from './cart'
 /**
  * ACTION TYPES
  */
@@ -45,9 +45,10 @@ export const auth = (email, password, method) => async dispatch => {
           .split(',')
           .map(shoeId => parseInt(shoeId, 10))
         items.shoes = mapShoes
-        sessionStorage.clear()
       }
     }
+    sessionStorage.clear()
+    dispatch(checkedOut())
     res = await axios.post(`/auth/${method}`, items)
   } catch (authError) {
     return dispatch(gotUser({error: authError}))
@@ -75,7 +76,6 @@ export const logout = () => async dispatch => {
 export const editUser = (user, userId) => async dispatch => {
   try {
     const {data} = await axios.put(`/api/users/${userId}`, user)
-    console.log('EDITUSER THUNK', data)
     dispatch(editedUser(data))
   } catch (error) {
     console.error(error)

@@ -82,7 +82,6 @@ export const removeFromCart = id => async dispatch => {
       const splitShoes = sessionStorage.getItem('cart').split(',')
       const mappedShoes = splitShoes.filter(shoeId => shoeId !== `${id}`)
       sessionStorage.setItem('cart', mappedShoes)
-      console.log('replaced shoes', mappedShoes)
     }
 
     dispatch(removedShoe(id))
