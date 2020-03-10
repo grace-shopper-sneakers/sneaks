@@ -62,14 +62,11 @@ export const adminDeleteUser = id => async dispatch => {
 const initialState = []
 
 // REDUCER
-const adminUsersReducer = (state = initialState, action) => {
+export const adminUsersReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADMIN_GET_ALL_USERS:
       return action.adminUsers
-    case ADMIN_GET_USER:
-      return state.filter(adminUser => adminUser.id === action.id)
-    case ADMIN_EDIT_USER:
-      return state.filter(adminUser => adminUser.id === action.adminUserId)
+
     case ADMIN_DELETE_USER:
       return state.filter(adminUser => adminUser.id !== action.id)
     default:
@@ -77,4 +74,13 @@ const adminUsersReducer = (state = initialState, action) => {
   }
 }
 
-export default adminUsersReducer
+export const adminUserReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ADMIN_GET_USER:
+      return action.adminUser
+    case ADMIN_EDIT_USER:
+      return action.adminUser
+    default:
+      return state
+  }
+}

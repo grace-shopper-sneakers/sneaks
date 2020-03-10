@@ -4,14 +4,9 @@ import {adminGetUser, adminEditUser, adminDeleteUser} from '../store'
 import {Link} from 'react-router-dom'
 
 const AdminUsersPortal = props => {
-  console.log('AdminUsersPortal -> props', props)
   if (!props.adminUsers) {
     return <h1>No Users. Chapter 11 here we come!</h1>
   }
-  // const clickHandler = id => {
-  //   const user = props.adminGetUser(id)
-  //   props.adminEditUser(user, id)
-  // }
   return (
     <div>
       <ul>

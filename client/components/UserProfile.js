@@ -18,23 +18,10 @@ class UserProfile extends React.Component {
       zip: '',
       country: '',
       phoneNumber: ''
-      // user: null
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  // componentDidMount() {
-  //   const {adminAccessUserId} = this.props.location.state
-  //   console.log(
-  //     'UserProfile -> componentDidMount -> this.props.location.state',
-  //     this.props.location.state
-  //   )
-  //   // if (adminAccessUserId) {
-  //   //   const {user} = this.props.adminGetUser(adminAccessUserId)
-  //   // } else {
-  //   //   const {user} = this.props
-  //   // }
-  // }
   handleChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value
@@ -82,9 +69,7 @@ class UserProfile extends React.Component {
 
   render() {
     const {user} = this.props
-    // const {user} = this.props.adminUsers
-    //   ? this.props.adminGetUser(adminAccessUserId)
-    //   : this.props
+    // const {user} = this.props.adminUser ? this.props.adminUser : this.props
     console.log('UserProfile -> render -> user', user)
     console.log('UserProfile -> render -> this.props', this.props)
 
@@ -106,7 +91,6 @@ class UserProfile extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.user,
-  adminUsers: state.adminUsers,
   adminUser: state.adminUser
 })
 
