@@ -12,6 +12,7 @@ class SingleShoe extends React.Component {
       <div>
         <button
           type="button"
+          className="btn red accent-2"
           onClick={() => this.props.addShoe(this.props.shoe.id)}
         >
           ADD TO CART

@@ -3,7 +3,7 @@ import React from 'react'
 const UserProfileForm = props => {
   // Need some validation checks here?
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={props.handleSubmit} className="orderForm">
       <fieldset>
         <legend>Edit your profile</legend>
         <label htmlFor="first-name">First Name</label>
