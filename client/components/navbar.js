@@ -1,11 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect, useSelector} from 'react-redux'
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn, user}) => {
-  const cart = useSelector(state => state.cart)
+const Navbar = ({handleClick, isLoggedIn, user, cart}) => {
   return (
     <div>
       <img src="img/logo2.png" className="logo" />
@@ -52,7 +51,8 @@ const mapState = state => {
   console.log(state.cart)
   return {
     isLoggedIn: !!state.user.id,
-    user: state.user
+    user: state.user,
+    cart: state.cart
   }
 }
 
