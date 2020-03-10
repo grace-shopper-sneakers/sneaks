@@ -18,6 +18,7 @@ class AllShoes extends React.Component {
   }
   componentDidMount() {
     this.props.getShoes()
+    this.setState({currentShoes: this.props.shoes})
   }
   slicedShoes(offset, pageLimit) {
     return this.state.currentShoes.slice(offset, offset + pageLimit)
