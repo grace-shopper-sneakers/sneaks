@@ -6,6 +6,7 @@ const Order = props => {
     return <h1>No orders yet.</h1>
   }
   const {order} = props
+  console.log('props', props)
   const {id, createdAt} = order
 
   return (
@@ -39,8 +40,6 @@ const Order = props => {
               ''
             )}
           </h2>
-          <hr />
-          <h2>Order Date: {createdAt}</h2>
         </div>
       ) : (
         <div>
@@ -57,10 +56,24 @@ const Order = props => {
           </h2>
           <h2>{order.user.country}</h2>
           <h2>{order.user.phoneNumber}</h2>
-          <hr />
-          <h2>Order Date: {createdAt}</h2>
         </div>
       )}
+      <hr />
+      <h2>Order Date: {createdAt.slice(0, 10)}</h2>
+      <h2>
+        {order.shoes.map(shoe => {
+          return (
+            <div key={shoe.id}>
+              <h4>{shoe.brand}</h4>
+              <h4>model: {shoe.model}</h4>
+              <h4>{shoe.color}</h4>
+              <h4>size: {shoe.size}</h4>
+              <h4>quantity: {shoe.orderShoe.quantity}</h4>
+              <h4>${shoe.orderShoe.priceAtPurchase / 100}</h4>
+            </div>
+          )
+        })}
+      </h2>
     </div>
   )
 }
