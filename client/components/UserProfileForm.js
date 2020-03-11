@@ -2,6 +2,7 @@ import React from 'react'
 
 const UserProfileForm = props => {
   // Need some validation checks here?
+  console.log('props.firstName', props.user.firstName)
   return (
     <form onSubmit={props.handleSubmit} className="orderForm">
       <fieldset>
@@ -12,7 +13,7 @@ const UserProfileForm = props => {
           name="firstName"
           type="text"
           placeholder={props.user.firstName}
-          value={props.firstName}
+          value={props.user.firstName}
           onChange={props.handleChange}
         />
         {/* <div> {firstNameError}</div> */}

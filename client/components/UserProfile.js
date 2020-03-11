@@ -68,6 +68,7 @@ class UserProfile extends React.Component {
   }
 
   render() {
+    console.log('this.state', this.state)
     return (
       <div>
         {this.props.adminUser ? (

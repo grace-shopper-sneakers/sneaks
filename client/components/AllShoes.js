@@ -43,33 +43,38 @@ class AllShoes extends React.Component {
     if (totalNumberOfShoes === 0) return null
 
     return (
-      <div className="all-shoes">
-        <div className="filter">
+      <div>
+        <div>
           <button
+            className="btn red accent-2"
             type="button"
             onClick={() => this.onClickHandler(this.props.shoes, 'Nike')}
           >
             Nike
           </button>
           <button
+            className="btn red accent-2"
             type="button"
             onClick={() => this.onClickHandler(this.props.shoes, 'Adidas')}
           >
             Adidas
           </button>
           <button
+            className="btn red accent-2"
             type="button"
             onClick={() => this.onClickHandler(this.props.shoes, 'Converse')}
           >
             Converse
           </button>
           <button
+            className="btn red accent-2"
             type="button"
             onClick={() => this.onClickHandler(this.props.shoes, 'Reebok')}
           >
             Reebok
           </button>
           <button
+            className="btn red accent-2"
             type="button"
             onClick={() => this.setState({currentShoes: this.props.shoes})}
           >
@@ -79,7 +84,7 @@ class AllShoes extends React.Component {
         {!this.props.shoes || this.props.shoes.length === 0 ? (
           <h1>No shoes here!</h1>
         ) : (
-          <div>
+          <div className="shoe-count">
             <div>
               <h1>ALL {this.props.shoes.length} SHOES LEFT IN STOCK</h1>
               <hr />
@@ -97,7 +102,7 @@ class AllShoes extends React.Component {
                 onPageChanged={this.onPageChanged}
               />
             </div>
-            <div>
+            <div className="all-shoes">
               {currentShoes.map(shoe => {
                 return (
                   <div key={shoe.id} className="shoe">
@@ -113,7 +118,14 @@ class AllShoes extends React.Component {
                         delete{' '}
                       </button>
                     ) : (
-                      ''
+                      <button className="btn red accent-2" type="button">
+                        <Link
+                          to={'/shoes/' + shoe.id}
+                          style={{textDecoration: 'none', color: 'white'}}
+                        >
+                          Buy Now
+                        </Link>
+                      </button>
                     )}
                   </div>
                 )

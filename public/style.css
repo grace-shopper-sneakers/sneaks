@@ -60,3 +60,14 @@ form div {
 .center {
   text-align: center;
 }
+
+.shoe-count {
+  text-align: center;
+}
+.pagination {
+  background-color: #ff5252;
+}
+
+.pagination a {
+  color: #ff5252;
+}
