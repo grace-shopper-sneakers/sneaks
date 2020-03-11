@@ -34,14 +34,7 @@ const AdminUsersPortal = props => {
                     </td>
                     <td>{adminUser.email}</td>
                     <td>
-                      <Link
-                        to={{
-                          pathname: '/myaccount',
-                          state: {
-                            adminAccessUserId: adminUser.id
-                          }
-                        }}
-                      >
+                      <Link to="/myaccount">
                         <button
                           type="button"
                           onClick={() => props.adminGetUser(adminUser.id)}
