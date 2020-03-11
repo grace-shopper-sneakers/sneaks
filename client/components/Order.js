@@ -1,12 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 const Order = props => {
   if (!props.order.id) {
     return <h1>No orders yet.</h1>
   }
   const {order} = props
-  console.log('props', props)
   const {id, createdAt} = order
 
   return (
@@ -76,7 +76,9 @@ const Order = props => {
             return (
               <tr key={shoe.id}>
                 <td>{shoe.brand}</td>
-                <td>{shoe.model}</td>
+                <Link to={`/shoes/${shoe.id}`}>
+                  <td>{shoe.model}</td>
+                </Link>
                 <td>{shoe.color}</td>
                 <td>{shoe.size}</td>
                 <td>{shoe.orderShoe.quantity}</td>
@@ -86,6 +88,7 @@ const Order = props => {
           })}
         </tbody>
       </table>
+      <h2 className="rainbow">BUY IT AGAIN FOR SOMEONE YOU LOVE!!!</h2>
     </div>
   )
 }
