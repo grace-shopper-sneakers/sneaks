@@ -1,8 +1,7 @@
 import React from 'react'
 
 const UserProfileForm = props => {
-  // Need some validation checks here?
-  console.log('props.firstName', props.user.firstName)
+
   return (
     <form onSubmit={props.handleSubmit} className="orderForm">
       <fieldset>
@@ -16,7 +15,6 @@ const UserProfileForm = props => {
           value={props.user.firstName}
           onChange={props.handleChange}
         />
-        {/* <div> {firstNameError}</div> */}
         <label htmlFor="last-name">Last Name</label>
         <input
           id="last-name"
@@ -35,7 +33,6 @@ const UserProfileForm = props => {
           value={props.password}
           onChange={props.handleChange}
         />
-        {/* <div> {lastNameError}</div> */}
         <label htmlFor="street-address">Street Address</label>
         <input
           id="street-address"
@@ -45,7 +42,6 @@ const UserProfileForm = props => {
           value={props.street}
           onChange={props.handleChange}
         />
-        {/* <div> {streetError}</div> */}
         <label htmlFor="apartmentNumber">Apt #</label>
         <input
           id="apartmentNumber"
@@ -64,7 +60,6 @@ const UserProfileForm = props => {
           value={props.city}
           onChange={props.handleChange}
         />
-        {/* <div> {cityError}</div> */}
         <label htmlFor="country">Country</label>
         <input
           id="country"
@@ -74,7 +69,6 @@ const UserProfileForm = props => {
           value={props.country}
           onChange={props.handleChange}
         />
-        {/* <div> {countryError}</div> */}
         <label htmlFor="zip">Zipcode</label>
         <input
           id="zip"
@@ -84,7 +78,6 @@ const UserProfileForm = props => {
           value={props.zip}
           onChange={props.handleChange}
         />
-        {/* <div> {zipError}</div> */}
         <label htmlFor="phoneNumber">Phone #</label>
         <input
           id="phoneNumber"
@@ -94,8 +87,6 @@ const UserProfileForm = props => {
           value={props.phoneNumber}
           onChange={props.handleChange}
         />
-        {/* <div> {phoneNumberError}</div>
-        <div> {mustBeNumber}</div> */}
         <label htmlFor="email">Email</label>
         <input
           id="email"
