@@ -96,6 +96,7 @@ class AllShoes extends React.Component {
             </div>
             <div>
               <Pagination
+                className="pagination"
                 totalRecords={totalNumberOfShoes}
                 pageLimit={10}
                 pageNeighbors={2}
