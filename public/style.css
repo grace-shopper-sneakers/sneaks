@@ -92,3 +92,16 @@ form div {
   -webkit-background-clip: text;
   background-clip: text;
 }
+.shoe-count {
+  text-align: center;
+}
+button {
+  background-color: #42a5f5;
+  border-radius: 4px;
+}
+
+.pagination a {
+  color: #ff5252;
+  font-size: 22px;
+  border: 1px solid #ddd;
+}
