@@ -13,14 +13,14 @@ const Order = props => {
     <div>
       {props.user.isAdmin ? (
         <div>
-          <h1>Admin Portal</h1>
-          <h1>Order ID: {id}</h1>
-          <h2>
+          <h2>Admin Portal</h2>
+          <h2>Order ID: {id}</h2>
+          <h3>
             {order.user
               ? order.user.firstName + ' ' + order.user.lastName
               : 'guest order'}
-          </h2>
-          <h2>
+          </h3>
+          <h3>
             {order.user ? (
               <div>
                 {order.user.street}, {order.user.apartmentNumber}
@@ -28,52 +28,64 @@ const Order = props => {
             ) : (
               ''
             )}
-          </h2>
-          <h2>
+          </h3>
+          <h3>
             {order.user ? (
               <div>
                 {order.user.city}, {order.user.zip}
-                <h2>{order.user.country}</h2>
-                <h2>{order.user.phoneNumber}</h2>
+                <h3>{order.user.country}</h3>
+                <h3>{order.user.phoneNumber}</h3>
               </div>
             ) : (
               ''
             )}
-          </h2>
+          </h3>
         </div>
       ) : (
         <div>
-          <h1>My Orders</h1>
-          <h1>Order ID: {id}</h1>
-          <h2>
+          <h2>My Orders</h2>
+          <h2>Order ID: {id}</h2>
+          <h3>
             {order.user.firstName} {order.user.lastName}
-          </h2>
-          <h2>
+          </h3>
+          <h3>
             {order.user.street}, {order.user.apartmentNumber}
-          </h2>
-          <h2>
+          </h3>
+          <h3>
             {order.user.city}, {order.user.zip}
-          </h2>
-          <h2>{order.user.country}</h2>
-          <h2>{order.user.phoneNumber}</h2>
+          </h3>
+          <h3>{order.user.country}</h3>
+          <h3>{order.user.phoneNumber}</h3>
         </div>
       )}
       <hr />
-      <h2>Order Date: {createdAt.slice(0, 10)}</h2>
-      <h2>
-        {order.shoes.map(shoe => {
-          return (
-            <div key={shoe.id}>
-              <h4>{shoe.brand}</h4>
-              <h4>model: {shoe.model}</h4>
-              <h4>{shoe.color}</h4>
-              <h4>size: {shoe.size}</h4>
-              <h4>quantity: {shoe.orderShoe.quantity}</h4>
-              <h4>${shoe.orderShoe.priceAtPurchase / 100}</h4>
-            </div>
-          )
-        })}
-      </h2>
+      <h3>Order Date: {createdAt.slice(0, 10)}</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Quantity</th>
+            <th>Price Paid</th>
+          </tr>
+        </thead>
+        <tbody>
+          {order.shoes.map(shoe => {
+            return (
+              <tr key={shoe.id}>
+                <td>{shoe.brand}</td>
+                <td>{shoe.model}</td>
+                <td>{shoe.color}</td>
+                <td>{shoe.size}</td>
+                <td>{shoe.orderShoe.quantity}</td>
+                <td>${shoe.orderShoe.priceAtPurchase / 100}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
     </div>
   )
 }
