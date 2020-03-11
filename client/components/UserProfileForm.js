@@ -11,7 +11,7 @@ const UserProfileForm = props => {
           name="firstName"
           type="text"
           placeholder={props.user.firstName}
-          value={props.firstName}
+          value={props.user.firstName}
           onChange={props.handleChange}
         />
         <label htmlFor="last-name">Last Name</label>
