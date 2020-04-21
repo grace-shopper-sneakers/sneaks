@@ -10,7 +10,7 @@ HypeSneaks is a mock e-commerce fullstack web application made with React, Redux
 
 `style` - Materialize
 
-`Deployment` - Continuous deployment with travis
+`Deployment` - Continuous deployment with Travis CI
 
 `Deployed Link`: https://sneaks-shopper.herokuapp.com/
 
